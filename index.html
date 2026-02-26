@@ -1,1 +1,1042 @@
-Hello world.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Tide Westpunt | Your Caribbean Escape in Westpunt, Curaçao</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ocean-deep: #0A4B5C;
+            --ocean-bright: #1C7C9E;
+            --coral: #FF6B6B;
+            --sand: #F4E4C1;
+            --palm: #2D5F3F;
+            --sky: #87CEEB;
+            --sunset: #FF8C42;
+            --white: #FFFFFF;
+            --cream: #FFF8F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Image Carousel */
+        .carousel-section {
+            padding: 80px 5%;
+            background: var(--white);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--white);
+            padding: 40px 30px 30px;
+            font-size: 1.3rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--ocean-deep);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            text-align: center;
+            padding: 25px 0 0;
+        }
+
+        .carousel-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .carousel-dot.active {
+            background: var(--coral);
+            transform: scale(1.3);
+        }
+
+        .carousel-placeholder {
+            background: linear-gradient(135deg, var(--ocean-bright), var(--sky));
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            padding: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-slide img,
+            .carousel-placeholder {
+                height: 400px;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .carousel-prev {
+                left: 10px;
+            }
+
+            .carousel-next {
+                right: 10px;
+            }
+
+            .carousel-caption {
+                font-size: 1.1rem;
+                padding: 30px 20px 20px;
+            }
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.7;
+            color: var(--ocean-deep);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 15px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--ocean-deep);
+            color: var(--ocean-deep);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Crimson Text', serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--ocean-deep);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--ocean-bright) 0%, var(--sky) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 140, 66, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(45, 95, 63, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--cream);
+            font-weight: 300;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            background: var(--coral);
+            color: var(--white);
+            padding: 18px 45px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+            background: var(--sunset);
+        }
+
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23FFF8F0'/%3E%3C/svg%3E") no-repeat;
+            background-size: cover;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--ocean-deep);
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--coral);
+            margin: 20px auto 0;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border-left: 5px solid var(--coral);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--ocean-deep);
+            margin-bottom: 15px;
+        }
+
+        .feature-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Westpunt Section */
+        .westpunt-section {
+            background: linear-gradient(to bottom, var(--cream) 0%, var(--sand) 100%);
+        }
+
+        .westpunt-intro {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 2;
+            font-style: italic;
+            color: var(--ocean-deep);
+        }
+
+        /* Category Sections */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .category-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, var(--ocean-bright), var(--ocean-deep));
+            padding: 30px;
+            color: var(--white);
+        }
+
+        .category-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .category-body {
+            padding: 35px;
+        }
+
+        .place-item {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .place-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .place-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ocean-deep);
+            margin-bottom: 10px;
+        }
+
+        .place-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* Island Info Section */
+        .island-info {
+            background: var(--ocean-deep);
+            color: var(--white);
+        }
+
+        .island-info .section-title {
+            color: var(--white);
+        }
+
+        .island-info .section-title::after {
+            background: var(--coral);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--sand);
+        }
+
+        .info-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--sunset) 0%, var(--coral) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-section .section-title {
+            color: var(--white);
+        }
+
+        .contact-section .section-title::after {
+            background: var(--white);
+        }
+
+        .contact-info {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            line-height: 2;
+        }
+
+        .contact-email {
+            display: inline-block;
+            background: var(--white);
+            color: var(--coral);
+            padding: 15px 40px;
+            border-radius: 50px;
+            margin-top: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .contact-email:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ocean-deep);
+            color: var(--white);
+            padding: 40px 5%;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* Hide non-active languages */
+        [data-lang]:not(.active) {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .section {
+                padding: 60px 5%;
+            }
+
+            .about-grid,
+            .category-grid,
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en" onclick="switchLanguage('en')">English</button>
+        <button class="lang-btn" data-lang="nl" onclick="switchLanguage('nl')">Nederlands</button>
+        <button class="lang-btn" data-lang="es" onclick="switchLanguage('es')">Español</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" data-lang="en">Blue Tide Westpunt</h1>
+            <h1 class="hero-title" data-lang="nl">Blue Tide Westpunt</h1>
+            <h1 class="hero-title" data-lang="es">Blue Tide Westpunt</h1>
+            
+            <p class="hero-subtitle" data-lang="en">Your Serene Caribbean Escape in Westpunt, Curaçao<br />a private top-floor retreat in a freestanding two-story building steps from the water, with your own separate entrance - the seclusion of a villa with the ease of a managed resort</p>
+            <p class="hero-subtitle" data-lang="nl">Uw Serene Caribische Toevluchtsoord in Westpunt, Curaçao<br />een privé toevluchtsoord op de bovenste verdieping in een vrijstaand gebouw van twee verdiepingen op enkele stappen van het water, met uw eigen aparte ingang - de afzondering van een villa met het gemak van een beheerd resort</p>
+            <p class="hero-subtitle" data-lang="es">Tu Refugio Caribeño Sereno en Westpunt, Curaçao<br />un refugio privado en el piso superior de un edificio independiente de dos pisos a pasos del agua, con tu propia entrada separada - la reclusión de una villa con la facilidad de un resort administrado</p>
+            
+            <button class="cta-button" data-lang="en">Discover Paradise</button>
+            <button class="cta-button" data-lang="nl">Ontdek Het Paradijs</button>
+            <button class="cta-button" data-lang="es">Descubre el Paraíso</button>
+        </div>
+        <div class="wave-divider"></div>
+    </section>
+
+    <!-- Image Carousel -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-slides" id="carouselSlides">
+                <!-- Placeholder slides - replace with actual images -->
+                <div class="carousel-slide">
+                    <div class="carousel-placeholder">
+                        <div>
+                            <p>Your Beautiful Property Photo #1</p>
+                            <p style="font-size: 1rem; margin-top: 20px; font-family: 'Crimson Text', serif;">Replace this placeholder with your images</p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption" data-lang="en">Stunning ocean views from your private balcony</div>
+                    <div class="carousel-caption" data-lang="nl">Prachtig uitzicht op de oceaan vanaf uw privébalkon</div>
+                    <div class="carousel-caption" data-lang="es">Impresionantes vistas al océano desde tu balcón privado</div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-placeholder">
+                        <div>
+                            <p>Your Beautiful Property Photo #2</p>
+                            <p style="font-size: 1rem; margin-top: 20px; font-family: 'Crimson Text', serif;">Replace this placeholder with your images</p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption" data-lang="en">Steps to pristine Caribbean waters</div>
+                    <div class="carousel-caption" data-lang="nl">Stappen naar ongerept Caribisch water</div>
+                    <div class="carousel-caption" data-lang="es">Pasos hacia aguas caribeñas prístinas</div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-placeholder">
+                        <div>
+                            <p>Your Beautiful Property Photo #3</p>
+                            <p style="font-size: 1rem; margin-top: 20px; font-family: 'Crimson Text', serif;">Replace this placeholder with your images</p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption" data-lang="en">Relax by the community pool</div>
+                    <div class="carousel-caption" data-lang="nl">Ontspan bij het gemeenschappelijk zwembad</div>
+                    <div class="carousel-caption" data-lang="es">Relájate junto a la piscina comunitaria</div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-placeholder">
+                        <div>
+                            <p>Your Beautiful Property Photo #4</p>
+                            <p style="font-size: 1rem; margin-top: 20px; font-family: 'Crimson Text', serif;">Replace this placeholder with your images</p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption" data-lang="en">Colorful marine life at your doorstep</div>
+                    <div class="carousel-caption" data-lang="nl">Kleurrijk zeeleven voor de deur</div>
+                    <div class="carousel-caption" data-lang="es">Vida marina colorida en tu puerta</div>
+                </div>
+            </div>
+            <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">‹</button>
+            <button class="carousel-nav carousel-next" onclick="moveCarousel(1)">›</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <h2 class="section-title fade-in" data-lang="en">Your Tropical Haven</h2>
+        <h2 class="section-title fade-in" data-lang="nl">Uw Tropisch Toevluchtsoord</h2>
+        <h2 class="section-title fade-in" data-lang="es">Tu Refugio Tropical</h2>
+
+        <div class="about-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🏠</div>
+                <h3 class="feature-title" data-lang="en">Spacious Comfort</h3>
+                <h3 class="feature-title" data-lang="nl">Ruim Comfort</h3>
+                <h3 class="feature-title" data-lang="es">Comodidad Espaciosa</h3>
+                
+                <p class="feature-text" data-lang="en">Our beautifully appointed 2-bedroom, 2-bathroom condo on the second floor offers stunning views of lush wilderness, majestic mountains, and partial ocean vistas. The vibrant blue building houses a spacious retreat perfect for families or couples.</p>
+                <p class="feature-text" data-lang="nl">Ons prachtig ingericht appartement met 2 slaapkamers en 2 badkamers op de tweede verdieping biedt een adembenemend uitzicht op weelderige natuur, majesteitelijke bergen en gedeeltelijk oceaanzicht. Het levendige blauwe gebouw herbergt een ruim toevluchtsoord perfect voor gezinnen of koppels.</p>
+                <p class="feature-text" data-lang="es">Nuestro hermoso condominio de 2 habitaciones y 2 baños en el segundo piso ofrece vistas impresionantes de naturaleza exuberante, montañas majestuosas y vistas parciales al océano. El vibrante edificio azul alberga un refugio espacioso perfecto para familias o parejas.</p>
+            </div>
+
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🌊</div>
+                <h3 class="feature-title" data-lang="en">Direct Water Access</h3>
+                <h3 class="feature-title" data-lang="nl">Directe Toegang tot Water</h3>
+                <h3 class="feature-title" data-lang="es">Acceso Directo al Agua</h3>
+                
+                <p class="feature-text" data-lang="en">Step from your door and walk just moments to pristine Caribbean waters teeming with colorful fish, vibrant coral, and abundant marine life. No streets to cross—enjoy seamless access to the sea from within our gated Punta Azul community.</p>
+                <p class="feature-text" data-lang="nl">Stap vanuit uw deur en loop slechts enkele momenten naar het ongerepte Caribische water vol kleurrijke vissen, levendig koraal en overvloedig zeeleven. Geen straten over te steken—geniet van naadloze toegang tot de zee vanuit onze omheinde Punta Azul gemeenschap.</p>
+                <p class="feature-text" data-lang="es">Sal de tu puerta y camina solo momentos hasta las aguas caribeñas prístinas llenas de peces coloridos, coral vibrante y abundante vida marina. Sin calles que cruzar—disfruta de acceso sin interrupciones al mar desde nuestra comunidad cerrada de Punta Azul.</p>
+            </div>
+
+            <div class="feature-card fade-in">
+                <div class="feature-icon">🏖️</div>
+                <h3 class="feature-title" data-lang="en">Resort Amenities</h3>
+                <h3 class="feature-title" data-lang="nl">Resort Voorzieningen</h3>
+                <h3 class="feature-title" data-lang="es">Amenidades del Resort</h3>
+                
+                <p class="feature-text" data-lang="en">Relax by the community pool, rinse off in the outdoor shower, and enjoy the security of our gated development. Our 12 brightly colored buildings (6 on each side) create a vibrant Caribbean atmosphere in peaceful, remote Westpunt.</p>
+                <p class="feature-text" data-lang="nl">Ontspan bij het gemeenschappelijk zwembad, spoel af onder de buitendouche en geniet van de veiligheid van onze omheinde ontwikkeling. Onze 12 felgekleurde gebouwen (6 aan elke kant) creëren een levendige Caribische sfeer in het vredige, afgelegen Westpunt.</p>
+                <p class="feature-text" data-lang="es">Relájate junto a la piscina comunitaria, enjuágate en la ducha exterior y disfruta de la seguridad de nuestro desarrollo cerrado. Nuestros 12 edificios de colores brillantes (6 a cada lado) crean una atmósfera caribeña vibrante en el tranquilo y remoto Westpunt.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Westpunt Section -->
+    <section class="section westpunt-section">
+        <h2 class="section-title fade-in" data-lang="en">Discover Westpunt</h2>
+        <h2 class="section-title fade-in" data-lang="nl">Ontdek Westpunt</h2>
+        <h2 class="section-title fade-in" data-lang="es">Descubre Westpunt</h2>
+
+        <p class="westpunt-intro fade-in" data-lang="en">
+            Nestled at the far western tip of Curaçao, Westpunt is a tranquil fishing village that embodies the unspoiled beauty of the Caribbean. This serene, remote paradise offers a peaceful escape from the bustling tourist areas, with dramatic coastal landscapes, pristine beaches, and a laid-back island atmosphere that invites you to slow down and breathe deeply.
+        </p>
+        <p class="westpunt-intro fade-in" data-lang="nl">
+            Gelegen aan de verste westelijke punt van Curaçao, is Westpunt een rustig vissersdorp dat de ongerepte schoonheid van het Caribisch gebied belichaamt. Dit serene, afgelegen paradijs biedt een vredige ontsnapping aan de drukke toeristische gebieden, met dramatische kustlandschappen, ongerepte stranden en een ontspannen eilandsfeer die uitnodigt om te vertragen en diep adem te halen.
+        </p>
+        <p class="westpunt-intro fade-in" data-lang="es">
+            Ubicado en el extremo occidental de Curaçao, Westpunt es un tranquilo pueblo de pescadores que encarna la belleza virgen del Caribe. Este sereno paraíso remoto ofrece un escape pacífico de las áreas turísticas bulliciosas, con paisajes costeros dramáticos, playas prístinas y una atmósfera isleña relajada que te invita a desacelerar y respirar profundamente.
+        </p>
+
+        <!-- Beaches -->
+        <div class="category-grid">
+                <div class="category-header">
+                    <h3 class="category-name" data-lang="en">🏖️ Beaches</h3>
+                    <h3 class="category-name" data-lang="nl">🏖️ Stranden</h3>
+                    <h3 class="category-name" data-lang="es">🏖️ Playas</h3>
+                </div>
+                <div class="category-body">
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Playa Kalki</h4>
+                        <h4 class="place-name" data-lang="nl">Playa Kalki</h4>
+                        <h4 class="place-name" data-lang="es">Playa Kalki</h4>
+                        
+                        <p class="place-description" data-lang="en">A world-class shore dive and snorkel site with vibrant coral reefs, abundant marine life, and the famous "Alice in Wonderland" underwater experience. Crystal-clear waters perfect for underwater exploration.</p>
+                        <p class="place-description" data-lang="nl">Een wereldklasse duik- en snorkellocatie met levendige koraalriffen, overvloedig zeeleven en de beroemde "Alice in Wonderland" onderwaterervaring. Kristalhelder water perfect voor onderwaterverkenning.</p>
+                        <p class="place-description" data-lang="es">Un sitio de buceo y snorkel de clase mundial con arrecifes de coral vibrantes, abundante vida marina y la famosa experiencia submarina "Alicia en el País de las Maravillas". Aguas cristalinas perfectas para exploración submarina.</p>
+                    </div>
+
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Grote Knip (Playa Kenepa Grandi)</h4>
+                        <h4 class="place-name" data-lang="nl">Grote Knip (Playa Kenepa Grandi)</h4>
+                        <h4 class="place-name" data-lang="es">Grote Knip (Playa Kenepa Grandi)</h4>
+                        
+                        <p class="place-description" data-lang="en">Curaçao's most photographed beach with powder-white sand, turquoise waters, and dramatic cliffs. Perfect for swimming, snorkeling with sea turtles, and cliff jumping. Facilities available for rent.</p>
+                        <p class="place-description" data-lang="nl">Het meest gefotografeerde strand van Curaçao met poederwit zand, turquoise water en dramatische klippen. Perfect om te zwemmen, snorkelen met zeeschildpadden en klif springen. Faciliteiten beschikbaar voor verhuur.</p>
+                        <p class="place-description" data-lang="es">La playa más fotografiada de Curaçao con arena blanca como polvo, aguas turquesas y acantilados dramáticos. Perfecto para nadar, hacer snorkel con tortugas marinas y saltar desde acantilados. Instalaciones disponibles para alquilar.</p>
+                    </div>
+
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Klein Knip (Playa Kenepa Chiki)</h4>
+                        <h4 class="place-name" data-lang="nl">Klein Knip (Playa Kenepa Chiki)</h4>
+                        <h4 class="place-name" data-lang="es">Klein Knip (Playa Kenepa Chiki)</h4>
+                        
+                        <p class="place-description" data-lang="en">A more intimate alternative to its larger sister beach, offering excellent snorkeling with healthy coral, fewer crowds, and palapas for shade. A local favorite with pristine natural beauty.</p>
+                        <p class="place-description" data-lang="nl">Een intiemer alternatief voor zijn grotere zusterstrand, met uitstekend snorkelen met gezond koraal, minder drukte en palapa's voor schaduw. Een lokale favoriet met ongerepte natuurlijke schoonheid.</p>
+                        <p class="place-description" data-lang="es">Una alternativa más íntima a su playa hermana más grande, que ofrece excelente snorkel con coral saludable, menos multitudes y palapas para sombra. Un favorito local con belleza natural prístina.</p>
+                    </div>
+
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Playa Lagun</h4>
+                        <h4 class="place-name" data-lang="nl">Playa Lagun</h4>
+                        <h4 class="place-name" data-lang="es">Playa Lagun</h4>
+                        
+                        <p class="place-description" data-lang="en">A charming cove beach perfect for spotting sea turtles, especially in the morning. Excellent snorkeling with active reefs and the chance to see dolphins from the shore.</p>
+                        <p class="place-description" data-lang="nl">Een charmant baaienstrand perfect voor het spotten van zeeschildpadden, vooral 's ochtends. Uitstekend snorkelen met actieve riffen en de kans om dolfijnen vanaf de kust te zien.</p>
+                        <p class="place-description" data-lang="es">Una playa de cala encantadora perfecta para avistar tortugas marinas, especialmente por la mañana. Excelente snorkel con arrecifes activos y la oportunidad de ver delfines desde la costa.</p>
+                    </div>
+
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Playa Piskadó (Playa Grandi)</h4>
+                        <h4 class="place-name" data-lang="nl">Playa Piskadó (Playa Grandi)</h4>
+                        <h4 class="place-name" data-lang="es">Playa Piskadó (Playa Grandi)</h4>
+                        
+                        <p class="place-description" data-lang="en">Known as "Turtle Beach," this fishing village beach offers guaranteed sea turtle encounters. Watch local fishermen sell their daily catch while swimming alongside these gentle giants.</p>
+                        <p class="place-description" data-lang="nl">Bekend als "Turtle Beach", dit vissersdorpstrand biedt gegarandeerde ontmoetingen met zeeschildpadden. Kijk hoe lokale vissers hun dagelijkse vangst verkopen terwijl je naast deze vriendelijke reuzen zwemt.</p>
+                        <p class="place-description" data-lang="es">Conocida como "Playa de las Tortugas", esta playa de pueblo pesquero ofrece encuentros garantizados con tortugas marinas. Observa a los pescadores locales vender su captura diaria mientras nadas junto a estos gigantes gentiles.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attractions -->
+            <div class="category-card fade-in">
+                <div class="category-header">
+                    <h3 class="category-name" data-lang="en">🌴 Attractions</h3>
+                    <h3 class="category-name" data-lang="nl">🌴 Attracties</h3>
+                    <h3 class="category-name" data-lang="es">🌴 Atracciones</h3>
+                </div>
+                <div class="category-body">
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Mount Christoffel</h4>
+                        <h4 class="place-name" data-lang="nl">Mount Christoffel</h4>
+                        <h4 class="place-name" data-lang="es">Monte Christoffel</h4>
+                        
+                        <p class="place-description" data-lang="en">Curaçao's highest peak at 372 meters within Christoffel National Park. Hike through diverse flora and fauna to spectacular panoramic views. Climbing permitted 6 AM-10 AM. Also accessible by scenic jeep safari tours.</p>
+                        <p class="place-description" data-lang="nl">Curaçao's hoogste punt op 372 meter binnen Christoffel National Park. Wandel door diverse flora en fauna naar spectaculaire panoramische uitzichten. Klimmen toegestaan 6:00-10:00 uur. Ook toegankelijk via schilderachtige jeep safari tours.</p>
+                        <p class="place-description" data-lang="es">El pico más alto de Curaçao a 372 metros dentro del Parque Nacional Christoffel. Camina a través de flora y fauna diversa hacia vistas panorámicas espectaculares. Escalada permitida de 6 AM a 10 AM. También accesible mediante tours panorámicos en jeep safari.</p>
+                    </div>
+
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Hòfi Mango</h4>
+                        <h4 class="place-name" data-lang="nl">Hòfi Mango</h4>
+                        <h4 class="place-name" data-lang="es">Hòfi Mango</h4>
+                        
+                        <p class="place-description" data-lang="en">A stunning nature park established in 1707, featuring over 1,100 ancient mango trees, the historic Caribbean sugar mill, "Stairway to Heaven" viewpoint, and "Hand of God" sculpture. Now includes Curaçao's first zipline experience and Kultura Kòrsou restaurant.</p>
+                        <p class="place-description" data-lang="nl">Een prachtig natuurpark opgericht in 1707, met meer dan 1.100 eeuwenoude mangobomen, de historische Caribische suikermolen, "Stairway to Heaven" uitkijkpunt en "Hand of God" sculptuur. Bevat nu Curaçao's eerste zipline-ervaring en Kultura Kòrsou restaurant.</p>
+                        <p class="place-description" data-lang="es">Un impresionante parque natural establecido en 1707, con más de 1,100 árboles de mango antiguos, el histórico molino de azúcar caribeño, mirador "Escalera al Cielo" y escultura "Mano de Dios". Ahora incluye la primera experiencia de tirolesa de Curaçao y el restaurante Kultura Kòrsou.</p>
+                    </div>
+
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Shete Boka National Park</h4>
+                        <h4 class="place-name" data-lang="nl">Shete Boka Nationaal Park</h4>
+                        <h4 class="place-name" data-lang="es">Parque Nacional Shete Boka</h4>
+                        
+                        <p class="place-description" data-lang="en">Explore ten dramatic inlets where powerful waves crash against rugged limestone cliffs. Witness natural blowholes, sea turtle nesting sites, and spectacular coastal scenery along scenic hiking trails.</p>
+                        <p class="place-description" data-lang="nl">Verken tien dramatische inhammen waar krachtige golven tegen ruige kalkstenen klippen beuken. Wees getuige van natuurlijke fonteinen, zeeschildpad-nestplaatsen en spectaculaire kustlandschappen langs schilderachtige wandelpaden.</p>
+                        <p class="place-description" data-lang="es">Explora diez ensenadas dramáticas donde las olas poderosas chocan contra acantilados de piedra caliza escarpados. Presencia géiseres naturales, sitios de anidación de tortugas marinas y paisajes costeros espectaculares a lo largo de senderos panorámicos.</p>
+                    </div>
+
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Tula Museum (Landhuis Kenepa)</h4>
+                        <h4 class="place-name" data-lang="nl">Tula Museum (Landhuis Kenepa)</h4>
+                        <h4 class="place-name" data-lang="es">Museo Tula (Landhuis Kenepa)</h4>
+                        
+                        <p class="place-description" data-lang="en">Visit the historic plantation where Tula led the famous 1795 slave revolt. The preserved landhuis now serves as a museum honoring this pivotal moment in Curaçao's history with guided tours available.</p>
+                        <p class="place-description" data-lang="nl">Bezoek de historische plantage waar Tula de beroemde slavenopstand van 1795 leidde. Het bewaard gebleven landhuis dient nu als museum dat dit cruciale moment in Curaçao's geschiedenis eert met rondleidingen beschikbaar.</p>
+                        <p class="place-description" data-lang="es">Visita la plantación histórica donde Tula lideró la famosa revuelta de esclavos de 1795. El landhuis preservado ahora sirve como museo que honra este momento crucial en la historia de Curaçao con tours guiados disponibles.</p>
+                    </div>
+
+                    <div class="place-item">
+                        <h4 class="place-name" data-lang="en">Playa Forti</h4>
+                        <h4 class="place-name" data-lang="nl">Playa Forti</h4>
+                        <h4 class="place-name" data-lang="es">Playa Forti</h4>
+                        
+                        <p class="place-description" data-lang="en">A dramatic clifftop location with Restaurant Playa Forti offering stunning panoramic views of Westpunt Bay. The beach below features coarse brown sand and is perfect for experiencing the rugged beauty of Curaçao's western coast.</p>
+                        <p class="place-description" data-lang="nl">Een dramatische kliftop locatie met Restaurant Playa Forti met prachtig panoramisch uitzicht op Westpunt Bay. Het strand eronder heeft grof bruin zand en is perfect om de ruige schoonheid van Curaçao's westkust te ervaren.</p>
+                        <p class="place-description" data-lang="es">Una ubicación dramática en el acantilado con el Restaurante Playa Forti que ofrece impresionantes vistas panorámicas de la Bahía de Westpunt. La playa debajo presenta arena marrón gruesa y es perfecta para experimentar la belleza agreste de la costa occidental de Curaçao.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Island Info Section -->
+    <section class="section island-info">
+        <h2 class="section-title fade-in" data-lang="en">About Curaçao</h2>
+        <h2 class="section-title fade-in" data-lang="nl">Over Curaçao</h2>
+        <h2 class="section-title fade-in" data-lang="es">Acerca de Curaçao</h2>
+
+        <div class="info-grid">
+            <div class="info-card fade-in">
+                <h3 data-lang="en">Climate & Weather</h3>
+                <h3 data-lang="nl">Klimaat & Weer</h3>
+                <h3 data-lang="es">Clima</h3>
+                
+                <p data-lang="en">Curaçao enjoys year-round sunshine with average temperatures of 80°F (27°C). Located outside the hurricane belt, the island experiences minimal tropical storm risk. Trade winds provide natural cooling, making it comfortable even in summer.</p>
+                <p data-lang="nl">Curaçao geniet het hele jaar door van zonneschijn met gemiddelde temperaturen van 27°C. Gelegen buiten de orkaangordel, ervaart het eiland minimaal risico op tropische stormen. Passaatwinden zorgen voor natuurlijke koeling, waardoor het zelfs in de zomer comfortabel is.</p>
+                <p data-lang="es">Curaçao disfruta de sol durante todo el año con temperaturas promedio de 27°C. Ubicada fuera del cinturón de huracanes, la isla experimenta riesgo mínimo de tormentas tropicales. Los vientos alisios proporcionan enfriamiento natural, haciéndola cómoda incluso en verano.</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <h3 data-lang="en">Language & Culture</h3>
+                <h3 data-lang="nl">Taal & Cultuur</h3>
+                <h3 data-lang="es">Idioma y Cultura</h3>
+                
+                <p data-lang="en">The official languages are Dutch and Papiamentu (a melodious Creole language), with English and Spanish widely spoken. The island's rich cultural tapestry blends African, European, and Latin American influences in its music, cuisine, and vibrant architecture.</p>
+                <p data-lang="nl">De officiële talen zijn Nederlands en Papiamentu (een melodieuze Creoolse taal), met Engels en Spaans wijdverbreid gesproken. De rijke culturele samenstelling van het eiland combineert Afrikaanse, Europese en Latijns-Amerikaanse invloeden in zijn muziek, keuken en levendige architectuur.</p>
+                <p data-lang="es">Los idiomas oficiales son neerlandés y papiamento (un idioma criollo melodioso), con inglés y español ampliamente hablados. El rico tapiz cultural de la isla mezcla influencias africanas, europeas y latinoamericanas en su música, cocina y arquitectura vibrante.</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <h3 data-lang="en">Currency & Practicalities</h3>
+                <h3 data-lang="nl">Valuta & Praktisch</h3>
+                <h3 data-lang="es">Moneda y Aspectos Prácticos</h3>
+                
+                <p data-lang="en">The Caribbean Guilder (XCG) is the local currency, but US dollars are widely accepted. Credit cards are accepted at most establishments. A rental car is recommended for exploring, as public transportation is limited in remote areas like Westpunt.</p>
+                <p data-lang="nl">De Caribische gulden (XCG) is de lokale valuta, maar Amerikaanse dollars worden algemeen geaccepteerd. Creditcards worden bij de meeste gelegenheden geaccepteerd. Een huurauto wordt aanbevolen om te verkennen, aangezien openbaar vervoer beperkt is in afgelegen gebieden zoals Westpunt.</p>
+                <p data-lang="es">El florín caribeño (XCG) es la moneda local, pero los dólares estadounidenses son ampliamente aceptados. Las tarjetas de crédito son aceptadas en la mayoría de los establecimientos. Se recomienda un auto de alquiler para explorar, ya que el transporte público es limitado en áreas remotas como Westpunt.</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <h3 data-lang="en">UNESCO Heritage</h3>
+                <h3 data-lang="nl">UNESCO Erfgoed</h3>
+                <h3 data-lang="es">Patrimonio UNESCO</h3>
+                
+                <p data-lang="en">Willemstad's historic center is a UNESCO World Heritage Site, famous for its colorful Dutch colonial architecture, floating Queen Emma Bridge, and vibrant Punda and Otrobanda districts. The capital is about 45 minutes from Westpunt.</p>
+                <p data-lang="nl">Het historische centrum van Willemstad is een UNESCO-werelderfgoed, beroemd om zijn kleurrijke Nederlandse koloniale architectuur, drijvende Queen Emma Bridge en levendige Punda en Otrobanda wijken. De hoofdstad ligt ongeveer 45 minuten van Westpunt.</p>
+                <p data-lang="es">El centro histórico de Willemstad es un Sitio del Patrimonio Mundial de la UNESCO, famoso por su colorida arquitectura colonial holandesa, el puente flotante Queen Emma y los vibrantes distritos de Punda y Otrobanda. La capital está a unos 45 minutos de Westpunt.</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <h3 data-lang="en">Marine Paradise</h3>
+                <h3 data-lang="nl">Marien Paradijs</h3>
+                <h3 data-lang="es">Paraíso Marino</h3>
+                
+                <p data-lang="en">Curaçao is renowned for world-class diving and snorkeling with over 65 pristine dive sites. The protected marine park features healthy coral reefs, sea turtles, tropical fish, and excellent underwater visibility. Shore diving is accessible from many beaches.</p>
+                <p data-lang="nl">Curaçao staat bekend om wereldklasse duiken en snorkelen met meer dan 65 ongerepte duiklocaties. Het beschermde marine park heeft gezonde koraalriffen, zeeschildpadden, tropische vissen en uitstekend onderwaterzicht. Shore diving is toegankelijk vanaf veel stranden.</p>
+                <p data-lang="es">Curaçao es reconocida por buceo y snorkel de clase mundial con más de 65 sitios de buceo prístinos. El parque marino protegido presenta arrecifes de coral saludables, tortugas marinas, peces tropicales y excelente visibilidad submarina. El buceo desde la costa es accesible desde muchas playas.</p>
+            </div>
+
+            <div class="info-card fade-in">
+                <h3 data-lang="en">Getting Around</h3>
+                <h3 data-lang="nl">Vervoer</h3>
+                <h3 data-lang="es">Transporte</h3>
+                
+                <p data-lang="en">Hato International Airport (CUR) serves the island with connections throughout the Americas and Europe. Renting a car is highly recommended for exploring Westpunt and the island's remote beaches and national parks. Roads are generally well-maintained but can be narrow and winding in rural areas.</p>
+                <p data-lang="nl">Hato International Airport (CUR) bedient het eiland met verbindingen door heel Amerika en Europa. Het huren van een auto wordt sterk aanbevolen voor het verkennen van Westpunt en de afgelegen stranden en nationale parken van het eiland. Wegen zijn over het algemeen goed onderhouden maar kunnen smal en bochtig zijn in landelijke gebieden.</p>
+                <p data-lang="es">El Aeropuerto Internacional Hato (CUR) sirve a la isla con conexiones por todas las Américas y Europa. Se recomienda encarecidamente alquilar un auto para explorar Westpunt y las playas remotas y parques nacionales de la isla. Las carreteras generalmente están bien mantenidas pero pueden ser estrechas y sinuosas en áreas rurales.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-lang="en">&copy; 2026 Blue Tide Westpunt. All rights reserved. Your Westpunt Paradise Awaits.</p>
+        <p data-lang="nl">&copy; 2026 Blue Tide Westpunt. Alle rechten voorbehouden. Uw Westpunt Paradijs Wacht.</p>
+        <p data-lang="es">&copy; 2026 Blue Tide Westpunt. Todos los derechos reservados. Tu Paraíso de Westpunt Te Espera.</p>
+    </footer>
+
+    <script>
+        // Language Switcher
+        let currentLanguage = 'en';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Show/hide content
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.classList.add('active');
+                    element.style.display = '';
+                } else {
+                    element.classList.remove('active');
+                    element.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize with English
+        document.addEventListener('DOMContentLoaded', () => {
+            switchLanguage('en');
+            setupScrollAnimations();
+        });
+
+        // Scroll animations
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Smooth scroll for CTA button
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelector('.about-grid').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function initCarousel() {
+            // Create dots
+            const dotsContainer = document.getElementById('carouselDots');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+            updateCarousel();
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const slidesContainer = document.getElementById('carouselSlides');
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+
+            // Update captions visibility based on language
+            slides.forEach((slide, index) => {
+                const captions = slide.querySelectorAll('.carousel-caption');
+                captions.forEach(caption => {
+                    const isCurrentSlide = index === currentSlide;
+                    const isCurrentLang = caption.getAttribute('data-lang') === currentLanguage;
+                    caption.style.display = (isCurrentSlide && isCurrentLang) ? 'block' : 'none';
+                });
+            });
+        }
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            moveCarousel(1);
+        }, 5000);
+
+        // Initialize carousel
+        initCarousel();
+    </script>
+</body>
+</html>
