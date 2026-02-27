@@ -259,11 +259,25 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
             color: var(--cream);
             font-weight: 300;
-            margin-bottom: 40px;
+            margin-bottom: 15px;
             animation: fadeInUp 1s ease-out 0.3s both;
+            line-height: 1.6;
+        }
+
+        .hero-description {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            font-style: italic;
         }
 
         .cta-button {
@@ -597,9 +611,13 @@
             <h1 class="hero-title" data-lang="nl">Blue Tide Westpunt</h1>
             <h1 class="hero-title" data-lang="es">Blue Tide Westpunt</h1>
             
-            <p class="hero-subtitle" data-lang="en">Your Serene Caribbean Escape in Westpunt, Curaçao<br />a private top-floor retreat in a freestanding two-story building steps from the water, with your own separate entrance - the seclusion of a villa with the ease of a managed resort</p>
-            <p class="hero-subtitle" data-lang="nl">Uw Serene Caribische Toevluchtsoord in Westpunt, Curaçao<br />een privé toevluchtsoord op de bovenste verdieping in een vrijstaand gebouw van twee verdiepingen op enkele stappen van het water, met uw eigen aparte ingang - de afzondering van een villa met het gemak van een beheerd resort</p>
-            <p class="hero-subtitle" data-lang="es">Tu Refugio Caribeño Sereno en Westpunt, Curaçao<br />un refugio privado en el piso superior de un edificio independiente de dos pisos a pasos del agua, con tu propia entrada separada - la reclusión de una villa con la facilidad de un resort administrado</p>
+            <p class="hero-subtitle" data-lang="en">Your Serene Caribbean Escape in Westpunt, Curaçao</p>
+            <p class="hero-subtitle" data-lang="nl">Uw Serene Caribische Toevluchtsoord in Westpunt, Curaçao</p>
+            <p class="hero-subtitle" data-lang="es">Tu Refugio Caribeño Sereno en Westpunt, Curaçao</p>
+
+            <p class="hero-description" data-lang="en">A private top-floor retreat in a freestanding two-story building steps from the water, with your own separate entrance - the seclusion of a villa with the ease of a managed resort</p>
+            <p class="hero-description" data-lang="nl">Een privé toevluchtsoord op de bovenste verdieping in een vrijstaand gebouw van twee verdiepingen op enkele stappen van het water, met uw eigen aparte ingang - de afzondering van een villa met het gemak van een beheerd resort</p>
+            <p class="hero-description" data-lang="es">Un refugio privado en el piso superior de un edificio independiente de dos pisos a pasos del agua, con tu propia entrada separada - la reclusión de una villa con la facilidad de un resort administrado</p>
             
             <button class="cta-button" data-lang="en">Discover Paradise</button>
             <button class="cta-button" data-lang="nl">Ontdek Het Paradijs</button>
@@ -612,50 +630,36 @@
     <section class="carousel-section">
         <div class="carousel-container">
             <div class="carousel-slides" id="carouselSlides">
-                <!-- Placeholder slides - replace with actual images -->
+                <!-- Replace these image filenames with your actual image names -->
                 <div class="carousel-slide">
-                    <div class="carousel-placeholder">
-                        <div>
-                            <p>Your Beautiful Property Photo #1</p>
-                            <p style="font-size: 1rem; margin-top: 20px; font-family: 'Crimson Text', serif;">Replace this placeholder with your images</p>
-                        </div>
-                    </div>
+                    <img src="images/BlueTideWestpunt-Ext.jpg" alt="Blue Tide Westpunt exterior view">
                     <div class="carousel-caption" data-lang="en">Stunning ocean views from your private balcony</div>
                     <div class="carousel-caption" data-lang="nl">Prachtig uitzicht op de oceaan vanaf uw privébalkon</div>
                     <div class="carousel-caption" data-lang="es">Impresionantes vistas al océano desde tu balcón privado</div>
                 </div>
                 <div class="carousel-slide">
-                    <div class="carousel-placeholder">
-                        <div>
-                            <p>Your Beautiful Property Photo #2</p>
-                            <p style="font-size: 1rem; margin-top: 20px; font-family: 'Crimson Text', serif;">Replace this placeholder with your images</p>
-                        </div>
-                    </div>
+                    <img src="images/BlueTideWestpunt-Waterfront.jpg" alt="Steps to Caribbean Sea">
                     <div class="carousel-caption" data-lang="en">Steps to pristine Caribbean waters</div>
                     <div class="carousel-caption" data-lang="nl">Stappen naar ongerept Caribisch water</div>
                     <div class="carousel-caption" data-lang="es">Pasos hacia aguas caribeñas prístinas</div>
                 </div>
                 <div class="carousel-slide">
-                    <div class="carousel-placeholder">
-                        <div>
-                            <p>Your Beautiful Property Photo #3</p>
-                            <p style="font-size: 1rem; margin-top: 20px; font-family: 'Crimson Text', serif;">Replace this placeholder with your images</p>
-                        </div>
-                    </div>
-                    <div class="carousel-caption" data-lang="en">Relax by the community pool</div>
-                    <div class="carousel-caption" data-lang="nl">Ontspan bij het gemeenschappelijk zwembad</div>
-                    <div class="carousel-caption" data-lang="es">Relájate junto a la piscina comunitaria</div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="carousel-placeholder">
-                        <div>
-                            <p>Your Beautiful Property Photo #4</p>
-                            <p style="font-size: 1rem; margin-top: 20px; font-family: 'Crimson Text', serif;">Replace this placeholder with your images</p>
-                        </div>
-                    </div>
+                    <img src="images/BlueTideWestpunt-WaterAccess.jpg" alt="Colorful marine life and coral">
                     <div class="carousel-caption" data-lang="en">Colorful marine life at your doorstep</div>
                     <div class="carousel-caption" data-lang="nl">Kleurrijk zeeleven voor de deur</div>
                     <div class="carousel-caption" data-lang="es">Vida marina colorida en tu puerta</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/BlueTideWestpunt-Int.jpg" alt="Interior living space">
+                    <div class="carousel-caption" data-lang="en">Comfortable, spacious accommodations</div>
+                    <div class="carousel-caption" data-lang="nl">Comfortabele, ruime accommodatie</div>
+                    <div class="carousel-caption" data-lang="es">Alojamiento cómodo y espacioso</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/BlueTideWestpunt-View.jpg" alt="Sunset view from Blue Tide">
+                    <div class="carousel-caption" data-lang="en">Breathtaking Caribbean sunsets</div>
+                    <div class="carousel-caption" data-lang="nl">Adembenemende Caribische zonsondergangen</div>
+                    <div class="carousel-caption" data-lang="es">Impresionantes puestas de sol caribeñas</div>
                 </div>
             </div>
             <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">‹</button>
