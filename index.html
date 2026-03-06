@@ -554,6 +554,122 @@
             display: none;
         }
 
+        /* Contact Form Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--ocean-bright) 0%, var(--ocean-deep) 100%);
+            padding: 100px 5%;
+            color: var(--white);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.95;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--cream);
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: var(--ocean-deep);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--coral);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-submit {
+            background: var(--coral);
+            color: var(--white);
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+            background: var(--sunset);
+        }
+
+        .form-submit:active {
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .contact-form {
+                padding: 40px 25px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .language-switcher {
@@ -914,6 +1030,73 @@
                 <p data-lang="nl">Hato International Airport (CUR) bedient het eiland met verbindingen door heel Amerika en Europa. Het huren van een auto wordt sterk aanbevolen voor het verkennen van Westpunt en de afgelegen stranden en nationale parken van het eiland. Wegen zijn over het algemeen goed onderhouden maar kunnen smal en bochtig zijn in landelijke gebieden.</p>
                 <p data-lang="es">El Aeropuerto Internacional Hato (CUR) sirve a la isla con conexiones por todas las Américas y Europa. Se recomienda encarecidamente alquilar un auto para explorar Westpunt y las playas remotas y parques nacionales de la isla. Las carreteras generalmente están bien mantenidas pero pueden ser estrechas y sinuosas en áreas rurales.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2 class="contact-title" data-lang="en">Plan Your Escape</h2>
+            <h2 class="contact-title" data-lang="nl">Plan Uw Ontsnapping</h2>
+            <h2 class="contact-title" data-lang="es">Planifica Tu Escapada</h2>
+
+            <p class="contact-subtitle" data-lang="en">Ready to experience the tranquility of Westpunt? Send us a message and we'll help you plan your perfect Caribbean getaway.</p>
+            <p class="contact-subtitle" data-lang="nl">Klaar om de rust van Westpunt te ervaren? Stuur ons een bericht en we helpen u uw perfecte Caribische uitje te plannen.</p>
+            <p class="contact-subtitle" data-lang="es">¿Listo para experimentar la tranquilidad de Westpunt? Envíanos un mensaje y te ayudaremos a planificar tu escapada caribeña perfecta.</p>
+
+            <form class="contact-form" action="https://formspree.io/f/mojkqewg" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" data-lang="en">Your Name</label>
+                        <label class="form-label" data-lang="nl">Uw Naam</label>
+                        <label class="form-label" data-lang="es">Tu Nombre</label>
+                        <input type="text" name="name" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-lang="en">Your Email</label>
+                        <label class="form-label" data-lang="nl">Uw E-mail</label>
+                        <label class="form-label" data-lang="es">Tu Correo Electrónico</label>
+                        <input type="email" name="email" class="form-input" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" data-lang="en">Check-in Date</label>
+                        <label class="form-label" data-lang="nl">Incheckdatum</label>
+                        <label class="form-label" data-lang="es">Fecha de Entrada</label>
+                        <input type="date" name="checkin" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-lang="en">Check-out Date</label>
+                        <label class="form-label" data-lang="nl">Uitcheckdatum</label>
+                        <label class="form-label" data-lang="es">Fecha de Salida</label>
+                        <input type="date" name="checkout" class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-lang="en">Number of Guests</label>
+                    <label class="form-label" data-lang="nl">Aantal Gasten</label>
+                    <label class="form-label" data-lang="es">Número de Huéspedes</label>
+                    <input type="number" name="guests" class="form-input" min="1" max="6" placeholder="1-6">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-lang="en">Your Message</label>
+                    <label class="form-label" data-lang="nl">Uw Bericht</label>
+                    <label class="form-label" data-lang="es">Tu Mensaje</label>
+                    <textarea name="message" class="form-textarea" data-lang="en" placeholder="Tell us about your plans..."></textarea>
+                    <textarea name="message" class="form-textarea" data-lang="nl" placeholder="Vertel ons over uw plannen..."></textarea>
+                    <textarea name="message" class="form-textarea" data-lang="es" placeholder="Cuéntanos sobre tus planes..."></textarea>
+                </div>
+
+                <button type="submit" class="form-submit" data-lang="en">Send Inquiry</button>
+                <button type="submit" class="form-submit" data-lang="nl">Aanvraag Verzenden</button>
+                <button type="submit" class="form-submit" data-lang="es">Enviar Consulta</button>
+            </form>
         </div>
     </section>
 
