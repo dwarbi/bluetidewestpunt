@@ -6,195 +6,161 @@
     <title>Guest Guide - Blue Tide Westpunt</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --ocean-dark: #1a3a52;
+            --ocean-light: #4a7c9e;
+            --sand: #f5f1e8;
+            --coral: #ff6b6b;
+            --text-dark: #2c3e50;
+            --text-light: #555;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --ocean-dark: #0A4B5C;
-            --ocean-blue: #1C7C9E;
-            --coral: #FF6B6B;
-            --sand: #F4E4C1;
-            --text-dark: #2C3E50;
-            --text-light: #5A6C7D;
-            --white: #FFFFFF;
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--sand);
+            line-height: 1.7;
         }
 
-        body {
-            font-family: 'Crimson Text', serif;
-            color: var(--text-dark);
-            line-height: 1.7;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0f5 100%);
+        .guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .guide-container {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
         }
 
         /* Header */
-        .header {
-            background: var(--ocean-dark);
-            color: var(--white);
-            padding: 2rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .guide-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-light) 100%);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 2rem;
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header h1 {
+        .guide-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .header .subtitle {
-            font-size: 0.95rem;
+        .guide-header p {
+            font-size: 1.1rem;
             opacity: 0.9;
-            margin-top: 0.25rem;
-        }
-
-        .back-link {
-            color: var(--sand);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: opacity 0.3s;
-        }
-
-        .back-link:hover {
-            opacity: 0.7;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 3rem;
         }
 
         /* Sidebar Navigation */
         .sidebar {
             position: sticky;
-            top: 120px;
+            top: 2rem;
             height: fit-content;
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
         }
 
-        .sidebar h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--ocean-dark);
-            margin-bottom: 1.5rem;
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                top: 0;
+                margin-bottom: 2rem;
+            }
         }
 
-        .nav-list {
+        .nav-menu {
             list-style: none;
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .nav-list li {
+        .nav-menu li {
             margin-bottom: 0.75rem;
         }
 
-        .nav-list a {
-            color: var(--text-light);
+        .nav-menu a {
             text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s;
+            color: var(--ocean-dark);
+            font-weight: 500;
+            transition: color 0.2s;
             display: block;
-            padding: 0.5rem 0;
-            border-left: 3px solid transparent;
-            padding-left: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
         }
 
-        .nav-list a:hover,
-        .nav-list a.active {
-            color: var(--ocean-blue);
-            border-left-color: var(--coral);
-            transform: translateX(5px);
+        .nav-menu a:hover {
+            background: var(--sand);
+            color: var(--coral);
         }
 
         /* Main Content */
         .main-content {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-        }
-
-        .intro {
-            background: linear-gradient(135deg, var(--ocean-blue), var(--ocean-dark));
-            color: var(--white);
-            padding: 2.5rem;
+            background: white;
             border-radius: 8px;
-            margin-bottom: 3rem;
+            padding: 3rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .intro h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1.5rem;
+            }
         }
 
-        .intro p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            opacity: 0.95;
-        }
-
-        /* Sections */
         .section {
             margin-bottom: 4rem;
-            scroll-margin-top: 140px;
-        }
-
-        .section:last-child {
-            margin-bottom: 0;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--ocean-dark);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
             border-bottom: 3px solid var(--coral);
-            display: inline-block;
+            padding-bottom: 0.5rem;
         }
 
         .section-intro {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-light);
             margin-bottom: 2rem;
-            font-style: italic;
+            line-height: 1.8;
         }
 
-        /* Item Cards */
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--ocean-dark);
+            margin: 2rem 0 1.5rem;
+            border-left: 4px solid var(--coral);
+            padding-left: 1rem;
+        }
+
         .item {
             margin-bottom: 2.5rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px solid #E8ECF1;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .item:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
         }
 
         .item-header {
@@ -202,48 +168,68 @@
             justify-content: space-between;
             align-items: baseline;
             margin-bottom: 0.75rem;
+            flex-wrap: wrap;
         }
 
         .item-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--ocean-dark);
-            font-weight: 600;
+            margin: 0;
         }
 
         .item-distance {
             font-size: 0.9rem;
-            color: var(--coral);
+            color: var(--ocean-light);
             font-weight: 600;
         }
 
         .item-description {
             color: var(--text-dark);
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             line-height: 1.7;
         }
 
         .item-details {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            font-style: italic;
-        }
-
-        /* Lists */
-        .info-list {
             list-style: none;
-            margin: 1.5rem 0;
+            padding-left: 0;
         }
 
-        .info-list li {
-            padding-left: 2rem;
-            position: relative;
+        .item-details li {
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .item-details strong {
+            color: var(--ocean-dark);
+        }
+
+        /* Know Before You Go specific styles */
+        .subsection {
+            margin-bottom: 2.5rem;
+        }
+
+        .subsection h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--ocean-dark);
             margin-bottom: 1rem;
-            font-size: 1.05rem;
         }
 
-        .info-list li:before {
+        .subsection ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .subsection ul li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .subsection ul li:before {
             content: "→";
             position: absolute;
             left: 0;
@@ -251,430 +237,513 @@
             font-weight: bold;
         }
 
-        /* Category Blocks */
-        .category {
-            background: #F8FAFB;
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--ocean-blue);
-        }
-
-        .category h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--ocean-dark);
-            margin-bottom: 1rem;
-        }
-
-        .category p {
-            font-size: 1.05rem;
+        .subsection p {
+            margin-bottom: 0.75rem;
             line-height: 1.7;
         }
 
-        .category ul {
-            list-style: none;
-            margin-top: 1rem;
+        /* Emergency Contacts */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
-        .category ul li {
-            padding-left: 1.5rem;
-            position: relative;
-            margin-bottom: 0.5rem;
-        }
-
-        .category ul li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--coral);
-            font-weight: bold;
-        }
-
-        /* Emergency Contact Box */
-        .emergency-box {
-            background: linear-gradient(135deg, #FFF5F5, #FFE8E8);
-            border: 2px solid var(--coral);
-            padding: 2rem;
+        .contact-card {
+            background: var(--sand);
+            padding: 1.5rem;
             border-radius: 8px;
-            margin-top: 2rem;
+            border-left: 4px solid var(--coral);
         }
 
-        .emergency-box h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: #C53030;
-            margin-bottom: 1rem;
-        }
-
-        .emergency-box p {
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .emergency-box strong {
+        .contact-card h4 {
             color: var(--ocean-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .sidebar {
-                position: static;
-                margin-bottom: 2rem;
-            }
-
-            .main-content {
-                padding: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
+        .contact-card p {
+            color: var(--text-light);
+            margin: 0.25rem 0;
         }
 
-        @media (max-width: 600px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            .main-content {
-                padding: 1.5rem;
-            }
-
-            .intro {
-                padding: 1.5rem;
-            }
-
-            .intro h2 {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .item-header {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
+        .highlight {
+            background: #fff3cd;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            margin: 1.5rem 0;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div>
-                <h1>Blue Tide Westpunt Guest Guide</h1>
-                <p class="subtitle">Your Complete Guide to Westpunt & Curaçao</p>
-            </div>
-            <a href="index.html" class="back-link">← Back to Main Site</a>
-        </div>
-    </div>
+    <div class="guide-container">
+        <header class="guide-header">
+            <h1>Blue Tide Westpunt Guest Guide</h1>
+            <p>Everything you need for an unforgettable stay in Curaçao</p>
+        </header>
 
-    <div class="container">
-        <!-- Sidebar Navigation -->
         <aside class="sidebar">
-            <h2>Contents</h2>
             <nav>
-                <ul class="nav-list">
-                    <li><a href="#know-before-you-go" class="nav-link">Know Before You Go</a></li>
-                    <li><a href="#beaches" class="nav-link">Beaches</a></li>
-                    <li><a href="#restaurants" class="nav-link">Restaurants</a></li>
-                    <li><a href="#snorkeling-diving" class="nav-link">Snorkeling & Diving</a></li>
-                    <li><a href="#parks-nature" class="nav-link">Parks & Nature</a></li>
-                    <li><a href="#essentials" class="nav-link">Grocery & Essentials</a></li>
-                    <li><a href="#emergency" class="nav-link">Emergency Contacts</a></li>
+                <ul class="nav-menu">
+                    <li><a href="#know-before-you-go">📋 Know Before You Go</a></li>
+                    <li><a href="#beaches">🏖️ Beaches</a></li>
+                    <li><a href="#dining">🍴 Dining</a></li>
+                    <li><a href="#snorkeling">🤿 Snorkeling & Diving</a></li>
+                    <li><a href="#nature">🌵 Nature & Parks</a></li>
+                    <li><a href="#grocery">🛒 Grocery & Essentials</a></li>
+                    <li><a href="#emergency">🚨 Emergency Contacts</a></li>
                 </ul>
             </nav>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
-            <div class="intro">
-                <h2>Welcome to Westpunt</h2>
-                <p>This guide covers everything you need to know for your stay at Blue Tide. We've curated our favorite beaches, restaurants, snorkel spots, and essential information to help you experience the real Curaçao. Bookmark this page—we update it regularly as we discover new gems.</p>
-            </div>
-
             <!-- Section 1: Know Before You Go -->
             <section id="know-before-you-go" class="section">
-                <h2 class="section-title">Know Before You Go</h2>
-                <p class="section-intro">Essential information to make your trip smooth and enjoyable.</p>
+                <h2 class="section-title">📋 Know Before You Go</h2>
 
-                <div class="category">
-                    <h3>Packing Essentials</h3>
+                <div class="subsection">
+                    <h4>🎒 Packing Essentials</h4>
                     <ul>
                         <li><strong>Reef-safe sunscreen</strong> – Protects coral reefs. Look for Raw Elements, Stream2Sea, Badger, or Thrive. Non-reef-safe sunscreen kills coral.</li>
-                        <li><strong>Snorkel gear</strong> – Worth buying before you arrive. Rental gear at beaches doesn't always fit well, and fins make a huge difference—you'll cover more distance with less effort.</li>
+                        <li><strong>Snorkel gear</strong> – Worth buying before you arrive. Rental gear at beaches doesn't always fit well, and fins make a huge difference—you'll cover more distance with less effort. You can get a mask, snorkel, fins bundle for under $50 USD.</li>
                         <li><strong>Water shoes</strong> – Many beaches have rocky coral entries. These make a big difference.</li>
                         <li><strong>Bug spray</strong> – Mosquitoes are active at dawn and dusk, especially near water.</li>
-                        <li><strong>Reusable water bottle</strong> – Tap water is safe to drink.</li>
                         <li><strong>Brimmed hat</strong> – The sun is strong year-round. Essential for beach days and outdoor activities.</li>
+                        <li><strong>Reusable water bottle</strong> – Tap water is safe to drink.</li>
                         <li><strong>Waterproof phone case</strong> – Useful for marine life photos and keeping your phone safe at the beach. An inexpensive lanyard-style pouch works fine.</li>
                         <li><strong>Adapters</strong> – Blue Tide has 220V European-style outlets (Type F). Most modern electronics (phones, laptops) are dual-voltage and will work fine. We have two US-to-EU adapters available, but bring your own if you have multiple US devices.</li>
+                        <li><strong>Snorkeling extras</strong> – Consider bringing drops for your mask if it fogs easily. Consider a rash vest to protect your back while you lose track of time exploring marine life.</li>
                     </ul>
                 </div>
 
-                <div class="category">
-                    <h3>Money & Currency</h3>
-                    <p><strong>Currency:</strong> Caribbean guilder (XCG), introduced March 31, 2025. Pegged to USD at 1.79:1 (same as the old Netherlands Antillean guilder it replaced).</p>
-                    <p><strong>USD accepted:</strong> Most places accept USD. You'll get change in guilders.</p>
-                    <p><strong>Credit cards & Apple Pay:</strong> Accepted nearly everywhere. You may never need cash during your stay.</p>
-                    <p><strong>ATMs:</strong> Hard to find in Westpunt (nearest are 15-20 minutes toward Willemstad). Withdraw guilders if you need cash.</p>
-                    <p><strong>Tipping:</strong> Service charge (10-15%) is usually included in your bill. Check before adding extra.</p>
+                <div class="subsection">
+                    <h4>💰 Money & Currency</h4>
+                    <ul>
+                        <li><strong>Currency:</strong> Caribbean guilder (XCG), introduced March 31, 2025. Pegged to USD at 1.79:1 (same as the old Netherlands Antillean guilder it replaced).</li>
+                        <li><strong>USD accepted:</strong> Most places accept USD. But if you pay in cash, you'll get change in guilders.</li>
+                        <li><strong>Credit cards & Apple Pay:</strong> Accepted nearly everywhere. The cashier usually asks if you want to pay with your card in USD or guilders.</li>
+                        <li><strong>ATMs:</strong> Hard to find in Westpunt (nearest are 15-20 minutes toward Willemstad). Withdraw guilders if you need cash. Since card readers rely on service that is not consistently available, it's a good idea to take out some guilders at the airport and keep them handy in case needed.</li>
+                        <li><strong>Tipping:</strong> Service charge (10-15%) is usually included in your bill. Check before adding extra.</li>
+                    </ul>
                 </div>
 
-                <div class="category">
-                    <h3>Driving in Curaçao</h3>
-                    <p><strong>Drive on the right</strong> – Same as the US.</p>
-                    <p><strong>Speed limits</strong> – Rarely posted. Typically 80 km/h (50 mph) on highways, 40-60 km/h (25-37 mph) through towns. Slow down in villages.</p>
-                    <p><strong>Rental car essential</strong> – Public transport is limited. Support local companies like Blue Lobster or Dushi rather than global chains. Book ahead during peak season.</p>
-                    <p><strong>Gas stations</strong> – Prices are fixed island-wide. Pay before pumping or leave your card with the attendant to fill your tank.</p>
-                    <p><strong>Watch for iguanas, goats, donkeys, and deer</strong> – They cross roads without looking. Common in rural areas, especially at night.</p>
+                <div class="subsection">
+                    <h4>🚗 Driving in Curaçao</h4>
+                    <ul>
+                        <li><strong>Drive on the right</strong> – Same as the US.</li>
+                        <li><strong>Speed limits</strong> – Rarely posted. Typically 80 km/h (50 mph) on highways, 40-60 km/h (25-37 mph) through towns. Slow down in villages.</li>
+                        <li><strong>Rental car essential</strong> – Public transport is limited and taxis are costly. Support local companies like Blue Lobster or Dushi rather than global chains. Book ahead during peak season.</li>
+                        <li><strong>Gas stations</strong> – Prices are fixed island-wide. Pay before pumping or leave your card with the attendant before filling your tank.</li>
+                        <li><strong>Watch for iguanas</strong> – They cross roads without looking. Common in rural areas.</li>
+                    </ul>
                 </div>
 
-                <div class="category">
-                    <h3>Weather & Climate</h3>
-                    <p><strong>Year-round temperature:</strong> 78-88°F (26-31°C). Water stays warm regardless of season.</p>
-                    <p><strong>Rain:</strong> Weather apps show daily rain icons—ignore them. Curaçao is arid. Most "showers" are 5-minute tropical bursts, often overnight. Rarely impacts plans.</p>
-                    <p><strong>Rainy season:</strong> October-January sees slightly more rain, mostly at night or early morning. Days are still sunny.</p>
-                    <p><strong>Outside hurricane belt:</strong> Unlike most of the Caribbean, Curaçao is virtually never affected by hurricanes. Plan fall/summer trips without storm concerns.</p>
-                    <p><strong>Trade winds:</strong> Constant easterly breeze keeps it comfortable. Paradoxically, when hurricanes pass to the north, Curaçao can experience calmer winds and hotter temperatures.</p>
+                <div class="subsection">
+                    <h4>🌤️ Weather & Climate</h4>
+                    <ul>
+                        <li><strong>Year-round temperature:</strong> 78-88°F (26-31°C). Water stays warm regardless of season.</li>
+                        <li><strong>Rain:</strong> Weather apps show daily rain icons—ignore them. Curaçao is arid. Most "showers" are 5-minute tropical bursts, often overnight. Rarely impacts plans.</li>
+                        <li><strong>Rainy season:</strong> October-January sees slightly more rain, mostly at night or early morning. Days are still sunny.</li>
+                        <li><strong>Outside hurricane belt:</strong> Unlike most of the Caribbean, Curaçao is virtually never affected by hurricanes. Plan fall/summer trips without storm concerns.</li>
+                        <li><strong>Trade winds:</strong> Constant easterly breeze keeps it comfortable. Paradoxically, when hurricanes pass to the north, Curaçao can experience calmer winds and hotter temperatures.</li>
+                    </ul>
                 </div>
 
-                <div class="category">
-                    <h3>Language</h3>
+                <div class="subsection">
+                    <h4>💬 Language</h4>
                     <p><strong>Official languages:</strong> Dutch and Papiamentu</p>
                     <p><strong>English:</strong> Widely spoken in tourist areas and by younger generations</p>
                     <p><strong>Spanish:</strong> Commonly understood—many locals speak Spanish from exposure to Venezuelan and Colombian TV and radio</p>
                     <p><strong>Useful Papiamentu phrases:</strong></p>
                     <ul>
-                        <li>Bon dia (bon DEE-ah) – Good morning</li>
-                        <li>Bon tardi (bon TAR-dee) – Good afternoon</li>
-                        <li>Bon nochi (bon NO-chee) – Good evening/night</li>
-                        <li>Danki (DAN-kee) – Thank you</li>
-                        <li>Con ta bai? (kon ta BYE) – How are you?</li>
-                        <li>Mi ta bon (mee ta BON) – I'm good</li>
+                        <li><strong>Bon dia</strong> (bon DEE-ah) – Good morning</li>
+                        <li><strong>Bon tardi</strong> (bon TAR-dee) – Good afternoon</li>
+                        <li><strong>Bon nochi</strong> (bon NO-chee) – Good evening/night</li>
+                        <li><strong>Danki</strong> (DAN-kee) – Thank you</li>
+                        <li><strong>Con ta bai?</strong> (kon ta BYE) – How are you?</li>
+                        <li><strong>Mi ta bon</strong> (mee ta BON) – I'm good</li>
                     </ul>
                 </div>
 
-                <div class="category">
-                    <h3>Safety</h3>
-                    <p><strong>Overall:</strong> Curaçao is very safe. Use common sense as you would anywhere.</p>
-                    <p><strong>Ocean safety:</strong> Be mindful of currents when swimming beyond sheltered coves. Use the buddy system when snorkeling.</p>
-                    <p><strong>Wildlife:</strong> Iguanas are harmless—don't feed them. Don't approach wild pigs if you see them at beaches. Leave marine life undisturbed. Watch for goats, donkeys, and deer on roads, especially at night.</p>
-                    <p><strong>Vehicle safety:</strong> Don't leave valuables in your car at beaches. Many locals leave doors unlocked to show there's nothing inside.</p>
-                    <p><strong>Drinking water:</strong> Tap water is distilled seawater and excellent to drink—no need to buy bottled water.</p>
+                <div class="subsection">
+                    <h4>🛡️ Safety</h4>
+                    <ul>
+                        <li><strong>Overall:</strong> Curaçao is very safe. Use common sense as you would anywhere.</li>
+                        <li><strong>Ocean safety:</strong> Be mindful of currents when swimming beyond sheltered coves. Use the buddy system when snorkeling.</li>
+                        <li><strong>Wildlife:</strong> Iguanas are harmless—but don't feed them. Don't approach wild pigs if you see them at beaches. Leave marine life undisturbed. Watch for goats, donkeys, and deer on roads, especially at night.</li>
+                        <li><strong>Vehicle safety:</strong> Don't leave valuables in your car at beaches. Many locals leave doors unlocked to show there's nothing inside.</li>
+                        <li><strong>Drinking water:</strong> Tap water is distilled seawater and excellent to drink—no need to buy bottled water.</li>
+                    </ul>
                 </div>
             </section>
 
             <!-- Section 2: Beaches -->
             <section id="beaches" class="section">
-                <h2 class="section-title">Beaches</h2>
-                <p class="section-intro">All within easy reach from Blue Tide Westpunt.</p>
+                <h2 class="section-title">Beaches Near Blue Tide Westpunt</h2>
+                <p class="section-intro">Explore the best of Curaçao's coast, from rugged local coves to world-class white sand beaches. <strong>Important:</strong> Please keep your distance and never touch marine life or coral. We want to keep these ecosystems healthy for everyone!</p>
 
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--ocean-dark); margin: 2rem 0 1.5rem; border-left: 4px solid var(--coral); padding-left: 1rem;">Walking Distance</h3>
-
-                <div class="item">
-                    <div class="item-header">
-                        <h4 class="item-name">Playa Piskadó (Playa Grandi)</h4>
-                        <span class="item-distance">5 min walk</span>
-                    </div>
-                    <p class="item-description">"Turtle Beach." Local fishermen clean their catch here daily; sea turtles show up for scraps. Best time: 7-9am. Bring snorkel gear.</p>
-                    <p class="item-details">No facilities. Rocky entry.</p>
-                </div>
-
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--ocean-dark); margin: 2rem 0 1.5rem; border-left: 4px solid var(--coral); padding-left: 1rem;">5-15 Minutes Drive</h3>
+                <h3>🚶 Walking Distance</h3>
 
                 <div class="item">
                     <div class="item-header">
                         <h4 class="item-name">Playa Forti</h4>
-                        <span class="item-distance">5 min drive</span>
+                        <span class="item-distance">5 min walk</span>
                     </div>
-                    <p class="item-description">Famous for the 40-foot cliff jump from the restaurant above. Dark coarse sand, rugged feel. The clifftop restaurant (also called Playa Forti) has excellent sunset views.</p>
-                    <p class="item-details">Rocky entry.</p>
+                    <p class="item-description">Famous for the 40-foot cliff jump from the restaurant above—legitimately dangerous, with people killed and paralyzed each year. It features unique dark coarse sand and a rugged, authentic feel.</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🍽️ Restaurants on the cliff above.</li>
+                        <li><strong>Cost:</strong> 🆓 Free entry.</li>
+                        <li><strong>Amenities:</strong> 🪑 No chairs for rent on the sand.</li>
+                        <li><strong>Note:</strong> Best for sunset views and adventure seekers. Rocky entry.</li>
+                    </ul>
                 </div>
 
                 <div class="item">
                     <div class="item-header">
-                        <h4 class="item-name">Playa Jeremi</h4>
-                        <span class="item-distance">7 min drive</span>
+                        <h4 class="item-name">Playa Piskadó (Playa Grandi) 🐢</h4>
+                        <span class="item-distance">15 min walk</span>
                     </div>
-                    <p class="item-description">Secluded narrow cove carved into cliffs. No facilities, no crowds, no entrance fee. Exceptionally clear water. Popular with local divers. Perfect for a quiet sunset.</p>
-                    <p class="item-details">No facilities. Bring everything.</p>
+                    <p class="item-description">A working fisherman's beach known as "Turtle Beach."</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🥤 Small snack stand and paid restrooms/showers.</li>
+                        <li><strong>Cost:</strong> 🆓 Free entry.</li>
+                        <li><strong>Amenities:</strong> 🪑 Limited chair rentals available.</li>
+                        <li><strong>Snorkeling:</strong> 🤿 High chance of seeing turtles.</li>
+                        <li><strong>Note:</strong> It is very easy to see turtles here because they gather to eat scraps from fishermen. However, it is often crowded and not a "natural" wildlife setting. Best visited between 7:00 AM – 9:00 AM.</li>
+                    </ul>
                 </div>
+
+                <h3>🚗 Short Drive (5–15 min)</h3>
 
                 <div class="item">
                     <div class="item-header">
                         <h4 class="item-name">Playa Kalki</h4>
-                        <span class="item-distance">8 min drive</span>
+                        <span class="item-distance">5 min drive</span>
                     </div>
-                    <p class="item-description">World-class shore dive and snorkel site nicknamed "Alice in Wonderland." Vibrant coral, abundant marine life. Dive shop on-site (Bahia Apartments & Diving) for gear rental.</p>
-                    <p class="item-details">Rocky entry but worth it.</p>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <h4 class="item-name">Grote Knip (Playa Kenepa Grandi)</h4>
-                        <span class="item-distance">10 min drive</span>
-                    </div>
-                    <p class="item-description">Curaçao's most photographed beach. White sand, turquoise water, dramatic cliffs. Cliff jumping on the left side (check depth first). Gets crowded weekends—arrive before 10am.</p>
-                    <p class="item-details">Small snack bar, restrooms, showers. Free parking (limited). Snorkeling good on the right side near rocks.</p>
+                    <p class="item-description">A world-class shore dive and snorkel site nicknamed "Alice in Wonderland."</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🍽️ Restaurant and 🤿 Dive shop (Go West Diving) on-site.</li>
+                        <li><strong>Cost:</strong> 🆓 Free entry.</li>
+                        <li><strong>Amenities:</strong> 🪑 Chairs for rent.</li>
+                        <li><strong>Snorkeling:</strong> ⭐ Exceptional. Vibrant coral and abundant fish.</li>
+                        <li><strong>Note:</strong> Steep stairs to the beach and a rocky entry.</li>
+                    </ul>
                 </div>
 
                 <div class="item">
                     <div class="item-header">
                         <h4 class="item-name">Klein Knip (Playa Kenepa Chiki)</h4>
-                        <span class="item-distance">12 min drive</span>
+                        <span class="item-distance">6 min drive</span>
                     </div>
-                    <p class="item-description">Quieter sister beach to Grote Knip. Excellent snorkeling, healthy coral. Shallower and calmer.</p>
-                    <p class="item-details">No facilities—bring everything. Tight parking—arrive early on weekends.</p>
+                    <p class="item-description">The intimate, quieter sister beach to Grote Knip.</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🚫 No food or restrooms—bring your own supplies.</li>
+                        <li><strong>Cost:</strong> 🆓 Free entry.</li>
+                        <li><strong>Amenities:</strong> 🪑 No chairs for rent (limited palapas for shade).</li>
+                        <li><strong>Snorkeling:</strong> ⭐ Exceptional. Shallow, calm, and very healthy coral.</li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Playa Jeremi</h4>
+                        <span class="item-distance">8 min drive</span>
+                    </div>
+                    <p class="item-description">A secluded, narrow cove carved into the cliffs.</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🚫 No facilities or shade.</li>
+                        <li><strong>Cost:</strong> 🆓 Free entry.</li>
+                        <li><strong>Amenities:</strong> 🪑 Chairs for rent.</li>
+                        <li><strong>Snorkeling:</strong> 🤿 Clear water, popular with local divers.</li>
+                        <li><strong>Note:</strong> Perfect for a quiet, "off-the-grid" sunset.</li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Grote Knip (Playa Kenepa Grandi)</h4>
+                        <span class="item-distance">8 min drive</span>
+                    </div>
+                    <p class="item-description">Curaçao's most iconic beach with bright turquoise water and dramatic cliffs.</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🍔 Snack bar, restrooms, and showers.</li>
+                        <li><strong>Cost:</strong> 🆓 Free entry.</li>
+                        <li><strong>Amenities:</strong> 🪑 Chairs and umbrellas for rent (~$5–$10).</li>
+                        <li><strong>Snorkeling:</strong> 🤿 Good snorkeling along the rocks on the right side.</li>
+                        <li><strong>Note:</strong> Arrive before 10:00 AM on weekends to secure a spot.</li>
+                    </ul>
                 </div>
 
                 <div class="item">
                     <div class="item-header">
                         <h4 class="item-name">Playa Lagun</h4>
-                        <span class="item-distance">15 min drive</span>
+                        <span class="item-distance">9 min drive</span>
                     </div>
-                    <p class="item-description">Protected cove, perfect for beginner snorkelers. Frequent dolphin sightings in the bay. Calm, shallow water. Sea turtles common. Small fishing village vibe.</p>
-                    <p class="item-details">Restaurant on the water (Bahia Beach Bar). Parking tight on weekends.</p>
+                    <p class="item-description">A narrow, protected cove nestled between tall cliffs.</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🍽️ Two restaurants (Bahia and Lighthouse) overlooking the water.</li>
+                        <li><strong>Cost:</strong> 🆓 Free entry.</li>
+                        <li><strong>Amenities:</strong> 🪑 Chairs for rent.</li>
+                        <li><strong>Snorkeling:</strong> 🤿 Great for beginners; look for turtles and squid along the cliffs.</li>
+                    </ul>
                 </div>
 
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--ocean-dark); margin: 2rem 0 1.5rem; border-left: 4px solid var(--coral); padding-left: 1rem;">20-30 Minutes Drive (worth the trip)</h3>
+                <h3>🚙 Longer Drive (20–35 min)</h3>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Daaibooi 🐢</h4>
+                        <span class="item-distance">30 min drive</span>
+                    </div>
+                    <p class="item-description">A beautiful, traditional bay that remains a favorite for locals.</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🍟 Snack bar (excellent fries!) and restrooms.</li>
+                        <li><strong>Cost:</strong> 🆓 Free entry.</li>
+                        <li><strong>Amenities:</strong> 🪑 Chairs for rent and pergolas for shade.</li>
+                        <li><strong>Snorkeling:</strong> ⭐ Exceptional.</li>
+                        <li><strong>Note:</strong> This is your best bet for seeing sea turtles in a truly natural setting without the crowds of Piskadó.</li>
+                    </ul>
+                </div>
 
                 <div class="item">
                     <div class="item-header">
                         <h4 class="item-name">Cas Abou</h4>
-                        <span class="item-distance">25 min drive</span>
+                        <span class="item-distance">30 min drive</span>
                     </div>
-                    <p class="item-description">Consistently ranked among the Caribbean's best beaches. White sand, palm trees, full amenities: massages, snack bar, showers, restrooms, palapas for rent. Resort feel. Great for a full day of lounging. Easy snorkeling.</p>
-                    <p class="item-details">Entrance fee: ~$5.</p>
+                    <p class="item-description">Consistently ranked among the best beaches in the world. A full-service "resort-style" beach.</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🍽️ Full restaurant, bar, showers, and even beach massages.</li>
+                        <li><strong>Cost:</strong> 🎟️ Entrance fee: ~$6 per car.</li>
+                        <li><strong>Amenities:</strong> 🪑 Plenty of chairs and palapas for rent.</li>
+                        <li><strong>Snorkeling:</strong> ⭐ Exceptional. Easy access and very clear water.</li>
+                    </ul>
                 </div>
 
                 <div class="item">
                     <div class="item-header">
                         <h4 class="item-name">Playa Porto Mari</h4>
-                        <span class="item-distance">30 min drive</span>
+                        <span class="item-distance">35 min drive</span>
                     </div>
-                    <p class="item-description">Famous for "double reef" snorkeling and wild pigs that occasionally lounge on the sand. Large boardwalk, restaurant, bar. More developed than Westpunt beaches but still beautiful. Good balance of nature and comfort.</p>
-                    <p class="item-details">Entrance fee: ~$3.50.</p>
+                    <p class="item-description">Famous for its unique "double reef" and the wild pigs that occasionally visit the shore.</p>
+                    <ul class="item-details">
+                        <li><strong>Facilities:</strong> 🍽️ Large restaurant, bar, and restrooms.</li>
+                        <li><strong>Cost:</strong> 🎟️ Entrance fee: ~$3 per person.</li>
+                        <li><strong>Amenities:</strong> 🪑 Extensive chair rentals and a large boardwalk.</li>
+                        <li><strong>Snorkeling:</strong> ⭐ Exceptional. The double reef offers a unique underwater landscape.</li>
+                    </ul>
                 </div>
             </section>
 
-            <!-- Section 3: Restaurants -->
-            <section id="restaurants" class="section">
-                <h2 class="section-title">Restaurants</h2>
-                <p class="section-intro">Local spots where you'll get great food and probably meet the owners.</p>
+            <!-- Section 3: Dining -->
+            <section id="dining" class="section">
+                <h2 class="section-title">🍴 Westpunt Dining Guide</h2>
+                <p class="section-intro"><em>Note: Food options and prices may have changed—this is a rough guide. It is recommended to make a reservation or call ahead for most locations in Westpunt to ensure they are open and have space. Most businesses use WhatsApp to communicate.</em></p>
 
                 <div class="item">
                     <div class="item-header">
-                        <h3 class="item-name">Sol Food</h3>
-                        <span class="item-distance">5 min drive</span>
-                    </div>
-                    <p class="item-description">Weekend pizza and fresh seafood on a breezy deck. Run by Sunshine and David—you'll probably chat with them. Go for sunset. Bring cash.</p>
-                    <p class="item-details">Open: Friday-Sunday. Cash only. Reservations recommended on weekends.</p>
-                </div>
-
-                <div class="item">
-                    <div class="item-header">
-                        <h3 class="item-name">Jaanchie's Restaurant</h3>
+                        <h4 class="item-name">⭐ Koffi Houz</h4>
                         <span class="item-distance">8 min drive</span>
                     </div>
-                    <p class="item-description">5-generation family restaurant serving traditional Curaçaoan food. Try the goat stew (kabritu stoba) or fresh fish. Ask Jaanchie about island history—he loves to talk.</p>
-                    <p class="item-details">Closed Mondays. Cash preferred. Lunch and dinner.</p>
+                    <p class="item-description">Located right outside the entrance to Mt. Christoffel, they serve coffee, cakes, and drinks but not full meals as of this writing, but they plan on expanding. It is the perfect place to relax while others scramble to the top! Say hello to Tariq and Howard.</p>
                 </div>
 
                 <div class="item">
                     <div class="item-header">
-                        <h3 class="item-name">Playa Forti</h3>
-                        <span class="item-distance">12 min drive</span>
+                        <h4 class="item-name">⭐ Isabelle off the Beach</h4>
+                        <span class="item-distance">4 min drive</span>
                     </div>
-                    <p class="item-description">Clifftop restaurant with stunning ocean views. Watch cliff divers jump from 30 feet while you eat fresh catch. Touristy but the view and food justify it.</p>
-                    <p class="item-details">Open daily. Credit cards accepted. Go before sunset for the best light.</p>
+                    <p class="item-description">A charming, slightly more upscale feel. Great for a romantic dinner. Reservations recommended.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">⭐ Sol Food</h4>
+                        <span class="item-distance">3 min drive | 20 min walk</span>
+                    </div>
+                    <p class="item-description">Weekend pizza and fresh seafood served on a breezy deck. Run by Sunshine and David—you'll probably chat with them. Open Friday–Sunday, closed on weekdays. Reservations recommended.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">⭐ Jaanchie's Restaurant</h4>
+                        <span class="item-distance">2 min drive | 15 min walk</span>
+                    </div>
+                    <p class="item-description">A 5-generation family restaurant serving traditional Curaçaoan food. Try the goat stew (<em>kabritu stoba</em>) or fresh fish. Ask Jaanchie about island history—he loves to talk.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Restaurant Playa Forti</h4>
+                        <span class="item-distance">5 min walk</span>
+                    </div>
+                    <p class="item-description">Clifftop restaurant with stunning ocean views. Watch cliff divers jump from 40 feet while you eat the fresh catch.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Blue View Sunset Terrace</h4>
+                        <span class="item-distance">6 min walk</span>
+                    </div>
+                    <p class="item-description">Also overlooking Playa Forti, this is a prime spot for a casual meal with a view of the coast.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Mama Kunuku Gastrobar</h4>
+                        <span class="item-distance">5 min drive</span>
+                    </div>
+                    <p class="item-description">Located inside Bed & Bike Westpunt resort. A solid choice for a more modern dining atmosphere and varied international menu.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Cactus Café</h4>
+                        <span class="item-distance">Right next door</span>
+                    </div>
+                    <p class="item-description">A convenient local favorite. Note for North Americans: This is not Mexican food; it serves local island fare.</p>
                 </div>
             </section>
 
             <!-- Section 4: Snorkeling & Diving -->
-            <section id="snorkeling-diving" class="section">
-                <h2 class="section-title">Snorkeling & Diving</h2>
-                <p class="section-intro">Westpunt is known for some of the best snorkeling and diving in the Caribbean.</p>
+            <section id="snorkeling" class="section">
+                <h2 class="section-title">🤿 Snorkeling & Diving</h2>
+                <p class="section-intro">Westpunt is home to some of the healthiest coral reefs and most diverse marine life in the Caribbean. Because the water is typically calm and the reefs are very close to shore, it is a paradise for snorkelers of all levels.</p>
 
-                <div class="category">
-                    <h3>Best Shore Snorkel Sites</h3>
-                    <ul>
-                        <li><strong>Punta Azul (your community!):</strong> Walk down the steps and you're in. Healthy coral, parrotfish, angelfish, barracuda, octopus, and occasional turtles.</li>
-                        <li><strong>Playa Kalki:</strong> "Alice in Wonderland" dive site. World-class shore entry.</li>
-                        <li><strong>Playa Piskado:</strong> Sea turtles guaranteed (especially 7-9am).</li>
-                        <li><strong>Playa Lagun:</strong> Calm, protected cove. Great for beginners.</li>
-                        <li><strong>Grote Knip:</strong> Snorkel the right side near the rocks.</li>
+                <h3>Best Shore Snorkel Sites</h3>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Punta Azul (Your Backyard!)</h4>
+                    </div>
+                    <p class="item-description">Walk down our community steps directly into the Caribbean. You'll find healthy brain coral, parrotfish, angelfish, and the occasional octopus or barracuda.</p>
+                    <ul class="item-details">
+                        <li><strong>Note:</strong> Entry is via a ladder/rocks; water shoes are highly recommended.</li>
                     </ul>
                 </div>
 
-                <div class="category">
-                    <h3>Dive Centers & Gear Rental</h3>
-                    <p><strong>Bahia Apartments & Diving</strong> (at Playa Kalki) – Gear rental, guided dives, certifications. Professional operation.</p>
-                    <p><strong>Go West Diving</strong> (Westpunt area) – Boat dives, shore dives, instruction.</p>
-                    <p><strong>Bring your own gear if possible.</strong> Rental masks don't always fit well. Most dive shops also rent snorkel sets (~$10-15/day).</p>
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Playa Kalki</h4>
+                    </div>
+                    <p class="item-description">Nicknamed "Alice in Wonderland," this is a world-class site. The reef starts just a short swim from the shore with massive coral formations.</p>
                 </div>
 
-                <div class="category">
-                    <h3>What You'll See</h3>
-                    <p><strong>Common species:</strong> Parrotfish, angelfish, trumpetfish, barracuda, squid, octopus, moray eels, stingrays, spotted eagle rays, green sea turtles, hawksbill turtles.</p>
-                    <p><strong>Coral:</strong> Brain coral, elkhorn coral, sea fans, sponges. The reefs here are healthy—Curaçao has strong marine protection laws.</p>
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Daaibooi</h4>
+                    </div>
+                    <p class="item-description">One of the best spots to see sea turtles in their natural, wild habitat. Follow the rocky cliffs on either side of the bay for the best views.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Playa Lagun</h4>
+                    </div>
+                    <p class="item-description">A narrow, protected cove that is ideal for beginners. The calm water makes it easy to spot squid and juvenile fish along the cliff walls.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Klein Knip</h4>
+                    </div>
+                    <p class="item-description">Features a very shallow, accessible reef with vibrant purple sea fans and high coral density.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Cas Abou</h4>
+                    </div>
+                    <p class="item-description">For the best variety, swim toward the northern (left) side of the beach where the reef is most active.</p>
+                </div>
+
+                <h3>Equipment & Dive Centers</h3>
+
+                <div class="highlight">
+                    <strong>Pro-Tip: Buy your own Snorkel Kit.</strong> For the best comfort and to save money on daily rentals, we highly recommend purchasing your own snorkel, mask, and fin set before you arrive. Having your own gear allows you to jump in at any of the "no-facility" beaches like Jeremi or Klein Knip whenever you like.
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Go West Diving (at Playa Kalki)</h4>
+                    </div>
+                    <p class="item-description">The primary full-service PADI resort in Westpunt. They offer boat dives to "Watamula," shore diving, and gear rentals.</p>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4 class="item-name">Sublime Diving</h4>
+                    </div>
+                    <p class="item-description">Located right next door to us. They specialize in personalized, small-group shore diving and are incredibly convenient for guests staying at Blue Tide.</p>
+                </div>
+
+                <h3>Marine Life: What to Look For</h3>
+
+                <div class="highlight">
+                    The reefs here are protected by Curaçao law. Please help us preserve them by <strong>never touching the coral</strong> and wearing <strong>reef-safe sunscreen</strong>.
+                </div>
+
+                <div class="subsection">
+                    <ul>
+                        <li><strong>Common Species:</strong> Look for vibrant Blue Parrotfish, Queen Angelfish, Trumpetfish, and schools of Blue Tangs. Keep an eye out for Green and Hawksbill sea turtles, Spotted Eagle Rays, and Moray Eels hiding in the reef.</li>
+                        <li><strong>Coral:</strong> You will see impressive stands of Elkhorn and Staghorn coral, along with large Brain corals, sea fans, and colorful sponges.</li>
+                    </ul>
                 </div>
             </section>
 
-            <!-- Section 5: Parks & Nature -->
-            <section id="parks-nature" class="section">
-                <h2 class="section-title">Parks & Nature</h2>
-                <p class="section-intro">Westpunt puts you minutes from Curaçao's best natural areas.</p>
+            <!-- Section 5: Nature & Parks -->
+            <section id="nature" class="section">
+                <h2 class="section-title">🌵 Westpunt Nature & History</h2>
+                <p class="section-intro">Westpunt puts you minutes from Curaçao's best natural areas in the Banda Bou (western) region.</p>
 
                 <div class="item">
                     <div class="item-header">
-                        <h3 class="item-name">Christoffel National Park</h3>
-                        <span class="item-distance">15 min drive</span>
+                        <h4 class="item-name">Christoffel National Park</h4>
+                        <span class="item-distance">8 min drive</span>
                     </div>
-                    <p class="item-description"><strong>The hike:</strong> Summit Mount Christoffel (375m / 1,220ft) for 360° island views. The top is a scramble, but worth it. CRITICAL: You must start before 10am due to heat—the trail closes after that.</p>
-                    <p class="item-description"><strong>Scenic drives:</strong> Two paved routes (Mountain Route and North Coast Route) wind through the park. You'll see native white-tailed deer, wild orchids, and cacti from your air-conditioned car.</p>
-                    <p class="item-details">Entrance fee: ~$15. Open daily.</p>
+                    <p class="item-description">The island's crown jewel for hiking and nature.</p>
+                    <ul class="item-details">
+                        <li><strong>The Hike:</strong> Summit Mount Christoffel (375m / 1,220ft) for 360° island views. The final stretch is a rocky scramble, but the payoff is incredible.</li>
+                        <li><strong>CRITICAL:</strong> You must start the hike before 10:00 AM due to extreme heat. The trail closes to new hikers after that time.</li>
+                        <li><strong>Scenic Drives:</strong> Two paved routes (Mountain and North Coast) wind through the park. Keep an eye out for native white-tailed deer, wild orchids, and rare Cara Cara birds from your car.</li>
+                        <li><strong>Entrance fee:</strong> ~$15. Savonet Museum at entrance.</li>
+                    </ul>
                 </div>
 
                 <div class="item">
                     <div class="item-header">
-                        <h3 class="item-name">Shete Boka National Park</h3>
-                        <span class="item-distance">20 min drive</span>
+                        <h4 class="item-name">Shete Boka National Park</h4>
+                        <span class="item-distance">8 min drive</span>
                     </div>
                     <p class="item-description">Dramatic north coast where the ocean crashes into limestone cliffs.</p>
-                    <p class="item-description"><strong>Boka Tabla:</strong> Walk into a sea cave where massive waves thunder against the rocks. It's powerful.</p>
-                    <p class="item-description"><strong>Boka Pistol:</strong> Named for the cannon-like blast created when waves fire into a narrow inlet.</p>
-                    <p class="item-description"><strong>Trails:</strong> Two marked coastal paths (Boka Kalki and Boka Wandomi) along the bluffs. Otherworldly landscape.</p>
-                    <p class="item-details">Entrance fee: ~$10. Wear sturdy shoes.</p>
+                    <ul class="item-details">
+                        <li><strong>Boka Tabla:</strong> Walk into a sea cave where massive waves thunder against the rocks. It's powerful.</li>
+                        <li><strong>Boka Pistol:</strong> Named for the cannon-like blast created when waves fire into a narrow inlet.</li>
+                        <li><strong>Trails:</strong> Two marked coastal paths (Boka Kalki and Boka Wandomi) along the bluffs. Otherworldly landscape.</li>
+                        <li><strong>Entrance fee:</strong> ~$10. Wear sturdy shoes.</li>
+                    </ul>
                 </div>
 
                 <div class="item">
                     <div class="item-header">
-                        <h3 class="item-name">Hòfi Mango</h3>
-                        <span class="item-distance">25 min drive</span>
+                        <h4 class="item-name">Hòfi Mango</h4>
+                        <span class="item-distance">12 min drive</span>
                     </div>
-                    <p class="item-description"><strong>The mango grove:</strong> 300-year-old plantation with 1,100+ mango trees. Cool, lush escape from the sun.</p>
-                    <p class="item-description"><strong>Stairway to Heaven:</strong> Panoramic viewpoint with the massive "Hand of God" sculpture facing Mount Christoffel.</p>
-                    <p class="item-description"><strong>History:</strong> Historic sugar mill and distillery site. Peaceful blend of nature and heritage.</p>
-                    <p class="item-details">Restaurant on-site (Kultura Kòrsou). Entrance fee: ~$12.</p>
+                    <p class="item-description">A rare shaded oasis on an arid island.</p>
+                    <ul class="item-details">
+                        <li><strong>The mango grove:</strong> 300-year-old plantation with 1,100+ mango trees. Cool, lush escape from the sun.</li>
+                        <li><strong>Stairway to Heaven:</strong> Panoramic viewpoint with the massive "Hand of God" sculpture facing Mount Christoffel.</li>
+                        <li><strong>History:</strong> Historic sugar mill and distillery site. Peaceful blend of nature and heritage.</li>
+                        <li><strong>Restaurant on-site</strong> (Kultura Kòrsou). <strong>Entrance fee:</strong> ~$12.</li>
+                    </ul>
                 </div>
+
+                <h3>Outdoor History Sites</h3>
 
                 <div class="item">
                     <div class="item-header">
-                        <h3 class="item-name">Savonet Museum</h3>
+                        <h4 class="item-name">Savonet Museum</h4>
                         <span class="item-distance">At Christoffel entrance</span>
                     </div>
                     <p class="item-description">Restored plantation house with indoor exhibits and outdoor ruins. Tells the story of Curaçao's Arawak, colonial, and post-emancipation history. The grounds alone are worth exploring.</p>
@@ -682,116 +751,14 @@
 
                 <div class="item">
                     <div class="item-header">
-                        <h3 class="item-name">Museo Tula (Landhuis Kenepa)</h3>
+                        <h4 class="item-name">Museo Tula (Landhuis Kenepa)</h4>
                         <span class="item-distance">Near Grote Knip</span>
                     </div>
                     <p class="item-description">Just down the road from Westpunt, at the entrance to Grote Knip. Dedicated to the 1795 slave revolt led by Tula. Powerful site with stunning terrace views.</p>
                 </div>
             </section>
 
-            <!-- Section 6: Grocery & Essentials -->
-            <section id="essentials" class="section">
-                <h2 class="section-title">Grocery & Essentials</h2>
-                <p class="section-intro">Stock up when you arrive—there's nothing walkable in Westpunt.</p>
-
-                <div class="category">
-                    <h3>Grocery Stores</h3>
-                    <p><strong>Centrum Supermarket</strong> (20 min toward Willemstad) – Good selection, reasonable prices. Stock up here on your way from the airport.</p>
-                    <p><strong>Van den Tweel Supermarket</strong> (Willemstad, 45 min) – Largest selection, imported goods.</p>
-                    <p><strong>Cost U Less</strong> (Near airport, 40 min) – Wholesale club, good for bulk items and American brands.</p>
-                </div>
-
-                <div class="category">
-                    <h3>What to Buy</h3>
-                    <ul>
-                        <li>Drinking water (or use tap water—it's safe)</li>
-                        <li>Breakfast items, snacks, coffee</li>
-                        <li>Fresh produce from local markets (better quality than supermarkets)</li>
-                        <li>Reef-safe sunscreen (expensive here—bring from home if possible)</li>
-                        <li>Bug spray</li>
-                        <li>Ice (for coolers if you're beach hopping)</li>
-                    </ul>
-                </div>
-
-                <div class="category">
-                    <h3>ATMs & Gas</h3>
-                    <p><strong>ATMs:</strong> Centrum Supermarket area, or closer to Willemstad.</p>
-                    <p><strong>Gas stations:</strong> Nearest is 15-20 minutes from Westpunt. Fill up when you go grocery shopping.</p>
-                </div>
-            </section>
-
-            <!-- Section 7: Emergency Contacts -->
-            <section id="emergency" class="section">
-                <h2 class="section-title">Emergency Contacts</h2>
-                
-                <div class="emergency-box">
-                    <h3>In Case of Emergency</h3>
-                    <p><strong>Your Property Manager (Rene):</strong> [PHONE NUMBER]</p>
-                    <p>Rene is your first point of contact for any property-related issues or local questions.</p>
-                    
-                    <p style="margin-top: 1.5rem;"><strong>Emergency Services:</strong></p>
-                    <p>Police: 911</p>
-                    <p>Ambulance: 912</p>
-                    <p>Fire: 911</p>
-                    
-                    <p style="margin-top: 1.5rem;"><strong>Hospital:</strong></p>
-                    <p>Curaçao Medical Center (CMC) – Main hospital in Willemstad (~45 min drive)</p>
-                    <p>Emergency Room: +5999 869-0000</p>
-                    
-                    <p style="margin-top: 1.5rem;"><strong>US Consulate (for US citizens):</strong></p>
-                    <p>+5999 461-3066</p>
-                </div>
-
-                <div class="category" style="margin-top: 2rem;">
-                    <h3>Non-Emergency Help</h3>
-                    <p><strong>Rental car breakdown:</strong> Contact your rental company directly (number on your contract)</p>
-                    <p><strong>Lost/stolen items:</strong> Report to local police for insurance purposes</p>
-                    <p><strong>WiFi issues:</strong> Router is located [LOCATION]. Unplug for 30 seconds and plug back in. Still not working? Text Rene.</p>
-                    <p><strong>AC not working:</strong> Check thermostat (located [LOCATION]). Set to "Cool" and temperature below current room temp. If still not working, text Rene.</p>
-                </div>
-            </section>
-
         </main>
     </div>
-
-    <script>
-        // Smooth scroll for navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                // Remove active class from all links
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Scroll to section
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // Update active link on scroll
-        window.addEventListener('scroll', function() {
-            let current = '';
-            const sections = document.querySelectorAll('.section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
