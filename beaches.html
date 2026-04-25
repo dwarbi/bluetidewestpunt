@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>West End Beach Finder — Blue Tide Westpunt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ocean-deep: #0a2540;
+    --ocean-mid: #1a4a6b;
+    --ocean-bright: #1e6fa0;
+    --sea-glass: #5fb4c8;
+    --foam: #d6eff5;
+    --sand: #f5efe6;
+    --sand-dark: #e8d9c3;
+    --coral: #e07b54;
+    --turtle-green: #3d8c6f;
+    --sun: #f0b429;
+    --text-dark: #0d1f2d;
+    --text-mid: #3a566e;
+    --text-light: #6b8fa8;
+    --white: #ffffff;
+    --card-bg: rgba(255,255,255,0.92);
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(10,37,64,0.10);
+    --shadow-hover: 0 8px 40px rgba(10,37,64,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ocean-deep);
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, #0a2540 0%, #0e3a5c 40%, #1a6080 75%, #2a8fa8 100%);
+    padding: 60px 24px 80px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(95,180,200,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,74,107,0.4) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .wave-decoration {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    overflow: hidden;
+  }
+
+  .wave-decoration svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sea-glass);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.1;
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 em {
+    color: var(--sea-glass);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  /* ─── CONDITIONS BAR ─── */
+  .conditions-bar {
+    background: var(--sand);
+    border-bottom: 1px solid var(--sand-dark);
+  }
+
+  .conditions-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .condition-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-mid);
+  }
+
+  .condition-icon {
+    font-size: 18px;
+  }
+
+  .condition-value {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .condition-label {
+    color: var(--text-light);
+    font-size: 12px;
+  }
+
+  .condition-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--sand-dark);
+  }
+
+  .conditions-loading {
+    font-size: 13px;
+    color: var(--text-light);
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* ─── FORECAST STRIP ─── */
+  .forecast-section {
+    background: var(--white);
+    border-bottom: 1px solid #e8eef3;
+  }
+
+  .forecast-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 24px;
+  }
+
+  .forecast-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 14px;
+  }
+
+  .forecast-days {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .forecast-days::-webkit-scrollbar { display: none; }
+
+  .forecast-day {
+    flex: 0 0 auto;
+    background: var(--sand);
+    border-radius: 10px;
+    padding: 12px 16px;
+    text-align: center;
+    min-width: 80px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .forecast-day.today {
+    background: var(--ocean-mid);
+    color: white;
+    border-color: var(--ocean-mid);
+  }
+
+  .forecast-day-name {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+
+  .forecast-day-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .forecast-day-temp {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .forecast-day-wind {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-top: 3px;
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  .main {
+    background: var(--sand);
+    min-height: 60vh;
+  }
+
+  .main-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ─── FILTERS ─── */
+  .filter-section {
+    margin-bottom: 36px;
+  }
+
+  .filter-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1.5px solid var(--sand-dark);
+    background: white;
+    color: var(--text-mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--ocean-bright);
+    color: var(--ocean-bright);
+  }
+
+  .filter-btn.active {
+    background: var(--ocean-deep);
+    border-color: var(--ocean-deep);
+    color: white;
+  }
+
+  /* ─── BEST TODAY BANNER ─── */
+  #best-today {
+    background: linear-gradient(135deg, var(--turtle-green) 0%, #2d7a5e 100%);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    color: white;
+    display: none;
+    align-items: center;
+    gap: 16px;
+  }
+
+  #best-today.visible { display: flex; }
+
+  .best-today-icon { font-size: 32px; flex-shrink: 0; }
+
+  .best-today-text strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 4px;
+  }
+
+  .best-today-text span {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+  }
+
+  /* ─── BEACH GRID ─── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-dark);
+  }
+
+  .section-count {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  .beach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .beach-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: default;
+    border: 1px solid rgba(255,255,255,0.8);
+    position: relative;
+  }
+
+  .beach-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .beach-card.hidden { display: none; }
+
+  .card-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+  }
+
+  .card-distance-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--ocean-deep);
+    color: white;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .card-distance-badge.walk { background: var(--turtle-green); }
+  .card-distance-badge.drive-short { background: var(--ocean-bright); }
+  .card-distance-badge.drive-long { background: var(--text-mid); }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    padding-right: 90px;
+  }
+
+  .card-alt-name {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 400;
+  }
+
+  .tag-snorkel { background: #e0f4ee; color: #2d7a5e; }
+  .tag-turtle { background: #e8f4e8; color: #3a7a3a; }
+  .tag-family { background: #e8f0f8; color: #2a5a8a; }
+  .tag-adventure { background: #fde8d8; color: #b85a28; }
+  .tag-secluded { background: #f0ece8; color: #6a5040; }
+  .tag-sunset { background: #fff3d8; color: #9a6800; }
+  .tag-facilities { background: #eef0f8; color: #405080; }
+  .tag-dive { background: #d8eef8; color: #1a5a8a; }
+  .tag-worldclass { background: #fdeee8; color: #9a4030; }
+
+  .card-body {
+    padding: 16px 20px 20px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-mid);
+    margin-bottom: 14px;
+  }
+
+  .card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-mid);
+  }
+
+  .stat-icon { font-size: 14px; flex-shrink: 0; }
+
+  .snorkel-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--text-mid);
+  }
+
+  .snorkel-dots {
+    display: flex;
+    gap: 3px;
+  }
+
+  .snorkel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--sand-dark);
+  }
+
+  .snorkel-dot.filled { background: var(--turtle-green); }
+
+  .condition-warning {
+    background: #fff8e8;
+    border: 1px solid #f0d880;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: #7a6000;
+    margin-bottom: 12px;
+    display: none;
+  }
+
+  .condition-warning.visible { display: block; }
+
+  .condition-good {
+    background: #e8f8ee;
+    border: 1px solid #80d8a0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: #1a6a3a;
+    margin-bottom: 12px;
+    display: none;
+  }
+
+  .condition-good.visible { display: block; }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .cta-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sea-glass);
+    margin-bottom: 12px;
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    color: white;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+
+  .cta-section p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.70);
+    max-width: 420px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--sea-glass);
+    color: var(--ocean-deep);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .cta-btn:hover {
+    background: white;
+    transform: translateY(-1px);
+  }
+
+  .cta-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ocean-deep);
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  footer a {
+    color: var(--sea-glass);
+    text-decoration: none;
+  }
+
+  /* ─── NO RESULTS ─── */
+  .no-results {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-light);
+    display: none;
+  }
+
+  .no-results.visible { display: block; }
+  .no-results p { font-size: 15px; margin-top: 8px; }
+
+  /* ─── LOADING ─── */
+  .skeleton {
+    background: linear-gradient(90deg, #e8eef3 25%, #d8e4ec 50%, #e8eef3 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+    height: 14px;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 64px; }
+    .beach-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 36px 24px; }
+    .card-stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Blue Tide Westpunt · Curaçao</p>
+  <h1>Find Your <em>Perfect</em><br>Beach Today</h1>
+  <p class="hero-sub">Live conditions. Real recommendations. Every beach in the west — from your front door to the far coast.</p>
+  <div class="wave-decoration">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C200,60 400,0 600,30 C800,60 1000,0 1200,30 L1200,60 L0,60 Z" fill="#f5efe6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- CONDITIONS BAR -->
+<div class="conditions-bar">
+  <div class="conditions-inner" id="conditions-bar">
+    <div class="conditions-loading">Loading live conditions for Westpunt…</div>
+  </div>
+</div>
+
+<!-- FORECAST -->
+<div class="forecast-section">
+  <div class="forecast-inner">
+    <div class="forecast-label">7-Day Forecast</div>
+    <div class="forecast-days" id="forecast-strip">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="main-inner">
+
+    <!-- FILTERS -->
+    <div class="filter-section">
+      <div class="filter-label">Filter by vibe</div>
+      <div class="filter-row" id="filter-row">
+        <button class="filter-btn active" data-filter="all">All beaches</button>
+        <button class="filter-btn" data-filter="walk">Walking distance</button>
+        <button class="filter-btn" data-filter="snorkel">Best snorkeling</button>
+        <button class="filter-btn" data-filter="turtle">Turtle sightings</button>
+        <button class="filter-btn" data-filter="family">Family-friendly</button>
+        <button class="filter-btn" data-filter="secluded">Secluded & quiet</button>
+        <button class="filter-btn" data-filter="facilities">Has facilities</button>
+        <button class="filter-btn" data-filter="sunset">Sunset spots</button>
+      </div>
+    </div>
+
+    <!-- BEST TODAY -->
+    <div id="best-today">
+      <div class="best-today-icon">🌊</div>
+      <div class="best-today-text">
+        <strong>Best beach for today's conditions</strong>
+        <span id="best-today-name">Loading…</span>
+      </div>
+    </div>
+
+    <!-- WALKING DISTANCE -->
+    <div class="section-header">
+      <h2 class="section-title">🚶 Walking Distance</h2>
+      <span class="section-count" id="count-walk"></span>
+    </div>
+    <div class="beach-grid" id="grid-walk"></div>
+
+    <!-- SHORT DRIVE -->
+    <div class="section-header">
+      <h2 class="section-title">🚗 Short Drive <span style="font-family:'DM Sans';font-size:14px;color:var(--text-light);font-weight:300">(5–15 min)</span></h2>
+      <span class="section-count" id="count-short"></span>
+    </div>
+    <div class="beach-grid" id="grid-short"></div>
+
+    <!-- LONGER DRIVE -->
+    <div class="section-header">
+      <h2 class="section-title">🗺️ Longer Drive <span style="font-family:'DM Sans';font-size:14px;color:var(--text-light);font-weight:300">(20–35 min)</span></h2>
+      <span class="section-count" id="count-long"></span>
+    </div>
+    <div class="beach-grid" id="grid-long"></div>
+
+    <div class="no-results" id="no-results">
+      <div style="font-size:36px">🐠</div>
+      <p>No beaches match that filter right now. Try a different vibe!</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <p class="cta-eyebrow">Stay at the Source</p>
+      <h2>Sleep 50 Steps from the Caribbean</h2>
+      <p>Blue Tide Westpunt is a top-floor 2BR/2BA in Punta Azul — with a private terrace, direct water access, and all of this on your doorstep.</p>
+      <a href="https://bluetidewestpunt.com" class="cta-btn">Book Direct &amp; Save</a>
+      <p class="cta-note">No OTA fees. Direct rates are always our best rates.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© Blue Tide Westpunt · <a href="https://bluetidewestpunt.com">bluetidewestpunt.com</a> · Westpunt, Curaçao</p>
+  <p style="margin-top:6px">Weather data: <a href="https://open-meteo.com">Open-Meteo</a> (updated hourly) · Water temperature via marine forecast</p>
+</footer>
+
+<script>
+// ─── BEACH DATA ───────────────────────────────────────────────────────────────
+const beaches = [
+  {
+    id: 'forti',
+    name: 'Playa Forti',
+    altName: null,
+    group: 'walk',
+    distance: '5 min walk',
+    badgeClass: 'walk',
+    desc: 'Famous for the exhilarating 40-foot cliff jump from the restaurant above. Unique dark coarse sand, rugged and authentic. Best at sunset.',
+    tags: ['adventure', 'sunset'],
+    tagLabels: { adventure: '⚡ Adventure', sunset: '🌅 Sunset' },
+    snorkel: 1,
+    cost: 'Free',
+    facilities: true,
+    facilityDesc: 'Restaurant on cliff above',
+    chairs: false,
+    note: 'Rocky entry. No chairs on sand.',
+    sensitiveToWind: false,
+    sheltered: false,
+    familyFriendly: false,
+    secluded: false,
+  },
+  {
+    id: 'piskado',
+    name: 'Playa Piskadó',
+    altName: 'Playa Grandi · "Turtle Beach"',
+    group: 'walk',
+    distance: '15 min walk',
+    badgeClass: 'walk',
+    desc: 'A working fisherman\'s beach where sea turtles gather to feed on fish scraps. Best visited 7–9 AM before the crowds arrive.',
+    tags: ['turtle', 'family'],
+    tagLabels: { turtle: '🐢 Turtles', family: '👨‍👩‍👧 Family' },
+    snorkel: 2,
+    cost: 'Free',
+    facilities: true,
+    facilityDesc: 'Snack stand, paid restrooms',
+    chairs: true,
+    note: 'Crowded midday. Visit early.',
+    sensitiveToWind: false,
+    sheltered: false,
+    familyFriendly: true,
+    secluded: false,
+  },
+  {
+    id: 'kalki',
+    name: 'Playa Kalki',
+    altName: '"Alice in Wonderland"',
+    group: 'short',
+    distance: '5 min drive',
+    badgeClass: 'drive-short',
+    desc: 'World-class shore dive and snorkel site. Reef starts just offshore with massive coral formations. Go West Diving operates on-site.',
+    tags: ['snorkel', 'dive', 'worldclass'],
+    tagLabels: { snorkel: '🤿 Exceptional Snorkel', dive: '🫧 Dive Site', worldclass: '⭐ World-Class' },
+    snorkel: 3,
+    cost: 'Free',
+    facilities: true,
+    facilityDesc: 'Restaurant, dive shop',
+    chairs: true,
+    note: 'Steep stairs. Rocky entry.',
+    sensitiveToWind: false,
+    sheltered: false,
+    familyFriendly: true,
+    secluded: false,
+  },
+  {
+    id: 'kleinknip',
+    name: 'Klein Knip',
+    altName: 'Playa Kenepa Chiki',
+    group: 'short',
+    distance: '6 min drive',
+    badgeClass: 'drive-short',
+    desc: 'Intimate, quieter sister to Grote Knip. Shallow and calm with very healthy coral — purple sea fans, high coral density. No facilities; bring everything.',
+    tags: ['snorkel', 'secluded', 'family'],
+    tagLabels: { snorkel: '🤿 Exceptional Snorkel', secluded: '🏝️ Secluded', family: '👨‍👩‍👧 Family' },
+    snorkel: 3,
+    cost: 'Free',
+    facilities: false,
+    facilityDesc: 'None — bring supplies',
+    chairs: false,
+    note: 'Bring water, snacks, sunscreen.',
+    sensitiveToWind: false,
+    sheltered: true,
+    familyFriendly: true,
+    secluded: true,
+  },
+  {
+    id: 'jeremi',
+    name: 'Playa Jeremi',
+    altName: null,
+    group: 'short',
+    distance: '8 min drive',
+    badgeClass: 'drive-short',
+    desc: 'A secluded, narrow cove carved into the cliffs. Popular with local divers. Perfect for a quiet, off-the-grid sunset with no crowds.',
+    tags: ['secluded', 'sunset', 'dive'],
+    tagLabels: { secluded: '🏝️ Secluded', sunset: '🌅 Sunset', dive: '🫧 Dive Site' },
+    snorkel: 2,
+    cost: 'Free',
+    facilities: false,
+    facilityDesc: 'None',
+    chairs: false,
+    note: 'No shade. Bring everything.',
+    sensitiveToWind: false,
+    sheltered: true,
+    familyFriendly: false,
+    secluded: true,
+  },
+  {
+    id: 'grotekneip',
+    name: 'Grote Knip',
+    altName: 'Playa Kenepa Grandi',
+    group: 'short',
+    distance: '8 min drive',
+    badgeClass: 'drive-short',
+    desc: 'Curaçao\'s most iconic beach. Bright turquoise water, dramatic cliffs, postcard views. Arrive before 10 AM on weekends for a good spot.',
+    tags: ['family', 'snorkel', 'worldclass'],
+    tagLabels: { family: '👨‍👩‍👧 Family', snorkel: '🤿 Good Snorkel', worldclass: '⭐ Iconic' },
+    snorkel: 2,
+    cost: 'Free',
+    facilities: true,
+    facilityDesc: 'Snack bar, restrooms, showers',
+    chairs: true,
+    note: 'Gets crowded. Go early on weekends.',
+    sensitiveToWind: true,
+    sheltered: false,
+    familyFriendly: true,
+    secluded: false,
+  },
+  {
+    id: 'lagun',
+    name: 'Playa Lagun',
+    altName: null,
+    group: 'short',
+    distance: '9 min drive',
+    badgeClass: 'drive-short',
+    desc: 'A narrow, protected cove between tall cliffs. Ideal for beginners — calm water, easy turtle and squid spotting along the cliff walls.',
+    tags: ['snorkel', 'turtle', 'family'],
+    tagLabels: { snorkel: '🤿 Good Snorkel', turtle: '🐢 Turtles', family: '👨‍👩‍👧 Family' },
+    snorkel: 2,
+    cost: 'Free',
+    facilities: true,
+    facilityDesc: 'Two clifftop restaurants',
+    chairs: true,
+    note: 'Great beginner snorkel spot.',
+    sensitiveToWind: false,
+    sheltered: true,
+    familyFriendly: true,
+    secluded: false,
+  },
+  {
+    id: 'daaibooi',
+    name: 'Daaibooi',
+    altName: null,
+    group: 'long',
+    distance: '30 min drive',
+    badgeClass: 'drive-long',
+    desc: 'A beautiful traditional bay, local favorite. Best spot on the island for sea turtles in a truly natural setting — no crowds, no fish scraps.',
+    tags: ['turtle', 'snorkel', 'secluded'],
+    tagLabels: { turtle: '🐢 Best for Wild Turtles', snorkel: '🤿 Exceptional Snorkel', secluded: '🏝️ Local Favorite' },
+    snorkel: 3,
+    cost: 'Free',
+    facilities: true,
+    facilityDesc: 'Snack bar (excellent fries!), restrooms',
+    chairs: true,
+    note: 'Best turtle spotting in a natural setting.',
+    sensitiveToWind: false,
+    sheltered: false,
+    familyFriendly: true,
+    secluded: true,
+  },
+  {
+    id: 'casabou',
+    name: 'Cas Abou',
+    altName: null,
+    group: 'long',
+    distance: '30 min drive',
+    badgeClass: 'drive-long',
+    desc: 'Consistently ranked among the best beaches in the world. Full resort-style amenities, exceptional snorkeling on the north (left) side.',
+    tags: ['snorkel', 'family', 'worldclass', 'facilities'],
+    tagLabels: { snorkel: '🤿 Exceptional Snorkel', family: '👨‍👩‍👧 Family', worldclass: '⭐ World-Class', facilities: '🍽️ Full Facilities' },
+    snorkel: 3,
+    cost: '~$6/car entrance',
+    facilities: true,
+    facilityDesc: 'Restaurant, bar, showers, massages',
+    chairs: true,
+    note: 'Swim left (north) for best snorkel.',
+    sensitiveToWind: false,
+    sheltered: false,
+    familyFriendly: true,
+    secluded: false,
+  },
+  {
+    id: 'portomari',
+    name: 'Playa Porto Mari',
+    altName: null,
+    group: 'long',
+    distance: '35 min drive',
+    badgeClass: 'drive-long',
+    desc: 'Famous for a unique "double reef" and the wild pigs that occasionally visit the shore. Exceptional and distinctive underwater landscape.',
+    tags: ['snorkel', 'dive', 'worldclass', 'adventure'],
+    tagLabels: { snorkel: '🤿 Double Reef', dive: '🫧 Dive Site', worldclass: '⭐ Unique', adventure: '⚡ Wild Pigs!' },
+    snorkel: 3,
+    cost: '~$3/person entrance',
+    facilities: true,
+    facilityDesc: 'Large restaurant, bar, boardwalk',
+    chairs: true,
+    note: 'Double reef is a must-see.',
+    sensitiveToWind: false,
+    sheltered: false,
+    familyFriendly: true,
+    secluded: false,
+  },
+];
+
+// ─── WEATHER ────────────────────────────────────────────────────────────────
+// Westpunt, Curaçao coordinates
+const LAT = 12.378;
+const LON = -69.157;
+
+const WEATHER_ICONS = {
+  0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+  45: '🌫️', 48: '🌫️',
+  51: '🌦️', 53: '🌦️', 55: '🌧️',
+  61: '🌧️', 63: '🌧️', 65: '🌧️',
+  80: '🌦️', 81: '🌧️', 82: '⛈️',
+  95: '⛈️', 96: '⛈️', 99: '⛈️',
+};
+
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+let currentConditions = null;
+
+async function fetchWeather() {
+  try {
+    // Current + hourly + daily weather
+    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,uv_index&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,precipitation_sum&hourly=uv_index&timezone=America%2FCuracao&forecast_days=7&temperature_unit=fahrenheit&wind_speed_unit=mph`;
+
+    // Marine (wave + sea temp)
+    const marineUrl = `https://marine-api.open-meteo.com/v1/marine?latitude=${LAT}&longitude=${LON}&current=wave_height,sea_surface_temperature&hourly=wave_height&timezone=America%2FCuracao&forecast_days=3`;
+
+    const [weatherRes, marineRes] = await Promise.all([
+      fetch(weatherUrl),
+      fetch(marineUrl),
+    ]);
+
+    const weather = await weatherRes.json();
+    const marine = await marineRes.json();
+
+    const c = weather.current;
+    const marineC = marine.current;
+
+    currentConditions = {
+      tempF: Math.round(c.temperature_2m),
+      feelsF: Math.round(c.apparent_temperature),
+      windMph: Math.round(c.wind_speed_10m),
+      windDir: c.wind_direction_10m,
+      weatherCode: c.weather_code,
+      uvIndex: Math.round(c.uv_index),
+      waveHeight: marineC.wave_height,
+      seaTempC: marineC.sea_surface_temperature,
+      daily: weather.daily,
+    };
+
+    renderConditionsBar(currentConditions);
+    renderForecast(currentConditions.daily);
+    updateBestToday(currentConditions);
+    applyConditionWarnings(currentConditions);
+
+  } catch (e) {
+    document.getElementById('conditions-bar').innerHTML = `<div class="conditions-loading">Weather data unavailable — check <a href="https://weather.com" style="color:var(--ocean-bright)">weather.com</a> for current Curaçao conditions.</div>`;
+  }
+}
+
+function windDirLabel(deg) {
+  const dirs = ['N','NE','E','SE','S','SW','W','NW'];
+  return dirs[Math.round(deg / 45) % 8];
+}
+
+function seaTempF(c) { return Math.round(c * 9/5 + 32); }
+
+function uvLabel(uv) {
+  if (uv <= 2) return 'Low';
+  if (uv <= 5) return 'Moderate';
+  if (uv <= 7) return 'High';
+  if (uv <= 10) return 'Very High';
+  return 'Extreme';
+}
+
+function renderConditionsBar(c) {
+  const bar = document.getElementById('conditions-bar');
+  const seaTemp = seaTempF(c.seaTempC);
+  const waveM = c.waveHeight ? c.waveHeight.toFixed(1) : '—';
+  const waveFt = c.waveHeight ? (c.waveHeight * 3.28).toFixed(1) : '—';
+  const icon = WEATHER_ICONS[c.weatherCode] || '🌤️';
+  const uv = uvLabel(c.uvIndex);
+
+  bar.innerHTML = `
+    <div class="condition-item">
+      <span class="condition-icon">${icon}</span>
+      <span><span class="condition-value">${c.tempF}°F</span> <span class="condition-label">feels ${c.feelsF}°F</span></span>
+    </div>
+    <div class="condition-dot"></div>
+    <div class="condition-item">
+      <span class="condition-icon">💨</span>
+      <span><span class="condition-value">${c.windMph} mph ${windDirLabel(c.windDir)}</span> <span class="condition-label">wind</span></span>
+    </div>
+    <div class="condition-dot"></div>
+    <div class="condition-item">
+      <span class="condition-icon">🌊</span>
+      <span><span class="condition-value">${waveM}m / ${waveFt}ft</span> <span class="condition-label">wave height</span></span>
+    </div>
+    <div class="condition-dot"></div>
+    <div class="condition-item">
+      <span class="condition-icon">🌡️</span>
+      <span><span class="condition-value">${seaTemp}°F</span> <span class="condition-label">water temp</span></span>
+    </div>
+    <div class="condition-dot"></div>
+    <div class="condition-item">
+      <span class="condition-icon">☀️</span>
+      <span><span class="condition-value">UV ${c.uvIndex}</span> <span class="condition-label">${uv}</span></span>
+    </div>
+  `;
+}
+
+function renderForecast(daily) {
+  const strip = document.getElementById('forecast-strip');
+  const today = new Date();
+
+  strip.innerHTML = daily.time.map((dateStr, i) => {
+    const d = new Date(dateStr + 'T12:00:00');
+    const dayName = i === 0 ? 'Today' : DAYS[d.getDay()];
+    const icon = WEATHER_ICONS[daily.weather_code[i]] || '🌤️';
+    const hi = Math.round(daily.temperature_2m_max[i]);
+    const lo = Math.round(daily.temperature_2m_min[i]);
+    const wind = Math.round(daily.wind_speed_10m_max[i]);
+
+    return `<div class="forecast-day ${i === 0 ? 'today' : ''}">
+      <div class="forecast-day-name">${dayName}</div>
+      <div class="forecast-day-icon">${icon}</div>
+      <div class="forecast-day-temp">${hi}° / ${lo}°</div>
+      <div class="forecast-day-wind">${wind} mph</div>
+    </div>`;
+  }).join('');
+}
+
+function updateBestToday(c) {
+  const banner = document.getElementById('best-today');
+  const nameEl = document.getElementById('best-today-name');
+
+  let bestBeach = null;
+  let reason = '';
+
+  const highWind = c.windMph > 18;
+  const calmDay = c.windMph < 10;
+
+  if (highWind) {
+    // Recommend sheltered coves
+    bestBeach = beaches.find(b => b.id === 'lagun');
+    reason = 'Wind is up — Playa Lagun\'s protected cove stays calm';
+  } else if (calmDay) {
+    // Recommend world-class snorkel
+    bestBeach = beaches.find(b => b.id === 'kalki');
+    reason = 'Light winds make for perfect snorkeling at Playa Kalki';
+  } else {
+    bestBeach = beaches.find(b => b.id === 'grotekneip');
+    reason = 'Grote Knip\'s turquoise water is calling';
+  }
+
+  if (bestBeach) {
+    nameEl.textContent = `${bestBeach.name} — ${reason}`;
+    banner.classList.add('visible');
+    banner.querySelector('.best-today-icon').textContent = 
+      highWind ? '💨' : calmDay ? '🤿' : '🏖️';
+  }
+}
+
+function applyConditionWarnings(c) {
+  const highWind = c.windMph > 18;
+  const veryHighUV = c.uvIndex >= 8;
+
+  beaches.forEach(beach => {
+    const card = document.getElementById('card-' + beach.id);
+    if (!card) return;
+
+    const warning = card.querySelector('.condition-warning');
+    const good = card.querySelector('.condition-good');
+
+    if (highWind && !beach.sheltered) {
+      warning.textContent = `💨 Wind at ${c.windMph} mph — expect some chop today`;
+      warning.classList.add('visible');
+    }
+
+    if (highWind && beach.sheltered) {
+      good.textContent = `✅ Protected cove — stays calm even in today's wind`;
+      good.classList.add('visible');
+    }
+
+    if (veryHighUV && !beach.facilities) {
+      const existing = warning.textContent;
+      warning.textContent = existing 
+        ? existing + ` · UV ${c.uvIndex} — no shade here, bring reef-safe sunscreen`
+        : `☀️ UV ${c.uvIndex} — no shade here, reef-safe sunscreen essential`;
+      warning.classList.add('visible');
+    }
+  });
+}
+
+// ─── CARD RENDERING ──────────────────────────────────────────────────────────
+function snorkelDots(rating) {
+  const labels = ['', 'Decent', 'Good', 'Exceptional'];
+  let dots = '';
+  for (let i = 1; i <= 3; i++) {
+    dots += `<span class="snorkel-dot ${i <= rating ? 'filled' : ''}"></span>`;
+  }
+  return `<div class="snorkel-rating">
+    <span style="margin-right:4px">🤿</span>
+    <div class="snorkel-dots">${dots}</div>
+    <span style="margin-left:6px;color:var(--text-mid)">${labels[rating]}</span>
+  </div>`;
+}
+
+function renderCard(beach) {
+  const tagsHtml = beach.tags.map(t => {
+    const cls = {
+      snorkel: 'tag-snorkel', turtle: 'tag-turtle', family: 'tag-family',
+      adventure: 'tag-adventure', secluded: 'tag-secluded', sunset: 'tag-sunset',
+      facilities: 'tag-facilities', dive: 'tag-dive', worldclass: 'tag-worldclass',
+    }[t] || '';
+    return `<span class="tag ${cls}">${beach.tagLabels[t]}</span>`;
+  }).join('');
+
+  return `<div class="beach-card" id="card-${beach.id}" data-tags="${beach.tags.join(' ')}" data-group="${beach.group}" data-sheltered="${beach.sheltered}" data-family="${beach.familyFriendly}" data-secluded="${beach.secluded}" data-facilities="${beach.facilities}">
+    <div class="card-header">
+      <span class="card-distance-badge ${beach.badgeClass}">${beach.distance}</span>
+      <div class="card-name">${beach.name}</div>
+      ${beach.altName ? `<div class="card-alt-name">${beach.altName}</div>` : ''}
+      <div class="card-tags">${tagsHtml}</div>
+    </div>
+    <div class="card-body">
+      <p class="card-desc">${beach.desc}</p>
+      ${snorkelDots(beach.snorkel)}
+      <div class="condition-warning"></div>
+      <div class="condition-good"></div>
+      <div class="card-stats">
+        <div class="stat-item"><span class="stat-icon">💰</span>${beach.cost}</div>
+        <div class="stat-item"><span class="stat-icon">${beach.chairs ? '🪑' : '🚫'}</span>${beach.chairs ? 'Chairs for rent' : 'No chairs'}</div>
+        <div class="stat-item" style="grid-column:1/-1"><span class="stat-icon">🏖️</span>${beach.facilityDesc}</div>
+        ${beach.note ? `<div class="stat-item" style="grid-column:1/-1"><span class="stat-icon">💡</span>${beach.note}</div>` : ''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderAllCards() {
+  const grids = { walk: 'grid-walk', short: 'grid-short', long: 'grid-long' };
+  const counts = { walk: 0, short: 0, long: 0 };
+
+  Object.keys(grids).forEach(group => {
+    const container = document.getElementById(grids[group]);
+    const groupBeaches = beaches.filter(b => b.group === group);
+    container.innerHTML = groupBeaches.map(renderCard).join('');
+    counts[group] = groupBeaches.length;
+  });
+
+  document.getElementById('count-walk').textContent = `${counts.walk} beaches`;
+  document.getElementById('count-short').textContent = `${counts.short} beaches`;
+  document.getElementById('count-long').textContent = `${counts.long} beaches`;
+}
+
+// ─── FILTERING ───────────────────────────────────────────────────────────────
+function applyFilter(filter) {
+  const cards = document.querySelectorAll('.beach-card');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    let show = false;
+    if (filter === 'all') {
+      show = true;
+    } else if (filter === 'walk') {
+      show = card.dataset.group === 'walk';
+    } else if (filter === 'snorkel') {
+      show = card.dataset.tags.includes('snorkel');
+    } else if (filter === 'turtle') {
+      show = card.dataset.tags.includes('turtle');
+    } else if (filter === 'family') {
+      show = card.dataset.family === 'true';
+    } else if (filter === 'secluded') {
+      show = card.dataset.secluded === 'true';
+    } else if (filter === 'facilities') {
+      show = card.dataset.facilities === 'true';
+    } else if (filter === 'sunset') {
+      show = card.dataset.tags.includes('sunset');
+    }
+
+    card.classList.toggle('hidden', !show);
+    if (show) visibleCount++;
+  });
+
+  // Show/hide section headers
+  ['walk','short','long'].forEach(group => {
+    const grid = document.getElementById('grid-' + group);
+    const header = grid.previousElementSibling;
+    const visibleInGroup = grid.querySelectorAll('.beach-card:not(.hidden)').length;
+    grid.style.display = visibleInGroup ? '' : 'none';
+    header.style.display = visibleInGroup ? '' : 'none';
+  });
+
+  document.getElementById('no-results').classList.toggle('visible', visibleCount === 0);
+}
+
+document.getElementById('filter-row').addEventListener('click', e => {
+  if (!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  applyFilter(e.target.dataset.filter);
+});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+renderAllCards();
+fetchWeather();
+</script>
+</body>
+</html>
