@@ -998,23 +998,24 @@
           </div>
         </div>
       </div>
-      <form>
+<form action="https://formspree.io/f/mojkqewg" method="POST">
         <div class="form-row">
-          <input type="text" placeholder="Your Name" required>
-          <input type="email" placeholder="Your Email" required>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
         </div>
         <div class="form-row">
-          <input type="date" placeholder="Check-in Date">
-          <input type="date" placeholder="Check-out Date">
+          <input type="date" name="checkin" placeholder="Check-in Date">
+          <input type="date" name="checkout" placeholder="Check-out Date">
         </div>
-        <select>
+        <select name="guests">
           <option value="" disabled selected>Number of Guests</option>
           <option>1 guest</option>
           <option>2 guests</option>
           <option>3 guests</option>
           <option>4 guests</option>
         </select>
-        <textarea placeholder="Tell us about your trip — any questions, special occasions, or dates you're considering…"></textarea>
+        <textarea name="message" placeholder="Tell us about your trip — any questions, special occasions, or dates you're considering…"></textarea>
+        <input type="hidden" name="_subject" value="New inquiry from Blue Tide Westpunt site">
         <button type="submit" class="submit-btn">Send Inquiry →</button>
       </form>
     </div>
