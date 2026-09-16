@@ -88,6 +88,19 @@
   .hero-eyebrow::before{
     content:''; width:28px; height:1px; background:var(--teal-lt);
   }
+  .hero-eyebrow a{
+    color:inherit; text-decoration:none; border-bottom:1px solid currentColor; opacity:0.85;
+  }
+  .hero-eyebrow a:hover{ opacity:1; }
+  .back-home{
+    margin-top:28px;
+    font-family:'Space Mono', monospace;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+  }
+  .back-home a{
+    color:var(--teal-lt); text-decoration:none; border-bottom:1px solid currentColor; opacity:0.85;
+  }
+  .back-home a:hover{ opacity:1; }
   h1.hero-title{
     font-family:'Fraunces', serif;
     font-weight:500;
@@ -256,7 +269,7 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero">
-  <div class="hero-eyebrow">Blue Tide Westpunt · Guest Field Guide</div>
+  <div class="hero-eyebrow"><a href="https://bluetidewestpunt.com/">Blue Tide Westpunt</a> · Guest Field Guide</div>
   <h1 class="hero-title">What's living<br>in the water <em>off our back deck</em></h1>
   <p class="hero-sub">
     Grab a mask and fins, walk down the ladder, and give this five minutes. Here's what you're likely to swim past on the reef right off Punta Azul — from the fish that will follow you around to the ones you'll want to admire from a distance.
@@ -481,24 +494,8 @@
   <!-- 12 Long-Spined Sea Urchin -->
   <div class="species-card">
     <div class="art-wrap">
-      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="150" cy="150" rx="10" ry="6" fill="#1A1A1A" opacity="0.3"/>
-        <circle cx="150" cy="130" r="46" fill="#1A0F14"/>
-        <g stroke="#3A2430" stroke-width="3">
-          <line x1="150" y1="130" x2="94" y2="70"/>
-          <line x1="150" y1="130" x2="150" y2="54"/>
-          <line x1="150" y1="130" x2="206" y2="70"/>
-          <line x1="150" y1="130" x2="220" y2="110"/>
-          <line x1="150" y1="130" x2="222" y2="150"/>
-          <line x1="150" y1="130" x2="210" y2="185"/>
-          <line x1="150" y1="130" x2="170" y2="200"/>
-          <line x1="150" y1="130" x2="130" y2="200"/>
-          <line x1="150" y1="130" x2="90" y2="185"/>
-          <line x1="150" y1="130" x2="78" y2="150"/>
-          <line x1="150" y1="130" x2="80" y2="110"/>
-          <line x1="150" y1="130" x2="120" y2="60"/>
-        </g>
-      </svg>
+      <img src="https://static.inaturalist.org/photos/547712747/large.jpg" alt="Long-spined sea urchin, Curaçao">
+      <span class="photo-credit">Photo: Denis Hurley</span>
     </div>
     <div class="text-wrap">
       <span class="index-no">12 / 25</span>
@@ -515,20 +512,8 @@
   <!-- 13 Banded Clinging Crab -->
   <div class="species-card">
     <div class="art-wrap">
-      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="150" cy="130" rx="52" ry="42" fill="#8A9A5E"/>
-        <ellipse cx="150" cy="130" rx="52" ry="42" fill="none" stroke="#EDE6C8" stroke-width="4" stroke-dasharray="8 6" opacity="0.7"/>
-        <path d="M105 100 L60 70" stroke="#6E7C48" stroke-width="7" stroke-linecap="round"/>
-        <circle cx="58" cy="66" r="10" fill="#EDE6C8"/>
-        <circle cx="42" cy="60" r="9" fill="#EDE6C8"/>
-        <path d="M100 150 L55 175" stroke="#6E7C48" stroke-width="6" stroke-linecap="round"/>
-        <path d="M115 168 L85 205" stroke="#6E7C48" stroke-width="6" stroke-linecap="round"/>
-        <path d="M195 100 L240 70" stroke="#6E7C48" stroke-width="7" stroke-linecap="round"/>
-        <path d="M200 150 L245 175" stroke="#6E7C48" stroke-width="6" stroke-linecap="round"/>
-        <path d="M185 168 L215 205" stroke="#6E7C48" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="135" cy="118" r="5" fill="#0C2321"/>
-        <circle cx="165" cy="118" r="5" fill="#0C2321"/>
-      </svg>
+      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/325585743/large.jpg" alt="Banded clinging crab in anemone tentacles">
+      <span class="photo-credit">Photo: Robin White, CC BY 4.0</span>
     </div>
     <div class="text-wrap">
       <span class="index-no">13 / 25</span>
@@ -545,22 +530,8 @@
   <!-- 14 Blue Chromis -->
   <div class="species-card">
     <div class="art-wrap">
-      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-        <g>
-          <ellipse cx="100" cy="100" rx="26" ry="14" fill="#2E6FD6"/>
-          <path d="M74 100 L58 92 L58 108 Z" fill="#2E6FD6"/>
-          <ellipse cx="170" cy="80" rx="24" ry="13" fill="#3E7FE0"/>
-          <path d="M146 80 L131 73 L131 88 Z" fill="#3E7FE0"/>
-          <ellipse cx="140" cy="150" rx="25" ry="13" fill="#2E6FD6"/>
-          <path d="M115 150 L100 142 L100 158 Z" fill="#2E6FD6"/>
-          <ellipse cx="215" cy="140" rx="23" ry="12" fill="#3E7FE0"/>
-          <path d="M192 140 L178 133 L178 147 Z" fill="#3E7FE0"/>
-          <ellipse cx="80" cy="180" rx="22" ry="12" fill="#2E6FD6"/>
-          <path d="M58 180 L44 173 L44 187 Z" fill="#2E6FD6"/>
-          <ellipse cx="200" cy="200" rx="24" ry="13" fill="#3E7FE0"/>
-          <path d="M176 200 L161 193 L161 207 Z" fill="#3E7FE0"/>
-        </g>
-      </svg>
+      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/359911472/large.jpeg" alt="Blue chromis, Bonaire">
+      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
     </div>
     <div class="text-wrap">
       <span class="index-no">14 / 25</span>
@@ -649,8 +620,8 @@
   <!-- 19 Touch-Me-Not Sponge (REAL PHOTO) -->
   <div class="species-card">
     <div class="art-wrap">
-      <img src="photos/touch-me-not-sponge.jpeg" alt="Touch-me-not sponge on the reef at Blue Tide Westpunt">
-      <span class="photo-credit">Photo: Blue Tide Westpunt</span>
+      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/617701309/large.jpg" alt="Touch-me-not sponge, Cayman Islands">
+      <span class="photo-credit">Photo: djscho, CC BY 4.0</span>
     </div>
     <div class="text-wrap">
       <span class="index-no">19 / 25</span>
@@ -667,26 +638,8 @@
   <!-- 20 Porcupinefish -->
   <div class="species-card">
     <div class="art-wrap">
-      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="150" cy="140" r="60" fill="#D8C48A"/>
-        <g stroke="#B8A366" stroke-width="3">
-          <line x1="150" y1="140" x2="110" y2="90"/>
-          <line x1="150" y1="140" x2="150" y2="76"/>
-          <line x1="150" y1="140" x2="190" y2="90"/>
-          <line x1="150" y1="140" x2="205" y2="115"/>
-          <line x1="150" y1="140" x2="210" y2="140"/>
-          <line x1="150" y1="140" x2="205" y2="165"/>
-          <line x1="150" y1="140" x2="190" y2="190"/>
-          <line x1="150" y1="140" x2="150" y2="204"/>
-          <line x1="150" y1="140" x2="110" y2="190"/>
-          <line x1="150" y1="140" x2="95" y2="165"/>
-          <line x1="150" y1="140" x2="90" y2="140"/>
-          <line x1="150" y1="140" x2="95" y2="115"/>
-        </g>
-        <circle cx="128" cy="122" r="7" fill="#0C2321"/>
-        <circle cx="130" cy="120" r="2.5" fill="#fff"/>
-        <path d="M100 150 Q150 175 200 150" stroke="#B8A366" stroke-width="2" fill="none" opacity="0.5"/>
-      </svg>
+      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/320139754/large.jpg" alt="Porcupinefish over reef">
+      <span class="photo-credit">Photo: Pauline Walsh Jacobson, CC BY 4.0</span>
     </div>
     <div class="text-wrap">
       <span class="index-no">20 / 25</span>
@@ -739,15 +692,8 @@
   <!-- 23 Purple Stovepipe Sponge -->
   <div class="species-card">
     <div class="art-wrap">
-      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="150" cy="220" rx="90" ry="20" fill="#4A2E48" opacity="0.4"/>
-        <rect x="95" y="90" width="26" height="130" rx="13" fill="#7A4E8A"/>
-        <rect x="135" y="60" width="26" height="160" rx="13" fill="#8E5A9E"/>
-        <rect x="175" y="100" width="24" height="120" rx="12" fill="#7A4E8A"/>
-        <ellipse cx="108" cy="90" rx="13" ry="6" fill="#4A2E48"/>
-        <ellipse cx="148" cy="60" rx="13" ry="6" fill="#4A2E48"/>
-        <ellipse cx="187" cy="100" rx="12" ry="6" fill="#4A2E48"/>
-      </svg>
+      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/247248425/large.jpg" alt="Purple stovepipe sponge cluster">
+      <span class="photo-credit">Photo: Jay Brasher, CC BY 4.0</span>
     </div>
     <div class="text-wrap">
       <span class="index-no">23 / 25</span>
@@ -764,14 +710,8 @@
   <!-- 24 Spanish Hogfish -->
   <div class="species-card">
     <div class="art-wrap">
-      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-        <path d="M96 135 Q96 105 150 105 L210 135 Q150 165 96 135Z" fill="#8A4FA8"/>
-        <path d="M150 105 L210 135 L150 165 Z" fill="#F4C542"/>
-        <path d="M234 135 L204 118 L210 135 L204 152 Z" fill="#F4C542"/>
-        <path d="M90 118 L90 152 L72 135 Z" fill="#8A4FA8"/>
-        <circle cx="110" cy="126" r="6" fill="#0C2321"/>
-        <circle cx="112" cy="124" r="2" fill="#fff"/>
-      </svg>
+      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/356870734/large.jpeg" alt="Spanish hogfish, Bonaire">
+      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
     </div>
     <div class="text-wrap">
       <span class="index-no">24 / 25</span>
@@ -788,15 +728,8 @@
   <!-- 25 Sharpnose Puffer -->
   <div class="species-card">
     <div class="art-wrap">
-      <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="150" cy="140" rx="55" ry="34" fill="#D8C48A"/>
-        <path d="M95 140 Q75 135 65 140 Q75 145 95 140Z" fill="#D8C48A"/>
-        <path d="M96 118 Q150 100 205 130" stroke="#3E7CD6" stroke-width="3" fill="none" opacity="0.6"/>
-        <path d="M100 155 Q150 172 200 150" stroke="#3E7CD6" stroke-width="3" fill="none" opacity="0.6"/>
-        <circle cx="100" cy="128" r="6" fill="#0C2321"/>
-        <circle cx="102" cy="126" r="2" fill="#fff"/>
-        <path d="M205 130 L225 122 L225 158 L205 150 Z" fill="#D8C48A" opacity="0.8"/>
-      </svg>
+      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/356853338/large.jpeg" alt="Sharpnose puffer, Bonaire">
+      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
     </div>
     <div class="text-wrap">
       <span class="index-no">25 / 25</span>
@@ -839,6 +772,7 @@
       <strong>Gear:</strong> masks, snorkels, and fins for up to 5 guests are in the storage bin by the back door. Rinse with the freshwater hose before putting gear away.<br><br>
       Questions about what you saw, or want a better spot recommendation nearby? Text us anytime — details are in the guest guide. Enjoy the reef.
     </div>
+    <div class="back-home"><a href="https://bluetidewestpunt.com/">← Back to Blue Tide Westpunt</a></div>
   </div>
 </section>
 
