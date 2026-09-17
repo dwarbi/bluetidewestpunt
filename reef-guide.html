@@ -6,787 +6,1008 @@
 <title>What's Down There — Blue Tide Westpunt Reef Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="8f36ab2d-48d2-4b05-82c5-1587666ec1a1"></script>
 <style>
-  :root{
-    --deep:      #05282A;
-    --teal:      #0E5E5C;
-    --teal-lt:   #1C8480;
-    --sand:      #F1E8D2;
-    --card:      #FBF7EC;
-    --ink:       #0C2321;
-    --coral:     #FF7A45;
-    --coral-dim: #C85A2E;
-    --line:      rgba(241,232,210,0.18);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--deep);
-    color:var(--sand);
-    font-family:'Inter', sans-serif;
-    overflow-x:hidden;
-  }
-  ::selection{ background:var(--coral); color:var(--deep); }
 
-  .caustics{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    opacity:0.10;
-    background-image:
-      radial-gradient(circle at 20% 30%, transparent 0%, transparent 40%, rgba(28,132,128,0.4) 41%, transparent 60%),
-      radial-gradient(circle at 70% 65%, transparent 0%, transparent 35%, rgba(28,132,128,0.35) 36%, transparent 55%),
-      radial-gradient(circle at 45% 85%, transparent 0%, transparent 30%, rgba(28,132,128,0.3) 31%, transparent 50%);
-    background-size: 900px 900px, 700px 700px, 600px 600px;
-    animation: drift 40s linear infinite;
+  :root {
+    --teal: #1a7a8a;
+    --teal-light: #2a9aad;
+    --sand: #f5efe6;
+    --sand-dark: #e8ddd0;
+    --coral: #e07a5f;
+    --navy: #0f3440;
+    --white: #ffffff;
+    --text: #1e2d35;
+    --text-soft: #4a6570;
+    --gold: #c9a84c;
   }
-  @keyframes drift{
-    0%{ background-position: 0 0, 0 0, 0 0; }
-    100%{ background-position: 200px 300px, -250px 150px, 150px -200px; }
-  }
-
-  .gauge{
-    position:fixed; left:20px; top:50%; transform:translateY(-50%);
-    width:34px; height:min(60vh, 480px);
-    z-index:50;
-    display:flex; flex-direction:column; align-items:center;
-  }
-  .gauge-track{
-    position:relative; flex:1; width:6px;
-    background:rgba(241,232,210,0.15);
-    border-radius:3px; overflow:hidden;
-  }
-  .gauge-fill{
-    position:absolute; left:0; top:0; width:100%; height:0%;
-    background:linear-gradient(180deg, var(--teal-lt), var(--coral));
-    border-radius:3px;
-    transition:height 0.1s linear;
-  }
-  .gauge-label{
-    font-family:'Space Mono', monospace;
-    font-size:9px; letter-spacing:0.05em;
-    color:rgba(241,232,210,0.55);
-    writing-mode:vertical-rl;
-    text-orientation:mixed;
-    margin-top:10px;
-  }
-  @media (max-width:820px){ .gauge{ display:none; } }
-
-  .hero{
-    position:relative; z-index:1;
-    min-height:100vh;
-    display:flex; flex-direction:column; justify-content:center;
-    padding:8vh 8vw 10vh;
-    border-bottom:1px solid var(--line);
-  }
-  .hero-eyebrow{
-    font-family:'Space Mono', monospace;
-    font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
-    color:var(--teal-lt);
-    margin-bottom:28px;
-    display:flex; align-items:center; gap:10px;
-  }
-  .hero-eyebrow::before{
-    content:''; width:28px; height:1px; background:var(--teal-lt);
-  }
-  .hero-eyebrow a{
-    color:inherit; text-decoration:none; border-bottom:1px solid currentColor; opacity:0.85;
-  }
-  .hero-eyebrow a:hover{ opacity:1; }
-  .back-home{
-    margin-top:28px;
-    font-family:'Space Mono', monospace;
-    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
-  }
-  .back-home a{
-    color:var(--teal-lt); text-decoration:none; border-bottom:1px solid currentColor; opacity:0.85;
-  }
-  .back-home a:hover{ opacity:1; }
-  h1.hero-title{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-size:clamp(2.6rem, 8vw, 6rem);
-    line-height:0.98;
-    letter-spacing:-0.01em;
-    max-width:14ch;
-  }
-  h1.hero-title em{
-    font-style:italic;
-    font-weight:400;
-    color:var(--coral);
-  }
-  .hero-sub{
-    margin-top:32px;
-    font-size:clamp(1rem, 1.6vw, 1.2rem);
-    line-height:1.6;
-    max-width:42ch;
-    color:rgba(241,232,210,0.8);
-    font-weight:400;
-  }
-  .hero-meta{
-    margin-top:56px;
-    display:flex; gap:36px; flex-wrap:wrap;
-  }
-  .hero-meta div{ font-family:'Space Mono', monospace; }
-  .hero-meta .num{ font-size:1.6rem; color:var(--coral); display:block; }
-  .hero-meta .lbl{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(241,232,210,0.55); }
-  .scroll-cue{
-    position:absolute; bottom:6vh; left:8vw;
-    font-family:'Space Mono', monospace;
-    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
-    color:rgba(241,232,210,0.5);
-    display:flex; align-items:center; gap:10px;
-  }
-  .scroll-cue span.arrow{ animation: bob 1.8s ease-in-out infinite; }
-  @keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
-
-  .intro{
-    position:relative; z-index:1;
-    max-width:640px; margin:0 auto;
-    padding:14vh 8vw 10vh; text-align:center;
-  }
-  .intro p{
-    font-family:'Fraunces', serif; font-style:italic;
-    font-size:clamp(1.3rem, 2.6vw, 1.7rem); line-height:1.55;
-    color:var(--sand);
-  }
-  .intro .tag{
-    margin-top:24px;
-    font-family:'Space Mono', monospace;
-    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--teal-lt);
-  }
-
-  .species-section{ position:relative; z-index:1; padding:6vh 8vw; }
-  .species-card{
-    display:grid;
-    grid-template-columns: 0.85fr 1fr;
-    gap:6vw; align-items:center;
-    max-width:1180px; margin:0 auto;
-    padding:9vh 0;
-    border-bottom:1px solid var(--line);
-  }
-  .species-card:last-child{ border-bottom:none; }
-  .species-card:nth-child(even){ grid-template-columns: 1fr 0.85fr; }
-  .species-card:nth-child(even) .art-wrap{ order:2; }
-  .species-card:nth-child(even) .text-wrap{ order:1; }
-
-  .art-wrap{
-    position:relative;
-    background: radial-gradient(circle at 35% 30%, rgba(28,132,128,0.35), rgba(5,40,42,0.1) 70%);
-    border-radius:18px;
-    aspect-ratio:1.15/1;
-    display:flex; align-items:center; justify-content:center;
-    padding:6%;
-    border:1px solid var(--line);
-    overflow:hidden;
-  }
-  .art-wrap svg{ width:100%; height:100%; }
-  .art-wrap img{
-    width:100%; height:100%; object-fit:cover; border-radius:10px;
-  }
-  .photo-credit{
-    position:absolute; bottom:8px; right:12px;
-    font-family:'Space Mono', monospace;
-    font-size:9.5px; color:rgba(241,232,210,0.75);
-    background:rgba(5,40,42,0.55);
-    padding:3px 8px; border-radius:100px;
-    backdrop-filter: blur(2px);
-  }
-
-  .index-no{
-    font-family:'Space Mono', monospace; font-size:13px;
-    color:var(--coral); letter-spacing:0.05em;
-    margin-bottom:14px; display:block;
-  }
-  .common-name{
-    font-family:'Fraunces', serif; font-weight:600;
-    font-size:clamp(1.8rem, 3.4vw, 2.7rem); line-height:1.05;
-    color:var(--card);
-  }
-  .latin-name{
-    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
-    font-size:1.05rem; color:var(--teal-lt); margin-top:6px;
-  }
-  .species-desc{
-    margin-top:20px; font-size:1.02rem; line-height:1.68;
-    color:rgba(241,232,210,0.82); max-width:52ch;
-  }
-  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
-  .pill{
-    font-family:'Space Mono', monospace; font-size:10.5px;
-    letter-spacing:0.04em; text-transform:uppercase;
-    padding:6px 12px; border:1px solid rgba(241,232,210,0.25);
-    border-radius:100px; color:rgba(241,232,210,0.75);
-  }
-  .pill.hot{ border-color:transparent; background:rgba(255,122,69,0.15); color:var(--coral); }
-
-  @media (max-width:820px){
-    .species-card, .species-card:nth-child(even){
-      grid-template-columns: 1fr; gap:28px; padding:6vh 0;
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --sand: #17242a;
+      --sand-dark: #101c21;
+      --white: #16262c;
+      --text: #eef3f2;
+      --text-soft: #a9c0c3;
     }
-    .species-card:nth-child(even) .art-wrap{ order:1; }
-    .species-card:nth-child(even) .text-wrap{ order:2; }
-    .art-wrap{ aspect-ratio:1.4/1; }
+  }
+  :root[data-theme="dark"] {
+    --sand: #17242a;
+    --sand-dark: #101c21;
+    --white: #16262c;
+    --text: #eef3f2;
+    --text-soft: #a9c0c3;
   }
 
-  .etiquette{
-    position:relative; z-index:1;
-    background:var(--sand); color:var(--ink);
-    padding:12vh 8vw; border-radius:32px 32px 0 0;
-    margin-top:6vh;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--text);
+    line-height: 1.65;
   }
-  .etiquette-inner{ max-width:820px; margin:0 auto; }
-  .etiquette h2{
-    font-family:'Fraunces', serif; font-weight:600;
-    font-size:clamp(1.8rem, 3.6vw, 2.6rem); color:var(--deep);
+
+  a { color: inherit; }
+
+  /* ─── NOTE BAR ─── */
+  .note-bar {
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 10px 20px;
+    text-align: center;
   }
-  .etiquette .sub{
-    font-family:'Space Mono', monospace; font-size:11px;
-    letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--coral-dim); margin-bottom:16px; display:block;
+  .note-bar strong { color: #fff; }
+
+  /* ─── SCROLL-ZOOM HERO ─── */
+  .zoom-track {
+    position: relative;
+    height: 230vh;
   }
-  .rules{ margin-top:40px; display:grid; grid-template-columns:repeat(2, 1fr); gap:28px 40px; }
-  @media (max-width:640px){ .rules{ grid-template-columns:1fr; } }
-  .rule{ padding-top:18px; border-top:2px solid var(--deep); }
-  .rule h3{ font-family:'Fraunces', serif; font-size:1.15rem; font-weight:600; margin-bottom:8px; color:var(--deep); }
-  .rule p{ font-size:0.95rem; line-height:1.55; color:rgba(12,35,33,0.75); }
-  .footer-note{
-    margin-top:70px; padding-top:30px;
-    border-top:1px solid rgba(12,35,33,0.15);
-    font-size:0.9rem; color:rgba(12,35,33,0.6); line-height:1.6;
+  .zoom-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    min-height: 520px;
+    overflow: hidden;
+    background-color: var(--navy);
+    background-repeat: no-repeat;
+    background-position: 38.7% 75%;
+    background-size: cover;
   }
-  .footer-note strong{ color:var(--deep); }
+  .zoom-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15,52,64,0.32) 0%, rgba(15,52,64,0.02) 40%, rgba(15,52,64,0.6) 100%);
+    pointer-events: none;
+  }
+  .zoom-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 48px 40px 56px;
+    color: #fff;
+    transition: opacity 0.15s linear, transform 0.15s linear;
+  }
+  .zoom-tag {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+  }
+  .zoom-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.4vw, 32px);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.35);
+  }
+  .zoom-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+    max-width: 640px;
+  }
+  .zoom-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    opacity: 0.92;
+    max-width: 480px;
+    font-weight: 300;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  }
+  .scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.85;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    transition: opacity 0.2s linear;
+  }
+  .scroll-cue svg { animation: bob 1.8s ease-in-out infinite; }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  .pin-label {
+    position: absolute;
+    left: 38.7%;
+    top: 75%;
+    transform: translate(-50%, -130%) scale(0.9);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    pointer-events: none;
+    transition: opacity 0.2s linear, transform 0.2s linear;
+  }
+  .pin-label .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--coral);
+    box-shadow: 0 0 0 6px rgba(224,122,95,0.3);
+  }
+  .pin-label .tag {
+    background: rgba(15,52,64,0.85);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 7px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  /* ─── LOCATOR BADGE ─── */
+  .locator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 128px;
+    background: rgba(15,52,64,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 14px;
+    padding: 10px 10px 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  .locator svg { display: block; width: 100%; height: auto; }
+  .locator-cap {
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    opacity: 0.85;
+  }
+  .wp-pulse {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: mappulse 2.4s ease-out infinite;
+  }
+  @keyframes mappulse {
+    0% { transform: scale(0.55); opacity: 0.55; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+  @media (max-width: 760px) {
+    .locator { width: 92px; top: 14px; right: 14px; padding: 8px 8px 7px; }
+    .locator-cap { font-size: 9px; }
+  }
+
+  /* ─── CONTENT BELOW ─── */
+  .below {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 88px 40px 110px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .below-eyebrow {
+    display: inline-block;
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .below h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3.4vw, 38px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 16px;
+    text-wrap: balance;
+  }
+  .below p {
+    color: var(--text-soft);
+    font-size: 16px;
+    max-width: 46ch;
+  }
+  .below p + p { margin-top: 14px; }
+  .below-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--coral);
+    color: #fff;
+    text-decoration: none;
+    padding: 13px 26px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-top: 26px;
+    box-shadow: 0 4px 20px rgba(224,122,95,0.35);
+  }
+  .below-figure {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 18px 44px rgba(15,52,64,0.25);
+  }
+  .below-figure img { display: block; width: 100%; height: auto; }
+
+  @media (max-width: 760px) {
+    .below { grid-template-columns: 1fr; padding: 56px 24px 72px; gap: 32px; }
+    .zoom-content { padding: 28px 20px 40px; }
+    .pin-label .tag { font-size: 11px; padding: 6px 12px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .zoom-content, .pin-label, .scroll-cue { transition: none; }
+    .wp-pulse { animation: none; }
+    .reef-thumb-media { transform: scale(1) !important; }
+  }
+
+  /* ─── REEF LIST ─── */
+  .reef-list-section {
+    background: var(--white);
+    padding: 88px 40px 100px;
+  }
+  .reef-list-inner { max-width: 1100px; margin: 0 auto; }
+  .reef-list-head { max-width: 620px; margin-bottom: 48px; }
+  .reef-list-eyebrow {
+    display: inline-block;
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .reef-list-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3.4vw, 38px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    text-wrap: balance;
+  }
+  .reef-list-head p { color: var(--text-soft); font-size: 16px; max-width: 56ch; }
+  .reef-list-aside {
+    color: var(--teal) !important;
+    font-style: italic;
+    font-size: 14.5px !important;
+    margin-top: 10px;
+  }
+
+  .reef-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--sand-dark);
+    border-top: 1px solid var(--sand-dark);
+    border-left: 1px solid var(--sand-dark);
+  }
+  .reef-item {
+    background: var(--white);
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .reef-thumb-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--sand-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    contain: layout paint;
+  }
+  .reef-thumb-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(var(--s, 0.44));
+    transform-origin: center;
+  }
+  .reef-credit {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9.5px;
+    color: rgba(255,255,255,0.85);
+    background: rgba(15,52,64,0.55);
+    padding: 3px 8px;
+    border-radius: 100px;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+  }
+  .reef-item-top {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 3px;
+  }
+  .reef-index {
+    font-variant-numeric: tabular-nums;
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .reef-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.25;
+  }
+  .reef-latin {
+    font-style: italic;
+    color: var(--text-soft);
+    font-size: 12.5px;
+    margin-bottom: 8px;
+    opacity: 0.85;
+  }
+  .reef-note {
+    display: inline-block;
+    color: var(--coral);
+    font-size: 12.5px;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .reef-desc { color: var(--text-soft); font-size: 14.5px; line-height: 1.6; }
+
+  @media (max-width: 760px) {
+    .reef-list-section { padding: 56px 24px 72px; }
+    .reef-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── PRO TIPS ─── */
+  .tips-section {
+    background: var(--navy);
+    color: #fff;
+    padding: 84px 40px 96px;
+  }
+  .tips-inner { max-width: 1040px; margin: 0 auto; }
+  .tips-head { max-width: 620px; margin-bottom: 40px; }
+  .tips-eyebrow {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .tips-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3.2vw, 34px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    text-wrap: balance;
+  }
+  .tips-head p { color: rgba(255,255,255,0.72); font-size: 15.5px; max-width: 56ch; }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .tip-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 14px;
+    padding: 24px 24px 26px;
+  }
+  .tip-icon {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(224,122,95,0.18);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--coral);
+    margin-bottom: 16px;
+  }
+  .tip-icon svg { width: 19px; height: 19px; }
+  .tip-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .tip-card p { color: rgba(255,255,255,0.72); font-size: 14.5px; line-height: 1.6; }
+
+  @media (max-width: 760px) {
+    .tips-section { padding: 56px 24px 72px; }
+    .tips-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
-<div class="caustics"></div>
-
-<div class="gauge">
-  <div class="gauge-track"><div class="gauge-fill" id="gaugeFill"></div></div>
-  <div class="gauge-label">HOUSE&nbsp;REEF</div>
+<div class="zoom-track" id="zoomTrack">
+  <div class="zoom-stage" id="zoomStage" style="background-image:url('images/BlueTideWestpunt-Stairs-Wide.jpg')">
+    <div class="zoom-overlay"></div>
+    <div class="locator">
+      <svg viewBox="0 0 3570 3570">
+        <circle cx="1784.5" cy="1784.5" r="1617.5" fill="var(--teal-light)"/>
+        <path d="M 670 816 L 659 850 L 640 875 L 656 891 L 679 926 L 680 954 L 673 974 L 679 986 L 686 990 L 693 1016 L 680 1046 L 689 1082 L 684 1108 L 698 1157 L 695 1200 L 712 1259 L 720 1261 L 742 1256 L 746 1260 L 745 1270 L 739 1277 L 700 1288 L 677 1320 L 674 1329 L 676 1339 L 694 1365 L 701 1390 L 728 1403 L 748 1444 L 770 1463 L 813 1466 L 817 1447 L 816 1425 L 824 1414 L 828 1414 L 835 1401 L 841 1402 L 871 1427 L 873 1437 L 849 1442 L 840 1461 L 826 1477 L 836 1506 L 849 1506 L 862 1512 L 908 1566 L 913 1563 L 918 1549 L 930 1545 L 936 1550 L 932 1578 L 942 1600 L 943 1639 L 955 1650 L 967 1651 L 1007 1694 L 1003 1710 L 1008 1714 L 1021 1714 L 1041 1738 L 1029 1762 L 1036 1763 L 1041 1771 L 1044 1812 L 1065 1830 L 1071 1855 L 1108 1881 L 1149 1897 L 1172 1898 L 1193 1891 L 1209 1877 L 1218 1842 L 1212 1830 L 1196 1816 L 1175 1832 L 1164 1847 L 1151 1856 L 1145 1856 L 1133 1838 L 1131 1822 L 1138 1809 L 1163 1808 L 1153 1792 L 1156 1779 L 1161 1779 L 1175 1792 L 1174 1767 L 1179 1759 L 1194 1757 L 1206 1761 L 1208 1788 L 1236 1831 L 1269 1824 L 1291 1832 L 1381 1889 L 1389 1930 L 1384 1944 L 1385 1958 L 1425 2001 L 1470 2064 L 1471 2088 L 1479 2102 L 1487 2104 L 1495 2095 L 1503 2095 L 1520 2084 L 1538 2086 L 1546 2091 L 1546 2100 L 1529 2121 L 1520 2122 L 1500 2114 L 1489 2123 L 1489 2140 L 1516 2169 L 1550 2176 L 1579 2214 L 1596 2219 L 1633 2240 L 1632 2208 L 1623 2169 L 1639 2152 L 1651 2154 L 1670 2193 L 1670 2200 L 1661 2208 L 1651 2231 L 1654 2255 L 1645 2265 L 1661 2287 L 1676 2291 L 1686 2301 L 1689 2289 L 1694 2288 L 1707 2299 L 1715 2316 L 1804 2341 L 1819 2315 L 1814 2299 L 1791 2286 L 1796 2270 L 1775 2258 L 1762 2244 L 1763 2237 L 1784 2248 L 1798 2233 L 1813 2224 L 1837 2256 L 1862 2254 L 1864 2246 L 1875 2238 L 1901 2241 L 1908 2263 L 1932 2251 L 1930 2266 L 1941 2268 L 1944 2289 L 1931 2297 L 1921 2323 L 1913 2320 L 1905 2303 L 1893 2293 L 1888 2295 L 1893 2322 L 1881 2316 L 1870 2298 L 1857 2293 L 1827 2344 L 1852 2353 L 1882 2373 L 1905 2378 L 1952 2399 L 2015 2446 L 2084 2480 L 2128 2513 L 2145 2517 L 2166 2485 L 2176 2480 L 2183 2481 L 2203 2514 L 2206 2548 L 2220 2565 L 2236 2557 L 2249 2562 L 2243 2543 L 2251 2519 L 2231 2527 L 2206 2523 L 2207 2516 L 2219 2502 L 2206 2494 L 2192 2471 L 2196 2451 L 2239 2463 L 2268 2451 L 2270 2437 L 2288 2438 L 2292 2451 L 2299 2442 L 2308 2442 L 2314 2454 L 2314 2465 L 2320 2472 L 2319 2481 L 2308 2496 L 2311 2512 L 2308 2538 L 2300 2541 L 2285 2519 L 2274 2514 L 2258 2565 L 2273 2569 L 2303 2589 L 2320 2590 L 2333 2596 L 2349 2609 L 2375 2642 L 2389 2642 L 2423 2669 L 2457 2672 L 2496 2696 L 2529 2707 L 2556 2711 L 2568 2703 L 2596 2699 L 2595 2679 L 2608 2684 L 2617 2675 L 2642 2665 L 2738 2667 L 2756 2678 L 2783 2679 L 2788 2664 L 2799 2653 L 2852 2660 L 2821 2630 L 2780 2610 L 2718 2556 L 2634 2436 L 2591 2381 L 2564 2353 L 2513 2279 L 2493 2236 L 2478 2250 L 2477 2258 L 2490 2278 L 2495 2302 L 2489 2309 L 2452 2305 L 2436 2286 L 2422 2302 L 2417 2302 L 2403 2291 L 2371 2277 L 2380 2259 L 2405 2259 L 2385 2238 L 2386 2225 L 2392 2216 L 2403 2215 L 2428 2225 L 2442 2221 L 2450 2226 L 2460 2226 L 2481 2214 L 2484 2202 L 2473 2157 L 2419 2093 L 2350 2057 L 2312 2024 L 2263 1996 L 2243 1974 L 2235 1971 L 2158 1973 L 1935 1950 L 1905 1937 L 1859 1908 L 1814 1905 L 1778 1909 L 1742 1905 L 1693 1883 L 1612 1861 L 1587 1845 L 1543 1790 L 1477 1748 L 1435 1703 L 1343 1632 L 1315 1590 L 1309 1572 L 1289 1549 L 1275 1514 L 1235 1461 L 1223 1449 L 1195 1451 L 1195 1447 L 1215 1433 L 1219 1426 L 1212 1402 L 1211 1339 L 1201 1286 L 1202 1262 L 1197 1255 L 1177 1252 L 1171 1245 L 1170 1236 L 1178 1226 L 1198 1219 L 1204 1199 L 1169 1140 L 1134 1137 L 1139 1125 L 1163 1119 L 1111 1037 L 1080 1008 L 1066 1001 L 980 984 L 937 962 L 899 951 L 861 931 L 789 873 L 718 826 L 688 812 L 675 812 Z" fill="var(--navy)" stroke="rgba(255,255,255,0.7)" stroke-width="10"/>
+        <circle class="wp-pulse" cx="700" cy="1360" r="150" fill="var(--coral)"/>
+        <circle cx="700" cy="1360" r="75" fill="var(--coral)" stroke="#fff" stroke-width="20"/>
+      </svg>
+      <span class="locator-cap">Westpunt</span>
+    </div>
+    <div class="pin-label" id="pinLabel">
+      <div class="tag">Your own steps down to the reef</div>
+      <div class="dot"></div>
+    </div>
+    <div class="zoom-content" id="zoomContent">
+      <span class="zoom-tag">Curaçao · Westpunt · Punta Azul</span>
+      <div class="zoom-brand"><a href="https://bluetidewestpunt.com/" style="color:inherit;text-decoration:none;">Blue Tide Westpunt</a></div>
+      <h1>A Snorkeler's Paradise,<br>Steps Away</h1>
+      <p class="zoom-sub">Your guide to the reef right off our stairs — the walk down, the water, and what's living in it.</p>
+    </div>
+    <div class="scroll-cue" id="scrollCue">
+      Scroll
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
 </div>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-eyebrow"><a href="https://bluetidewestpunt.com/">Blue Tide Westpunt</a> · Guest Field Guide</div>
-  <h1 class="hero-title">What's living<br>in the water <em>off our back deck</em></h1>
-  <p class="hero-sub">
-    Grab a mask and fins, walk down the ladder, and give this five minutes. Here's what you're likely to swim past on the reef right off Punta Azul — from the fish that will follow you around to the ones you'll want to admire from a distance.
-  </p>
-  <div class="hero-meta">
-    <div><span class="num">25</span><span class="lbl">species inside</span></div>
-    <div><span class="num">10–20ft</span><span class="lbl">typical depth</span></div>
-    <div><span class="num">26–28°C</span><span class="lbl">water, year-round</span></div>
+<div class="below">
+  <div>
+    <span class="below-eyebrow">Direct Water Access</span>
+    <h2>Carved into the Cliff, Steps to the Reef</h2>
+    <p>A dramatic staircase carved directly into the coastal limestone winds past a small cave-like opening, leading straight down into the turquoise waters of Westpunt.</p>
+    <p>Shared exclusively by the residents and guests of Punta Azul and Marazul, this private path means no crowds, no day-trippers, and no streets to cross. Just walk down the steps, take the ladder entry, and you're instantly floating over a thriving coral reef teeming with colorful fish.</p>
+    <p>While the ladder looks steep in photos, the cove is naturally sheltered with calm, current-free water — making it an easy, unintimidating descent into some of the best snorkeling on the island.</p>
+    <a href="https://bluetidewestpunt.com/#contact" class="below-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Inquire About Dates
+    </a>
   </div>
-  <div class="scroll-cue">scroll to explore <span class="arrow">↓</span></div>
+  <div class="below-figure">
+    <img src="images/BlueTideWestpunt-Stairs-Detail.jpg" alt="The staircase down to the water at Blue Tide Westpunt">
+  </div>
+</div>
+
+<section class="reef-list-section">
+  <div class="reef-list-inner">
+    <div class="reef-list-head">
+      <span class="reef-list-eyebrow">Straight Off The Steps</span>
+      <h2>What you'll see in the water</h2>
+      <p>The reef holds far more than this — these are 25 species we've identified right off the ladder. A few of the photos are ours; the rest are licensed shots from other divers and snorkelers (credited under each one), standing in for species we've seen but haven't caught on camera here ourselves yet. A handful (sergeant majors, bluehead wrasse, blue chromis) you'll see on every swim; the rest turn up if you're patient, or lucky. Stay a few days and snorkel a handful of times, and you'll almost certainly spot everything below.</p>
+      <p class="reef-list-aside">Keep an eye out for the rarer sightings too — sea turtles, trumpetfish, squid, and barracuda have all turned up right off these steps. Not guaranteed, but they're out there.</p>
+    </div>
+    <div class="reef-grid">
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/320139754/large.jpg" alt="Porcupinefish" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Pauline Walsh Jacobson, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">01</span>
+          <h3>Porcupinefish</h3>
+        </div>
+        <div class="reef-latin">Diodon hystrix</div>
+        
+        <p class="reef-desc">A slow, round-bodied fish covered in short spines that lie flat unless it feels threatened — it can inflate into a spiky ball as a last resort, but that&#x27;s a stress response, not something to try to provoke. Usually seen hovering calmly near rocks or crevices during the day.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/372127096/large.jpeg" alt="Queen Angelfish" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">02</span>
+          <h3>Queen Angelfish</h3>
+        </div>
+        <div class="reef-latin">Holacanthus ciliaris</div>
+        <span class="reef-note">Showstopper</span>
+        <p class="reef-desc">The showiest fish on this reef — gold body, blue-tipped fins, and a dark &quot;crown&quot; spot ringed in electric blue on the forehead, which is where the name comes from. Solitary and a little shy, but worth the extra few minutes of quiet drifting to find.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/109333925/large.jpeg" alt="French Angelfish" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">03</span>
+          <h3>French Angelfish</h3>
+        </div>
+        <div class="reef-latin">Pomacanthus paru</div>
+        
+        <p class="reef-desc">Deep black body edged in gold scales that catch the light like sequins as it turns. Juveniles look completely different — black with vertical yellow stripes — so don&#x27;t be surprised if a &quot;different species&quot; near a coral head turns out to be a young French angel.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/247248425/large.jpg" alt="Purple Stovepipe Sponge" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Jay Brasher, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">04</span>
+          <h3>Purple Stovepipe Sponge</h3>
+        </div>
+        <div class="reef-latin">Aplysina archeri</div>
+        <span class="reef-note">Striking once you see it</span>
+        <p class="reef-desc">Tall, narrow purple tubes rising straight up off the reef in small clusters, sometimes reaching several feet — genuinely one of the more striking sights once you spot a good cluster. Look but don&#x27;t grab; sponges are fragile and slow-growing.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/345297476/large.jpg" alt="Smooth Trunkfish" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Dan Schofield, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">05</span>
+          <h3>Smooth Trunkfish</h3>
+        </div>
+        <div class="reef-latin">Lactophrys triqueter</div>
+        
+        <p class="reef-desc">A boxy, slow-moving fish with a rigid, polka-dotted body armor instead of scales — it swims almost entirely with its small fins, giving it a distinctive hovering, deliberate motion unlike anything else on the reef. Easy to approach slowly since it rarely darts away.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/356870734/large.jpeg" alt="Spanish Hogfish" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">06</span>
+          <h3>Spanish Hogfish</h3>
+        </div>
+        <div class="reef-latin">Bodianus rufus</div>
+        
+        <p class="reef-desc">Two-toned and easy to identify — deep purple-violet on the front half, bright yellow on the back half, with a clean line between the two. Acts as a cleaner fish, picking parasites off other fish at informal &quot;cleaning stations&quot; on the reef.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/361552904/medium.jpeg" alt="Stoplight Parrotfish" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">07</span>
+          <h3>Stoplight Parrotfish</h3>
+        </div>
+        <div class="reef-latin">Sparisoma viride</div>
+        <span class="reef-note">Easy to spot</span>
+        <p class="reef-desc">Big, unmistakable, and doing the reef a real favor: parrotfish graze on algae by scraping coral with a fused beak-like jaw, which is where all that white sand on the beach ultimately comes from. Listen closely underwater near the rocks and you can actually hear them crunching.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/718131528/original.jpg" alt="Blue Tang" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Denis Hurley</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">08</span>
+          <h3>Blue Tang</h3>
+        </div>
+        <div class="reef-latin">Acanthurus coeruleus</div>
+        
+        <p class="reef-desc">Electric blue, disc-shaped, and usually moving in loose groups over the reef flat. Look for a small orange-yellow scalpel-like spine near the base of the tail — it&#x27;s how the fish defends itself, and also how it got its &quot;surgeonfish&quot; family name. Juveniles are bright yellow before they turn blue.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/361530662/medium.jpeg" alt="Sergeant Major" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">09</span>
+          <h3>Sergeant Major</h3>
+        </div>
+        <div class="reef-latin">Abudefduf saxatilis</div>
+        <span class="reef-note">You&#x27;ll see this first</span>
+        <p class="reef-desc">The welcoming committee. These yellow-and-black striped damselfish patrol the shallows in loose schools and will investigate you within seconds of getting in. Territorial around the rocks where they guard purple egg patches — give a nesting one a little berth and it&#x27;ll leave you alone.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/547717968/large.jpg" alt="Bluehead Wrasse" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Denis Hurley</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">10</span>
+          <h3>Bluehead Wrasse</h3>
+        </div>
+        <div class="reef-latin">Thalassoma bifasciatum</div>
+        <span class="reef-note">Extremely common</span>
+        <p class="reef-desc">One of the most abundant fish on any Caribbean reef, constantly darting around in short bursts. Adult males have the namesake electric-blue head with black-and-white bands behind it; females and juveniles are plain yellow, so what looks like two different fish is often the same species.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://commons.wikimedia.org/wiki/Special:FilePath/Yellowtail_snapper_Ocyurus_chrysurus_(3475245386).jpg" alt="Yellowtail Snapper" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Paul Asman and Jill Lenoble, CC BY 2.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">11</span>
+          <h3>Yellowtail Snapper</h3>
+        </div>
+        <div class="reef-latin">Ocyurus chrysurus</div>
+        
+        <p class="reef-desc">Silvery, fast, and marked by a bold yellow stripe running the length of the body straight into a matching yellow tail. Often in schools mid-water rather than hugging the bottom — if you see a shimmering group moving as one, it&#x27;s probably these.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/360475513/large.jpeg" alt="Foureye Butterflyfish" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">12</span>
+          <h3>Foureye Butterflyfish</h3>
+        </div>
+        <div class="reef-latin">Chaetodon capistratus</div>
+        
+        <p class="reef-desc">A pale, disc-shaped fish with a bold black eyespot near the tail and a real eye camouflaged in a dark stripe — a decoy that confuses predators about which end is the head. Usually seen in pairs; they mate for life and stay close to their partner across the reef.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/547717042/large.jpg" alt="Bar Jack" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Denis Hurley</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">13</span>
+          <h3>Bar Jack</h3>
+        </div>
+        <div class="reef-latin">Carangoides ruber</div>
+        
+        <p class="reef-desc">Sleek, silvery, and fast — a dark stripe runs along the back down into an electric-blue tail. Bar jacks often shadow larger fish or even snorkelers, using the disturbance to snap up anything small stirred off the bottom. Don&#x27;t be surprised if one starts tailing you.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/359911472/large.jpeg" alt="Blue Chromis" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">14</span>
+          <h3>Blue Chromis</h3>
+        </div>
+        <div class="reef-latin">Chromis cyanea</div>
+        <span class="reef-note">Constant background presence</span>
+        <p class="reef-desc">The little iridescent blue fish that hover in loose clouds just above the coral. They pick plankton straight out of the water column and scatter into the reef the instant anything comes close, only to regroup a few seconds later. One of the most common sights on the whole reef.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ophioblennius_macclurei_356856282.jpg" alt="Redlip Blenny" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">15</span>
+          <h3>Redlip Blenny</h3>
+        </div>
+        <div class="reef-latin">Ophioblennius macclurei</div>
+        
+        <p class="reef-desc">A small, dark, torpedo-shaped fish that perches on rocks and dead coral rather than swimming freely, darting a few inches at a time. Look for the bright red-orange lips that give it its name — easiest to spot when it&#x27;s sitting still, propped up on its pectoral fins.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/356853338/large.jpeg" alt="Sharpnose Puffer" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: desertnaturalist, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">16</span>
+          <h3>Sharpnose Puffer</h3>
+        </div>
+        <div class="reef-latin">Canthigaster rostrata</div>
+        
+        <p class="reef-desc">Small, round, and easy to miss at first glance — look for the pointed snout and fine blue squiggly lines near the tail. Usually solitary, hovering close to the reef rather than swimming in open water, and generally unbothered by snorkelers nearby.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://commons.wikimedia.org/wiki/Special:FilePath/Christmas%20tree%20worms.jpg" alt="Christmas Tree Worms" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Nick Hobgood, CC BY-SA 3.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">17</span>
+          <h3>Christmas Tree Worms</h3>
+        </div>
+        <div class="reef-latin">Spirobranchus giganteus</div>
+        
+        <p class="reef-desc">Tiny, brilliant, and everywhere once you know to look — twin spiral &quot;trees&quot; in electric blue, orange, or yellow, no bigger than a fingertip, growing straight out of brain and boulder coral. Wave a hand nearby (without touching the coral) and watch them vanish instantly into their tube.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/325585743/large.jpg" alt="Banded Clinging Crab" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Robin White, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">18</span>
+          <h3>Banded Clinging Crab</h3>
+        </div>
+        <div class="reef-latin">Mithraculus cinctimanus</div>
+        <span class="reef-note">Lives in the sun anemones</span>
+        <p class="reef-desc">These are the little crabs living in the sun anemone cluster — small, olive and cream, with pale-banded claws. It&#x27;s a genuine partnership: the crab gets protection in the anemone&#x27;s stinging tentacles, and it helps keep the anemone clean in return. Look closely between the tentacles rather than reaching in.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/548097094/large.jpg" alt="Tidal Spray Crab" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Denis Hurley</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">19</span>
+          <h3>Tidal Spray Crab</h3>
+        </div>
+        <div class="reef-latin">Plagusia depressa</div>
+        
+        <p class="reef-desc">Reddish-brown and very fast, living right at the waterline on rocks rather than underwater proper — you&#x27;ll likely spot this one getting in or out at the ladder rather than while snorkeling. Freezes at the first sign of movement, then bolts sideways into a crevice.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/712234847/large.jpg" alt="Orange Cup Coral" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Denis Hurley</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">20</span>
+          <h3>Orange Cup Coral</h3>
+        </div>
+        <div class="reef-latin">Tubastraea coccinea</div>
+        
+        <p class="reef-desc">Small clusters of bright orange polyps tucked into shaded crevices and overhangs rather than out in the open. Unlike reef-building corals, these don&#x27;t rely on sunlight — look for them under ledges and ridges where the light doesn&#x27;t reach directly.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gorgonia_ventalina_402877786.jpg" alt="Purple Sea Fans &amp; Soft Coral" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Pauline Walsh Jacobson, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">21</span>
+          <h3>Purple Sea Fans &amp; Soft Coral</h3>
+        </div>
+        <div class="reef-latin">Gorgonia ventalina, and relatives</div>
+        
+        <p class="reef-desc">Not animals you&#x27;ll see moving, but the reef&#x27;s architecture — tall purple fans and swaying &quot;sea whips&quot; that sway with the surge and give the whole reef its texture. They&#x27;re delicate; a single fin kick can snap decades of growth, so keep a body-length of distance and check your fin position before you stand up.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/718120083/original.jpg" alt="Sun Anemone" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Denis Hurley</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">22</span>
+          <h3>Sun Anemone</h3>
+        </div>
+        <div class="reef-latin">Stichodactyla helianthus</div>
+        <span class="reef-note">Look, don&#x27;t touch — real sting</span>
+        <p class="reef-desc">There&#x27;s a big cluster of these right at our spot — a flat, carpet-like anemone in green and gold with hundreds of short, thick tentacles. Sun anemones pack a real sting (worse than most Caribbean anemones), so admire without touching. Look closely between the tentacles and you&#x27;ll usually spot the little crabs that live there.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/547712747/large.jpg" alt="Long-Spined Sea Urchin" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Denis Hurley</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">23</span>
+          <h3>Long-Spined Sea Urchin</h3>
+        </div>
+        <div class="reef-latin">Diadema antillarum</div>
+        <span class="reef-note">Watch your step</span>
+        <p class="reef-desc">The one thing on this list that can genuinely ruin your afternoon if you&#x27;re careless. Black, spiky, and usually wedged into rock crevices in shallower water near the entry ladder — easy to see and easy to avoid, but the spines break off in skin and are no fun to remove. Watch your footing at entry and exit.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://inaturalist-open-data.s3.amazonaws.com/photos/617701309/large.jpg" alt="Touch-Me-Not Sponge" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: djscho, CC BY 4.0</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">24</span>
+          <h3>Touch-Me-Not Sponge</h3>
+        </div>
+        <div class="reef-latin">Neofibularia nolitangere</div>
+        <span class="reef-note">Look, don&#x27;t touch — irritates skin</span>
+        <p class="reef-desc">An olive-green, lumpy encrusting sponge covering the rock in irregular patches, dotted with small round pores. It&#x27;s not coral and it&#x27;s not soft the way it might look — contact with skin can cause an itchy, uncomfortable rash that lingers for a day or two. Easy to avoid once you know what it looks like.</p>
+      </article>
+      <article class="reef-item">
+        <div class="reef-thumb-frame">
+          <img class="reef-thumb-media" src="https://static.inaturalist.org/photos/548101996/large.jpg" alt="Elkhorn Coral" loading="lazy" decoding="async">
+          <span class="reef-credit">Photo: Denis Hurley</span>
+        </div>
+        <div class="reef-item-top">
+          <span class="reef-index">25</span>
+          <h3>Elkhorn Coral</h3>
+        </div>
+        <div class="reef-latin">Acropora palmata</div>
+        <span class="reef-note">Critically endangered — never touch</span>
+        <p class="reef-desc">Named for its wide, flattened branches that really do resemble elk antlers. This was once the dominant reef-building coral across the entire Caribbean, and it&#x27;s now critically endangered after mass die-offs — what&#x27;s left is precious. Never touch it, stand on it, or let a fin brush against it; a single contact can undo decades of growth.</p>
+      </article>
+    </div>
+  </div>
 </section>
 
-<!-- ============ INTRO ============ -->
-<section class="intro">
-  <p>"You don't need a boat, a guide, or a wetsuit. Walk in off the ladder, put your face in the water, and the reef starts about thirty feet out."</p>
-  <span class="tag">— straight off the Westpunt coastline</span>
-</section>
-
-<!-- ============ SPECIES ============ -->
-<section class="species-section">
-
-  <!-- 1 Sergeant Major -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/361530662/medium.jpeg" alt="Sergeant major damselfish, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
+<section class="tips-section">
+  <div class="tips-inner">
+    <div class="tips-head">
+      <span class="tips-eyebrow">Before You Get In</span>
+      <h2>A Few Things Worth Knowing</h2>
+      <p>This is a wall — you're snorkeling right along it from the ladder, not swimming out to find it. It's thriving. Help keep it that way.</p>
     </div>
-    <div class="text-wrap">
-      <span class="index-no">01 / 25</span>
-      <h2 class="common-name">Sergeant Major</h2>
-      <div class="latin-name">Abudefduf saxatilis</div>
-      <p class="species-desc">The welcoming committee. These yellow-and-black striped damselfish patrol the shallows in loose schools and will investigate you within seconds of getting in. Territorial around the rocks where they guard purple egg patches — give a nesting one a little berth and it'll leave you alone.</p>
-      <div class="tag-row">
-        <span class="pill hot">You'll see this first</span>
-        <span class="pill">Shallow water</span>
-        <span class="pill">Schooling</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2 Stoplight Parrotfish -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/361552904/medium.jpeg" alt="Stoplight parrotfish, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">02 / 25</span>
-      <h2 class="common-name">Stoplight Parrotfish</h2>
-      <div class="latin-name">Sparisoma viride</div>
-      <p class="species-desc">Big, unmistakable, and doing the reef a real favor: parrotfish graze on algae by scraping coral with a fused beak-like jaw, which is where all that white sand on the beach ultimately comes from. Listen closely underwater near the rocks and you can actually hear them crunching.</p>
-      <div class="tag-row">
-        <span class="pill hot">Easy to spot</span>
-        <span class="pill">Up to 20 in.</span>
-        <span class="pill">Near coral heads</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3 Blue Tang -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/718131528/original.jpg" alt="Blue tang, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">03 / 25</span>
-      <h2 class="common-name">Blue Tang</h2>
-      <div class="latin-name">Acanthurus coeruleus</div>
-      <p class="species-desc">Electric blue, disc-shaped, and usually moving in loose groups over the reef flat. Look for a small orange-yellow scalpel-like spine near the base of the tail — it's how the fish defends itself, and also how it got its "surgeonfish" family name. Juveniles are bright yellow before they turn blue.</p>
-      <div class="tag-row">
-        <span class="pill">Reef flats</span>
-        <span class="pill">Grazer</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4 Foureye Butterflyfish -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/360475513/large.jpeg" alt="Foureye butterflyfish, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">04 / 25</span>
-      <h2 class="common-name">Foureye Butterflyfish</h2>
-      <div class="latin-name">Chaetodon capistratus</div>
-      <p class="species-desc">A pale, disc-shaped fish with a bold black eyespot near the tail and a real eye camouflaged in a dark stripe — a decoy that confuses predators about which end is the head. Usually seen in pairs; they mate for life and stay close to their partner across the reef.</p>
-      <div class="tag-row">
-        <span class="pill">Pairs</span>
-        <span class="pill">Coral edges</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5 Queen Angelfish -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/372127096/large.jpeg" alt="Queen angelfish, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">05 / 25</span>
-      <h2 class="common-name">Queen Angelfish</h2>
-      <div class="latin-name">Holacanthus ciliaris</div>
-      <p class="species-desc">The showiest fish on this reef — gold body, blue-tipped fins, and a dark "crown" spot ringed in electric blue on the forehead, which is where the name comes from. Solitary and a little shy, but worth the extra few minutes of quiet drifting to find.</p>
-      <div class="tag-row">
-        <span class="pill hot">Showstopper</span>
-        <span class="pill">Solitary</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6 Yellowtail Snapper -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Yellowtail_snapper_Ocyurus_chrysurus_(3475245386).jpg" alt="Yellowtail snapper">
-      <span class="photo-credit">Photo: Paul Asman and Jill Lenoble, CC BY 2.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">06 / 25</span>
-      <h2 class="common-name">Yellowtail Snapper</h2>
-      <div class="latin-name">Ocyurus chrysurus</div>
-      <p class="species-desc">Silvery, fast, and marked by a bold yellow stripe running the length of the body straight into a matching yellow tail. Often in schools mid-water rather than hugging the bottom — if you see a shimmering group moving as one, it's probably these.</p>
-      <div class="tag-row">
-        <span class="pill">Schooling</span>
-        <span class="pill">Mid-water</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 7 French Angelfish -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/109333925/large.jpeg" alt="French angelfish, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">07 / 25</span>
-      <h2 class="common-name">French Angelfish</h2>
-      <div class="latin-name">Pomacanthus paru</div>
-      <p class="species-desc">Deep black body edged in gold scales that catch the light like sequins as it turns. Juveniles look completely different — black with vertical yellow stripes — so don't be surprised if a "different species" near a coral head turns out to be a young French angel.</p>
-      <div class="tag-row">
-        <span class="pill">Coral heads</span>
-        <span class="pill">Curious, not shy</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 8 Bar Jack -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/547717042/large.jpg" alt="Bar jack, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">08 / 25</span>
-      <h2 class="common-name">Bar Jack</h2>
-      <div class="latin-name">Carangoides ruber</div>
-      <p class="species-desc">Sleek, silvery, and fast — a dark stripe runs along the back down into an electric-blue tail. Bar jacks often shadow larger fish or even snorkelers, using the disturbance to snap up anything small stirred off the bottom. Don't be surprised if one starts tailing you.</p>
-      <div class="tag-row">
-        <span class="pill">Fast &amp; silvery</span>
-        <span class="pill">Open water</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 9 Christmas Tree Worms -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Christmas%20tree%20worms.jpg" alt="Christmas tree worms on coral">
-      <span class="photo-credit">Photo: Nick Hobgood, CC BY-SA 3.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">09 / 25</span>
-      <h2 class="common-name">Christmas Tree Worms</h2>
-      <div class="latin-name">Spirobranchus giganteus</div>
-      <p class="species-desc">Tiny, brilliant, and everywhere once you know to look — twin spiral "trees" in electric blue, orange, or yellow, no bigger than a fingertip, growing straight out of brain and boulder coral. Wave a hand nearby (without touching the coral) and watch them vanish instantly into their tube.</p>
-      <div class="tag-row">
-        <span class="pill">On coral heads</span>
-        <span class="pill">Fun for kids</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 10 Purple Sea Fans -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gorgonia_ventalina_402877786.jpg" alt="Purple sea fan">
-      <span class="photo-credit">Photo: Pauline Walsh Jacobson, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">10 / 25</span>
-      <h2 class="common-name">Purple Sea Fans &amp; Soft Coral</h2>
-      <div class="latin-name">Gorgonia ventalina, and relatives</div>
-      <p class="species-desc">Not animals you'll see moving, but the reef's architecture — tall purple fans and swaying "sea whips" that sway with the surge and give the whole reef its texture. They're delicate; a single fin kick can snap decades of growth, so keep a body-length of distance and check your fin position before you stand up.</p>
-      <div class="tag-row">
-        <span class="pill">Reef structure</span>
-        <span class="pill">Look, never kick</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 11 Sun Anemone -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/718120083/original.jpg" alt="Sun anemone, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">11 / 25</span>
-      <h2 class="common-name">Sun Anemone</h2>
-      <div class="latin-name">Stichodactyla helianthus</div>
-      <p class="species-desc">There's a big cluster of these right at our spot — a flat, carpet-like anemone in green and gold with hundreds of short, thick tentacles. Sun anemones pack a real sting (worse than most Caribbean anemones), so admire without touching. Look closely between the tentacles and you'll usually spot the little crabs that live there.</p>
-      <div class="tag-row">
-        <span class="pill hot">Look, don't touch — real sting</span>
-        <span class="pill">Large cluster here</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 12 Long-Spined Sea Urchin -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/547712747/large.jpg" alt="Long-spined sea urchin, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">12 / 25</span>
-      <h2 class="common-name">Long-Spined Sea Urchin</h2>
-      <div class="latin-name">Diadema antillarum</div>
-      <p class="species-desc">The one thing on this list that can genuinely ruin your afternoon if you're careless. Black, spiky, and usually wedged into rock crevices in shallower water near the entry ladder — easy to see and easy to avoid, but the spines break off in skin and are no fun to remove. Watch your footing at entry and exit.</p>
-      <div class="tag-row">
-        <span class="pill hot">Watch your step</span>
-        <span class="pill">Near rocks / ladder</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 13 Banded Clinging Crab -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/325585743/large.jpg" alt="Banded clinging crab in anemone tentacles">
-      <span class="photo-credit">Photo: Robin White, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">13 / 25</span>
-      <h2 class="common-name">Banded Clinging Crab</h2>
-      <div class="latin-name">Mithraculus cinctimanus</div>
-      <p class="species-desc">These are the little crabs living in the sun anemone cluster — small, olive and cream, with pale-banded claws. It's a genuine partnership: the crab gets protection in the anemone's stinging tentacles, and it helps keep the anemone clean in return. Look closely between the tentacles rather than reaching in.</p>
-      <div class="tag-row">
-        <span class="pill hot">Lives in the sun anemones</span>
-        <span class="pill">Small — look closely</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 14 Blue Chromis -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/359911472/large.jpeg" alt="Blue chromis, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">14 / 25</span>
-      <h2 class="common-name">Blue Chromis</h2>
-      <div class="latin-name">Chromis cyanea</div>
-      <p class="species-desc">The little iridescent blue fish that hover in loose clouds just above the coral. They pick plankton straight out of the water column and scatter into the reef the instant anything comes close, only to regroup a few seconds later. One of the most common sights on the whole reef.</p>
-      <div class="tag-row">
-        <span class="pill hot">Constant background presence</span>
-        <span class="pill">Schooling</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 15 Redlip Blenny -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ophioblennius_macclurei_356856282.jpg" alt="Redlip blenny perched on rock, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">15 / 25</span>
-      <h2 class="common-name">Redlip Blenny</h2>
-      <div class="latin-name">Ophioblennius macclurei</div>
-      <p class="species-desc">A small, dark, torpedo-shaped fish that perches on rocks and dead coral rather than swimming freely, darting a few inches at a time. Look for the bright red-orange lips that give it its name — easiest to spot when it's sitting still, propped up on its pectoral fins.</p>
-      <div class="tag-row">
-        <span class="pill">Perches on rocks</span>
-        <span class="pill">Look for the red lips</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 16 Orange Cup Coral -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/712234847/large.jpg" alt="Orange cup coral, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">16 / 25</span>
-      <h2 class="common-name">Orange Cup Coral</h2>
-      <div class="latin-name">Tubastraea coccinea</div>
-      <p class="species-desc">Small clusters of bright orange polyps tucked into shaded crevices and overhangs rather than out in the open. Unlike reef-building corals, these don't rely on sunlight — look for them under ledges and ridges where the light doesn't reach directly.</p>
-      <div class="tag-row">
-        <span class="pill">Shaded crevices</span>
-        <span class="pill">Bright orange</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 17 Elkhorn Coral -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/548101996/large.jpg" alt="Elkhorn coral, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">17 / 25</span>
-      <h2 class="common-name">Elkhorn Coral</h2>
-      <div class="latin-name">Acropora palmata</div>
-      <p class="species-desc">Named for its wide, flattened branches that really do resemble elk antlers. This was once the dominant reef-building coral across the entire Caribbean, and it's now critically endangered after mass die-offs — what's left is precious. Never touch it, stand on it, or let a fin brush against it; a single contact can undo decades of growth.</p>
-      <div class="tag-row">
-        <span class="pill hot">Critically endangered — never touch</span>
-        <span class="pill">Reef-building coral</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 18 Tidal Spray Crab -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/548097094/large.jpg" alt="Tidal spray crab, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">18 / 25</span>
-      <h2 class="common-name">Tidal Spray Crab</h2>
-      <div class="latin-name">Plagusia depressa</div>
-      <p class="species-desc">Reddish-brown and very fast, living right at the waterline on rocks rather than underwater proper — you'll likely spot this one getting in or out at the ladder rather than while snorkeling. Freezes at the first sign of movement, then bolts sideways into a crevice.</p>
-      <div class="tag-row">
-        <span class="pill">At the waterline</span>
-        <span class="pill">Fast — freezes then bolts</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 19 Touch-Me-Not Sponge (REAL PHOTO) -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/617701309/large.jpg" alt="Touch-me-not sponge, Cayman Islands">
-      <span class="photo-credit">Photo: djscho, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">19 / 25</span>
-      <h2 class="common-name">Touch-Me-Not Sponge</h2>
-      <div class="latin-name">Neofibularia nolitangere</div>
-      <p class="species-desc">An olive-green, lumpy encrusting sponge covering the rock in irregular patches, dotted with small round pores. It's not coral and it's not soft the way it might look — contact with skin can cause an itchy, uncomfortable rash that lingers for a day or two. Easy to avoid once you know what it looks like.</p>
-      <div class="tag-row">
-        <span class="pill hot">Look, don't touch — irritates skin</span>
-        <span class="pill">Photographed at our spot</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 20 Porcupinefish -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/320139754/large.jpg" alt="Porcupinefish over reef">
-      <span class="photo-credit">Photo: Pauline Walsh Jacobson, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">20 / 25</span>
-      <h2 class="common-name">Porcupinefish</h2>
-      <div class="latin-name">Diodon hystrix</div>
-      <p class="species-desc">A slow, round-bodied fish covered in short spines that lie flat unless it feels threatened — it can inflate into a spiky ball as a last resort, but that's a stress response, not something to try to provoke. Usually seen hovering calmly near rocks or crevices during the day.</p>
-      <div class="tag-row">
-        <span class="pill">Slow, calm swimmer</span>
-        <span class="pill">Don't provoke to inflate</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 21 Bluehead Wrasse -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/547717968/large.jpg" alt="Bluehead wrasse, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">21 / 25</span>
-      <h2 class="common-name">Bluehead Wrasse</h2>
-      <div class="latin-name">Thalassoma bifasciatum</div>
-      <p class="species-desc">One of the most abundant fish on any Caribbean reef, constantly darting around in short bursts. Adult males have the namesake electric-blue head with black-and-white bands behind it; females and juveniles are plain yellow, so what looks like two different fish is often the same species.</p>
-      <div class="tag-row">
-        <span class="pill hot">Extremely common</span>
-        <span class="pill">Constant quick movement</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 22 Smooth Trunkfish -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://static.inaturalist.org/photos/547713071/large.jpg" alt="Smooth trunkfish, Curaçao">
-      <span class="photo-credit">Photo: Denis Hurley</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">22 / 25</span>
-      <h2 class="common-name">Smooth Trunkfish</h2>
-      <div class="latin-name">Lactophrys triqueter</div>
-      <p class="species-desc">A boxy, slow-moving fish with a rigid, polka-dotted body armor instead of scales — it swims almost entirely with its small fins, giving it a distinctive hovering, deliberate motion unlike anything else on the reef. Easy to approach slowly since it rarely darts away.</p>
-      <div class="tag-row">
-        <span class="pill">Slow, boxy swimmer</span>
-        <span class="pill">Easy to approach</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 23 Purple Stovepipe Sponge -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/247248425/large.jpg" alt="Purple stovepipe sponge cluster">
-      <span class="photo-credit">Photo: Jay Brasher, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">23 / 25</span>
-      <h2 class="common-name">Purple Stovepipe Sponge</h2>
-      <div class="latin-name">Aplysina archeri</div>
-      <p class="species-desc">Tall, narrow purple tubes rising straight up off the reef in small clusters, sometimes reaching several feet — genuinely one of the more striking sights once you spot a good cluster. Look but don't grab; sponges are fragile and slow-growing.</p>
-      <div class="tag-row">
-        <span class="pill hot">Striking once you see it</span>
-        <span class="pill">Fragile, slow-growing</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 24 Spanish Hogfish -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/356870734/large.jpeg" alt="Spanish hogfish, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">24 / 25</span>
-      <h2 class="common-name">Spanish Hogfish</h2>
-      <div class="latin-name">Bodianus rufus</div>
-      <p class="species-desc">Two-toned and easy to identify — deep purple-violet on the front half, bright yellow on the back half, with a clean line between the two. Acts as a cleaner fish, picking parasites off other fish at informal "cleaning stations" on the reef.</p>
-      <div class="tag-row">
-        <span class="pill">Two-toned, easy ID</span>
-        <span class="pill">Cleaner fish</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 25 Sharpnose Puffer -->
-  <div class="species-card">
-    <div class="art-wrap">
-      <img src="https://inaturalist-open-data.s3.amazonaws.com/photos/356853338/large.jpeg" alt="Sharpnose puffer, Bonaire">
-      <span class="photo-credit">Photo: desertnaturalist, CC BY 4.0</span>
-    </div>
-    <div class="text-wrap">
-      <span class="index-no">25 / 25</span>
-      <h2 class="common-name">Sharpnose Puffer</h2>
-      <div class="latin-name">Canthigaster rostrata</div>
-      <p class="species-desc">Small, round, and easy to miss at first glance — look for the pointed snout and fine blue squiggly lines near the tail. Usually solitary, hovering close to the reef rather than swimming in open water, and generally unbothered by snorkelers nearby.</p>
-      <div class="tag-row">
-        <span class="pill">Small, solitary</span>
-        <span class="pill">Confirmed at our spot</span>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- ============ ETIQUETTE / FOOTER ============ -->
-<section class="etiquette">
-  <div class="etiquette-inner">
-    <span class="sub">Before you get in</span>
-    <h2>A healthy reef is the whole point</h2>
-    <div class="rules">
-      <div class="rule">
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 5 6.8 5 9.5a5 5 0 0 1-10 0C7 9.8 9 7 12 3z"/></svg>
+        </div>
         <h3>Reef-safe sunscreen only</h3>
         <p>Oxybenzone and octinoxate damage coral even in small amounts. Mineral-based (zinc oxide) sunscreen is what we stock in the unit.</p>
       </div>
-      <div class="rule">
+      <div class="tip-card">
+        <div class="tip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M11 10.5V4a1.5 1.5 0 0 1 3 0v7"/><path d="M14 10.5V5a1.5 1.5 0 0 1 3 0v8"/><path d="M17 8.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6.5 7h-1C9 21 7 19 6 17l-2.2-4.3c-.4-.8 0-1.8.9-2.1.7-.2 1.4.1 1.8.7L8 14"/></svg>
+        </div>
         <h3>Look, don't touch</h3>
         <p>Coral is a living animal and takes years to grow back from a single touch or fin strike. Keep hands and fins off everything, including the rocks — and give the sun anemones and touch-me-not sponge extra distance, since both can sting or irritate skin.</p>
       </div>
-      <div class="rule">
+      <div class="tip-card">
+        <div class="tip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c-2.2 2.8-5.8 4.6-9.5 4.6-3.6 0-6.7-1.4-9-3.6 2.3-2.4 5.4-4.6 9-4.6 3.7 0 7.3 1.8 9.5 3.6z"/><path d="M3 21 21 3"/></svg>
+        </div>
         <h3>Don't feed or chase</h3>
         <p>Feeding fish changes their behavior and can make them sick. Give the elkhorn coral and any anemones a wide berth — one is critically endangered, the other stings.</p>
       </div>
-      <div class="rule">
-        <h3>Watch the entry ladder</h3>
-        <p>Water shoes help on the rocks, and give the ladder area a glance for urchins and tidal spray crabs before you step down, especially at lower tide.</p>
+      <div class="tip-card">
+        <div class="tip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>
+        </div>
+        <h3>Try iNaturalist</h3>
+        <p>It's a free, global app for identifying and logging anything you see in nature, not just here. Snap a photo as you snorkel and it helps you learn what you're looking at — a great way to learn and share with naturalists everywhere.</p>
       </div>
     </div>
-    <div class="footer-note">
-      <strong>Gear:</strong> masks, snorkels, and fins for up to 5 guests are in the storage bin by the back door. Rinse with the freshwater hose before putting gear away.<br><br>
-      Questions about what you saw, or want a better spot recommendation nearby? Text us anytime — details are in the guest guide. Enjoy the reef.
-    </div>
-    <div class="back-home"><a href="https://bluetidewestpunt.com/">← Back to Blue Tide Westpunt</a></div>
   </div>
 </section>
 
 <script>
-  const fill = document.getElementById('gaugeFill');
-  function updateGauge(){
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = Math.min(1, Math.max(0, scrollTop / docHeight));
-    fill.style.height = (pct * 100) + '%';
-  }
-  window.addEventListener('scroll', updateGauge, { passive: true });
-  updateGauge();
-</script>
 
+(function () {
+  var track = document.getElementById('zoomTrack');
+  var stage = document.getElementById('zoomStage');
+  var content = document.getElementById('zoomContent');
+  var pin = document.getElementById('pinLabel');
+  var cue = document.getElementById('scrollCue');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var IMG_W = 2600, IMG_H = 1734;
+  var MAX_ZOOM = 3.15;
+  var coverW = 0, coverH = 0;
+
+  function measure() {
+    var w = stage.clientWidth, h = stage.clientHeight;
+    var containerAspect = w / h, imgAspect = IMG_W / IMG_H;
+    if (containerAspect > imgAspect) {
+      coverW = w;
+      coverH = w / imgAspect;
+    } else {
+      coverH = h;
+      coverW = h * imgAspect;
+    }
+  }
+
+  function progress() {
+    if (reduced) return 0;
+    var rect = track.getBoundingClientRect();
+    var scrollable = track.offsetHeight - window.innerHeight;
+    if (scrollable <= 0) return 0;
+    var p = -rect.top / scrollable;
+    return Math.max(0, Math.min(1, p));
+  }
+
+  // ── Reef list: each thumbnail grows as it crosses the viewport ──
+  var MIN_S = 0.42, MAX_S = 1.0;
+  var BAND = 0.62; // fraction of viewport height on each side of center where growth happens
+  var reefActive = [];
+  var reefMedia = document.querySelectorAll('.reef-thumb-media');
+
+  if (!reduced && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var el = entry.target;
+        if (entry.isIntersecting) {
+          if (reefActive.indexOf(el) === -1) {
+            el.style.willChange = 'transform';
+            reefActive.push(el);
+          }
+        } else {
+          var idx = reefActive.indexOf(el);
+          if (idx !== -1) reefActive.splice(idx, 1);
+          el.style.willChange = 'auto';
+        }
+      });
+      onScroll();
+    }, { rootMargin: '45% 0px 45% 0px', threshold: 0 });
+    reefMedia.forEach(function (el) { io.observe(el); });
+  } else {
+    reefMedia.forEach(function (el) { el.style.setProperty('--s', '1'); });
+  }
+
+  function renderReef() {
+    var vh = window.innerHeight;
+    var center = vh / 2;
+    var maxDist = vh * BAND;
+    for (var i = 0; i < reefActive.length; i++) {
+      var el = reefActive[i];
+      var rect = el.getBoundingClientRect();
+      var elCenter = rect.top + rect.height / 2;
+      var norm = Math.min(1, Math.abs(elCenter - center) / maxDist);
+      var s = MIN_S + (MAX_S - MIN_S) * (1 - norm);
+      el.style.setProperty('--s', s.toFixed(3));
+    }
+  }
+
+  var ticking = false;
+  function render() {
+    ticking = false;
+    var p = progress();
+    var zoom = 1 + p * (MAX_ZOOM - 1);
+    stage.style.backgroundSize = (coverW * zoom) + 'px ' + (coverH * zoom) + 'px';
+
+    var fadeP = Math.max(0, Math.min(1, p / 0.35));
+    content.style.opacity = String(1 - fadeP);
+    content.style.transform = 'translateY(' + (fadeP * 18) + 'px)';
+    cue.style.opacity = String(1 - Math.min(1, p / 0.12));
+
+    var pinP = Math.max(0, Math.min(1, (p - 0.55) / 0.35));
+    pin.style.opacity = String(pinP);
+    pin.style.transform = 'translate(-50%, ' + (-130 - (1 - pinP) * 14) + '%) scale(' + (0.9 + pinP * 0.1) + ')';
+
+    renderReef();
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(render);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function () { measure(); render(); });
+
+  measure();
+  render();
+})();
+</script>
 </body>
 </html>
