@@ -305,6 +305,39 @@
     margin-top: 10px;
   }
 
+  .reef-headsup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .headsup-item {
+    flex: 1 1 280px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--sand);
+    border: 1px solid var(--sand-dark);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .headsup-item svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--coral);
+  }
+  .headsup-item span {
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 1.55;
+  }
+  .headsup-item strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
   .reef-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -511,6 +544,16 @@
       <h2>What you'll see in the water</h2>
       <p>The reef holds far more than this — these are 25 species we've identified right off the ladder. A few of the photos are ours; the rest are licensed shots from other divers and snorkelers (credited under each one), standing in for species we've seen but haven't caught on camera here ourselves yet. A handful (sergeant majors, bluehead wrasse, blue chromis) you'll see on every swim; the rest turn up if you're patient, or lucky. Stay a few days and snorkel a handful of times, and you'll almost certainly spot everything below.</p>
       <p class="reef-list-aside">Keep an eye out for the rarer sightings too — sea turtles, trumpetfish, squid, and barracuda have all turned up right off these steps. Not guaranteed, but they're out there.</p>
+      <div class="reef-headsup">
+        <div class="headsup-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.8 5.8l12.4 12.4"/></svg>
+          <span><strong>Look, don't touch anything.</strong> Coral, fish, urchins, all of it — hands off keeps the reef intact for the next person who visits.</span>
+        </div>
+        <div class="headsup-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 5 6.8 5 9.5a5 5 0 0 1-10 0C7 9.8 9 7 12 3z"/></svg>
+          <span><strong>Reef-safe sunscreen only.</strong> Regular sunscreen is toxic to coral and other marine life. More on both below.</span>
+        </div>
+      </div>
     </div>
     <div class="reef-grid">
       <article class="reef-item">
