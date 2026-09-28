@@ -629,8 +629,12 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
-    .quick-links { padding: 10px 16px; gap: 8px; }
+    .quick-links { padding: 10px 16px; gap: 8px; flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .quick-links::-webkit-scrollbar { display: none; }
     .quick-links-label { display: none; }
+    .ql-divider { display: none; }
+    .ql-btn { padding: 8px 14px; }
+    .ql-btn[href="#contact"] { order: -1; }
     .hero-content { padding: 32px 20px 40px; }
     .photo-strip { grid-template-columns: repeat(3, 1fr); }
     .sites-strip { grid-template-columns: repeat(3, 1fr); }
@@ -670,6 +674,11 @@
   <a href="https://bluetidewestpunt.com/reef-guide.html" class="ql-btn" target="_blank">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5-10-5-10-5Z"/><path d="M18 9.5c1.2-1.3 2.3-1.5 2.3-1.5s.4 2.2-.6 4 .6 4 .6 4-1.1-.2-2.3-1.5"/><circle cx="7.5" cy="11" r="0.8" fill="currentColor"/></svg>
     Reef Guide
+  </a>
+  <div class="ql-divider"></div>
+  <a href="https://bluetidewestpunt.com/curacao-snorkel-guide.html" class="ql-btn" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15"/><path d="M15 6v15"/></svg>
+    Snorkel Guide
   </a>
   <div class="ql-divider"></div>
   <a href="#contact" class="ql-btn">
@@ -881,6 +890,10 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2H6l-4 8h20l-4-8z"/><path d="M2 10c0 6 4 12 10 12s10-6 10-12"/></svg>
       Beach Finder Tool
     </a>
+    <a href="https://bluetidewestpunt.com/curacao-snorkel-guide.html" class="btn-outline" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15"/><path d="M15 6v15"/></svg>
+      Curaçao Snorkel Guide
+    </a>
   </div>
 </section>
 
@@ -1029,7 +1042,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Blue Tide Westpunt · <a href="https://bluetidewestpunt.com/guest-guide.html">Guest Guide</a> · <a href="https://bluetidewestpunt.com/beaches.html">Beach Finder</a> · <a href="mailto:bluetidewestpunt@gmail.com">Contact</a> · <a href="https://www.facebook.com/BlueTideWestpunt/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/bluetidewestpunt/" target="_blank" rel="noopener">Instagram</a></p>
+  <p>© 2026 Blue Tide Westpunt · <a href="https://bluetidewestpunt.com/guest-guide.html">Guest Guide</a> · <a href="https://bluetidewestpunt.com/beaches.html">Beach Finder</a> · <a href="https://bluetidewestpunt.com/curacao-snorkel-guide.html">Curaçao Snorkel Guide</a> · <a href="mailto:bluetidewestpunt@gmail.com">Contact</a> · <a href="https://www.facebook.com/BlueTideWestpunt/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/bluetidewestpunt/" target="_blank" rel="noopener">Instagram</a></p>
 </footer>
 
 <script>
