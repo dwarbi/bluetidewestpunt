@@ -9,6 +9,7 @@
 <meta property="og:description" content="Sea turtles, squid, octopus, eels, barracuda and more — and the beaches where you'll find them.">
 <meta property="og:image" content="https://bluetidewestpunt.com/images/BlueTideWestpunt-Header-5-Sea.jpg">
 <link rel="icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -565,14 +566,26 @@
   .foot { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); text-align: center; font-size: 13px; padding: 28px 20px; }
   .foot a { color: #fff; }
 </style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<!-- BT-NAV -->
+<nav class="bt-nav" aria-label="Site">
+  <a class="bt-brand" href="index.html">Blue Tide <em>Westpunt</em></a>
+  <div class="bt-links">
+    <a href="guest-guide.html">Guest Guide</a>
+    <a href="beaches.html">Beaches</a>
+    <a href="reef-guide.html">Our Reef</a>
+    <a href="curacao-snorkel-guide.html" aria-current="page">Snorkel Curaçao</a>
+    <a class="bt-cta" href="index.html#contact">Book Direct</a>
+  </div>
+</nav>
+<!-- /BT-NAV -->
 
 <!-- HERO: swap in your beach photo. Change the image path here AND IMG_W / IMG_H / FOCUS_X / FOCUS_Y in the first script at the bottom -->
 <div class="zoom-track" id="zoomTrack">
   <div class="zoom-stage" id="zoomStage" style="background-image:url('images/BlueTideWestpunt-Header-5-Sea.jpg')">
     <div class="zoom-overlay"></div>
-    <div class="hero-by"><a href="https://bluetidewestpunt.com/">Blue Tide Westpunt</a></div>
     <div class="zoom-content" id="zoomContent">
       <span class="zoom-tag">Curaçao Snorkel Guide</span>
       <h1>What's Down There in Curaçao</h1>
@@ -869,6 +882,20 @@
 <footer class="foot">
   Put together by <a href="https://bluetidewestpunt.com/">Blue Tide Westpunt</a>, a condo on the water in Westpunt, Curaçao. Photos credited on each image; &quot;CC BY&quot; photos are used under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution license</a>.
 </footer>
+<!-- BT-FOOT -->
+<div class="bt-foot">
+  <div class="bt-foot-links">
+    <a href="index.html">The Condo</a>
+    <a href="guest-guide.html">Guest Guide</a>
+    <a href="beaches.html">Beaches</a>
+    <a href="reef-guide.html">Our Reef</a>
+    <a href="curacao-snorkel-guide.html" aria-current="page">Snorkel Curaçao</a>
+    <a href="index.html#contact">Book Direct</a>
+  </div>
+  <p><a href="mailto:bluetidewestpunt@gmail.com">bluetidewestpunt@gmail.com</a> · <a href="https://www.facebook.com/BlueTideWestpunt/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/bluetidewestpunt/" target="_blank" rel="noopener">Instagram</a></p>
+  <p>© 2026 Blue Tide Westpunt · Punta Azul, Westpunt, Curaçao</p>
+</div>
+<!-- /BT-FOOT -->
 
 <script>
 (function () {
