@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where to Eat in Banda Abou, Curaçao — Blue Tide Westpunt</title>
+<meta name="description" content="Restaurants on the west side of Curaçao, from Westpunt to Tera Kora: where they are, when they're open, and what to order.">
+<link rel="icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bluetidewestpunt.com/restaurants.html">
+<meta property="og:title" content="Where to Eat in Banda Abou, Curaçao">
+<meta property="og:description" content="Restaurants on the west side of Curaçao, from Westpunt to Tera Kora, with a map, hours and tips.">
+<meta property="og:image" content="https://bluetidewestpunt.com/images/BlueTideWestpunt-Header-1-Sunset.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="8f36ab2d-48d2-4b05-82c5-1587666ec1a1" data-domains="bluetidewestpunt.com"></script>
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  :root {
+    --teal: #1a7a8a; --teal-light: #2a9aad; --sand: #f5efe6; --sand-dark: #e8ddd0;
+    --coral: #e07a5f; --navy: #0f3440; --white: #ffffff; --text: #1e2d35; --text-soft: #4a6570; --gold: #c9a84c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--text); background: var(--sand); font-size: 16px; line-height: 1.6; }
+
+  /* ─── HERO ─── */
+  .hero { background: var(--navy); color: #fff; padding: 56px 32px 48px; }
+  .hero-inner { max-width: 1240px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--gold); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(32px, 5vw, 52px); line-height: 1.1; margin: 10px 0 14px; text-wrap: balance; }
+  .hero h1 em { font-weight: 400; color: #8fd3dd; }
+  .hero p { max-width: 62ch; color: rgba(255,255,255,0.85); font-size: 17px; }
+  .hero .checked { margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.6); }
+
+  /* ─── AREA CHIPS ─── */
+  .chips { background: var(--navy); padding: 0 32px 18px; position: sticky; top: 0; z-index: 500; }
+  .chips-inner { max-width: 1240px; margin: 0 auto; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+  .chips-inner::-webkit-scrollbar { display: none; }
+  .chip { font: inherit; font-size: 13px; font-weight: 500; white-space: nowrap; cursor: pointer; color: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); padding: 7px 14px; border-radius: 50px; transition: background .2s, color .2s, border-color .2s; }
+  .chip:hover { background: rgba(255,255,255,0.16); color: #fff; }
+  .chip.active { background: var(--teal-light); border-color: var(--teal-light); color: #fff; }
+
+  /* ─── LAYOUT: list + sticky map ─── */
+  .layout { max-width: 1240px; margin: 0 auto; padding: 28px 32px 72px; display: grid; grid-template-columns: minmax(0, 1fr) 440px; gap: 36px; align-items: start; }
+  .map-col { position: sticky; top: 64px; }
+  #map { height: calc(100vh - 96px); min-height: 380px; max-height: 760px; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 34px rgba(15,52,64,0.16); background: #cfe6ea; z-index: 1; }
+  .map-note { font-size: 12px; color: var(--text-soft); margin-top: 8px; text-align: center; }
+
+  .area { scroll-margin-top: 70px; }
+  .area + .area { margin-top: 44px; }
+  .area-head { border-bottom: 2px solid var(--sand-dark); padding-bottom: 10px; margin-bottom: 18px; }
+  .area-head h2 { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 30px); color: var(--navy); line-height: 1.2; }
+  .area-head p { color: var(--text-soft); font-size: 15px; margin-top: 2px; }
+
+  .r-grid { display: grid; gap: 16px; }
+  .r-card { background: #fff; border-radius: 12px; overflow: hidden; display: grid; grid-template-columns: 190px minmax(0,1fr); box-shadow: 0 2px 10px rgba(15,52,64,0.07); border: 2px solid transparent; transition: border-color .25s, box-shadow .25s; scroll-margin-top: 80px; }
+  .r-card.is-active { border-color: var(--coral); box-shadow: 0 6px 22px rgba(224,122,95,0.22); }
+  .r-photo { background: var(--sand-dark); min-height: 100%; }
+  .r-photo img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 4 / 3; }
+  .r-card:not(:has(.r-photo)) { grid-template-columns: 1fr; }
+  .r-body { padding: 18px 20px 16px; }
+  .r-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .r-head h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); line-height: 1.25; }
+  .r-pin { font: inherit; font-size: 12px; font-weight: 600; width: 26px; height: 26px; border-radius: 50%; border: 0; background: var(--teal); color: #fff; cursor: pointer; flex: none; transition: background .2s, transform .2s; }
+  .r-pin:hover, .r-card.is-active .r-pin { background: var(--coral); transform: scale(1.08); }
+  .r-kind { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); background: rgba(26,122,138,0.1); padding: 3px 9px; border-radius: 50px; }
+  .r-hours { font-size: 13.5px; color: var(--text-soft); margin: 6px 0 8px; }
+  .r-desc { font-size: 15.5px; }
+  .r-tip { font-size: 14.5px; margin-top: 10px; padding: 9px 12px; background: var(--sand); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; }
+  .r-tip strong { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9a7b28; margin-right: 6px; }
+  .r-links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; }
+  .r-links a { color: var(--teal); font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(26,122,138,0.3); }
+  .r-links a:hover { color: var(--coral); border-bottom-color: var(--coral); }
+
+  /* ─── MAP PINS ─── */
+  .pin { width: 26px; height: 26px; border-radius: 50%; background: var(--teal); color: #fff; font: 600 12px/26px 'DM Sans', sans-serif; text-align: center; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.35); transition: background .2s, transform .2s; }
+  .pin.is-active { background: var(--coral); transform: scale(1.25); }
+  .pin-home { width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--gold); font-size: 15px; line-height: 26px; text-align: center; border: 2px solid var(--gold); box-shadow: 0 2px 6px rgba(0,0,0,0.35); }
+  .leaflet-popup-content { font-family: 'DM Sans', sans-serif; font-size: 14px; margin: 10px 14px; }
+  .leaflet-popup-content strong { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--navy); display: block; }
+  .leaflet-popup-content a { color: var(--teal); }
+
+  /* ─── STAY BAND ─── */
+  .stay { background: var(--teal); color: #fff; padding: 64px 32px; text-align: center; }
+  .stay h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.2; margin: 8px 0 12px; }
+  .stay p { max-width: 54ch; margin: 0 auto; color: rgba(255,255,255,0.88); }
+  .stay a.cta { display: inline-block; margin-top: 22px; background: var(--coral); color: #fff; text-decoration: none; padding: 13px 28px; border-radius: 50px; font-weight: 500; font-size: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.18); }
+
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; padding: 0 0 56px; gap: 0; }
+    .map-col { order: -1; position: sticky; top: 49px; z-index: 400; }
+    #map { height: 34vh; min-height: 220px; max-height: 320px; border-radius: 0; box-shadow: 0 4px 14px rgba(15,52,64,0.18); }
+    .map-note { display: none; }
+    .list-col { padding: 24px 16px 0; }
+    .hero { padding: 36px 16px 30px; }
+    .chips { padding: 0 16px 12px; }
+    .area { scroll-margin-top: calc(34vh + 70px); }
+    .r-card { scroll-margin-top: calc(34vh + 70px); }
+  }
+  @media (max-width: 560px) {
+    .r-card { grid-template-columns: 1fr; }
+    .r-photo img { aspect-ratio: 16 / 9; }
+  }
+</style>
+</head>
+<body>
+<!-- BT-NAV -->
+<nav class="bt-nav" aria-label="Site">
+  <a class="bt-brand" href="index.html">Blue Tide <em>Westpunt</em></a>
+  <div class="bt-links">
+    <a href="guest-guide.html">Guest Guide</a>
+    <a href="beaches.html">Beaches</a>
+    <a href="reef-guide.html">Our Reef</a>
+    <a href="curacao-snorkel-guide.html">Snorkel Curaçao</a>
+    <a href="restaurants.html" aria-current="page">Restaurants</a>
+    <a class="bt-cta" href="index.html#contact">Book Direct</a>
+  </div>
+</nav>
+<!-- /BT-NAV -->
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Banda Abou · Western Curaçao</span>
+    <h1>Where to Eat <em>in the West</em></h1>
+    <p>Restaurants from Westpunt down to Tera Kora. Not every place out here, just the ones worth the stop, with what to order and when they're actually open.</p>
+    <p class="checked">Hours last checked October 2026. Things change out here, so call or WhatsApp before you drive.</p>
+  </div>
+</header>
+
+<nav class="chips" aria-label="Areas">
+  <div class="chips-inner">
+      <button type="button" class="chip" data-area="westpunt">Westpunt</button>
+      <button type="button" class="chip" data-area="christoffel">Christoffel</button>
+      <button type="button" class="chip" data-area="lagun">Lagun</button>
+      <button type="button" class="chip" data-area="santacruz">Santa Cruz</button>
+      <button type="button" class="chip" data-area="barber">Barber</button>
+      <button type="button" class="chip" data-area="soto">Soto &amp; Cas Abou</button>
+      <button type="button" class="chip" data-area="willibrordus">Sint Willibrordus</button>
+      <button type="button" class="chip" data-area="terakora">Tera Kora</button>
+  </div>
+</nav>
+
+<main class="layout">
+  <div class="list-col">
+
+  <section class="area" id="westpunt" data-area="westpunt">
+    <header class="area-head"><h2>Westpunt</h2><p>The fishing village at the western tip, around Playa Forti, Playa Piskadó and Playa Kalki.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="forti" data-lat="12.36606" data-lng="-69.15396" data-n="1">
+        <!-- PHOTO: save as images/restaurants/forti.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/forti.jpg" alt="Restaurant Playa Forti" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Restaurant Playa Forti on the map">1</button><h3>Restaurant Playa Forti</h3></div>
+          <p class="r-hours">Daily 10:30 AM–7 PM (to 8 PM Sat–Sun)</p>
+          <p class="r-desc">Clifftop restaurant above Playa Forti with a wide-open view of the bay. Fresh fish and local dishes, plus vegetarian options. The cliff jumpers launch from right beside the terrace.</p>
+          <p class="r-tip"><strong>Tip</strong> Ask for a table along the cliff edge, and come for sunset.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Playa%20Forti%20Cura%C3%A7ao&query_place_id=ChIJp5sThKS9hI4RwGojrMjNdYY" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998688294">+599 9 868 8294</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="blueview" data-lat="12.36698" data-lng="-69.15352" data-n="2">
+        <!-- PHOTO: save as images/restaurants/blueview.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/blueview.jpg" alt="Blue View Sunset Terrace" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Blue View Sunset Terrace on the map">2</button><h3>Blue View Sunset Terrace</h3></div>
+          <p class="r-hours">Daily 11 AM–8 PM</p>
+          <p class="r-desc">Also above Playa Forti, with tables on a glass floor about 15–20 meters over the beach and rocks. Local cooking: ribs and stobas (beef, goat, papaya) with funchi. Look for the blue Fiat 500 at the entrance.</p>
+          <p class="r-tip"><strong>Tip</strong> Come for the view and a drink at sunset. Service can be slow, so don&#x27;t come in a hurry.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Blue%20View%20Sunset%20Terrace%20Cura%C3%A7ao&query_place_id=ChIJN2pEYqS9hI4RRBsJQewU96w" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998646013">+599 9 864 6013</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="jaanchies" data-lat="12.37066" data-lng="-69.15088" data-n="3">
+        <!-- PHOTO: save as images/restaurants/jaanchies.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/jaanchies.jpg" alt="Jaanchie&#x27;s Restaurant" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Jaanchie&#x27;s Restaurant on the map">3</button><h3>Jaanchie&#x27;s Restaurant</h3><span class="r-kind">Lunch only</span></div>
+          <p class="r-hours">1–5 PM, closed Friday</p>
+          <p class="r-desc">A family restaurant going back generations, serving traditional Curaçaoan food. There&#x27;s no printed menu; Jaanchie&#x27;s son Johan comes to the table and talks you through the day&#x27;s dishes. Goat stew (kabritu stoba), fresh fish, and iguana if you&#x27;re curious. Open-air, with feeders that keep the place full of small birds.</p>
+          <p class="r-tip"><strong>Tip</strong> It&#x27;s a lunch place now. Go for the experience as much as the food.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Jaanchie%27s%20Restaurant%20Cura%C3%A7ao&query_place_id=ChIJW1mapku9hI4RnvSrpsdcIAY" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998640126">+599 9 864 0126</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="solfood" data-lat="12.37025" data-lng="-69.15347" data-n="4">
+        <!-- PHOTO: save as images/restaurants/solfood.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/solfood.jpg" alt="Sol Food" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Sol Food on the map">4</button><h3>Sol Food</h3><span class="r-kind">Weekends only</span></div>
+          <p class="r-hours">Fri–Sun, 12–8 PM</p>
+          <p class="r-desc">Weekend pizza, grilled fish and good salads on a breezy upstairs deck at Sunshine Getaway. Run by Sunshine and David, and you&#x27;ll probably chat with them. Only about a dozen tables.</p>
+          <p class="r-tip"><strong>Tip</strong> Reserve. It fills up, especially for dinner.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Sol%20Food%20Cura%C3%A7ao&query_place_id=ChIJB8Crn6W9hI4Ry2PjdwNQY2U" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998640005">+599 9 864 0005</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="sabor" data-lat="12.36995" data-lng="-69.15318" data-n="5">
+        <!-- PHOTO: save as images/restaurants/sabor.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/sabor.jpg" alt="Sabor di Playa" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Sabor di Playa on the map">5</button><h3>Sabor di Playa</h3><span class="r-kind">Sundays only</span></div>
+          <p class="r-hours">Sundays only, 9 AM–4 PM</p>
+          <p class="r-desc">Local Sunday food a few steps from Playa Piskadó: the catch of the day, fried, with sides like tutu (cornmeal with beans). The menu is in Papiamentu and the staff are happy to explain it.</p>
+          <p class="r-tip"><strong>Tip</strong> The mahi (dradu) is big enough for two. Get a cold coconut with it.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Sabor%20di%20Playa%20Westpunt%20Cura%C3%A7ao&query_place_id=ChIJ43X7WmS9hI4R-lmPRiFOpSQ" target="_blank" rel="noopener">Directions</a> <a href="tel:+59996996739">+599 9 699 6739</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="isabelle" data-lat="12.37287" data-lng="-69.14352" data-n="6">
+        <!-- PHOTO: save as images/restaurants/isabelle.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/isabelle.jpg" alt="Isabelle off the Beach" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Isabelle off the Beach on the map">6</button><h3>Isabelle off the Beach</h3></div>
+          <p class="r-hours">Thu 5–9 PM · Fri–Sat 12–9 PM · Sun 12–8 PM · closed Mon–Wed</p>
+          <p class="r-desc">A garden restaurant in the old Landhuis Misjé, a little more upscale. Isabelle greets guests herself. Steak, red snapper, tacos and blackened tuna, with rum cake for dessert. Vegetarian and gluten-free options.</p>
+          <p class="r-tip"><strong>Tip</strong> Reserve, especially on weekends.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Isabelle%20Off%20The%20Beach%20Cura%C3%A7ao&query_place_id=ChIJ7TD8wcydhI4RXNFb7BXRtWY" target="_blank" rel="noopener">Directions</a> <a href="tel:+59996675362">+599 9 667 5362</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="cactus" data-lat="12.37497" data-lng="-69.15612" data-n="7">
+        <!-- PHOTO: save as images/restaurants/cactus.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/cactus.jpg" alt="Cactus Café" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Cactus Café on the map">7</button><h3>Cactus Café</h3></div>
+          <p class="r-hours">Mon–Thu 5–9 PM · Sat–Sun 12–3 PM and 5–9 PM · closed Friday</p>
+          <p class="r-desc">Run by Taco and Emelin under an open-air rancho. Known for the African peanut soup with banana, the stobas, and catch of the day in coconut or lemon-caper sauce.</p>
+          <p class="r-tip"><strong>Tip</strong> Book ahead, even when it looks quiet. The entrance is easy to miss: the sign is across the street.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Cactus%20Cafe%20Cura%C3%A7ao&query_place_id=ChIJG2njRv69hI4ROBpL0AI6uyc" target="_blank" rel="noopener">Directions</a> <a href="tel:+59995137535">+599 9 513 7535</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="mamakunuku" data-lat="12.37793" data-lng="-69.15754" data-n="8">
+        <!-- PHOTO: save as images/restaurants/mamakunuku.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/mamakunuku.jpg" alt="Mama Kunuku" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Mama Kunuku on the map">8</button><h3>Mama Kunuku</h3></div>
+          <p class="r-hours">Daily 8 AM–10 PM</p>
+          <p class="r-desc">The restaurant at Bed &amp; Bike Westpunt, open to everyone. “Kunuku” means countryside. Many of the vegetables come from their own garden, and the meats are slow-roasted over hardwood charcoal. Breakfast, lunch and dinner.</p>
+          <p class="r-tip"><strong>Tip</strong> One of the few places in Westpunt serving breakfast, and open every day.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Mama%20Kunuku%20Gastrobar%20Cura%C3%A7ao&query_place_id=ChIJpbmbI4u9hI4RgV-KE7-UQKE" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998880354">+599 9 888 0354</a> <a href="https://bedandbikecuracao.com/mama-kunuku-restaurant/" target="_blank" rel="noopener">Website</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="kofikalki" data-lat="12.37534" data-lng="-69.15747" data-n="9">
+        <!-- PHOTO: save as images/restaurants/kofikalki.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/kofikalki.jpg" alt="Kòfi Kalki" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Kòfi Kalki on the map">9</button><h3>Kòfi Kalki</h3><span class="r-kind">Coffee</span></div>
+          <p class="r-hours">Daily 7:45 AM–3:30 PM</p>
+          <p class="r-desc">A small coffee bar at water level at Playa Kalki. Excellent espresso with the sea right in front of you. No meals, but there&#x27;s pie and homemade ice cream.</p>
+          <p class="r-tip"><strong>Tip</strong> Park in the lot and take the stairs down toward the beach.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=K%C3%B2fi%20Kalki%20Cura%C3%A7ao&query_place_id=ChIJ7S56MgC9hI4RTYY5V-2qPOM" target="_blank" rel="noopener">Directions</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="christoffel" data-area="christoffel">
+    <header class="area-head"><h2>Christoffel</h2><p>At the entrance to Christoffel National Park, on the northern road.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="kofihowz" data-lat="12.34963" data-lng="-69.10665" data-n="10">
+        <!-- PHOTO: save as images/restaurants/kofihowz.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/kofihowz.jpg" alt="Kofihowz" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Kofihowz on the map">10</button><h3>Kofihowz</h3><span class="r-kind">Coffee &amp; light food</span></div>
+          <p class="r-hours">7 AM–2 PM, closed Tuesday</p>
+          <p class="r-desc">Right outside the entrance to Christoffel Park. Coffee, homemade cakes, fresh juices and light bites like egg buns. The perfect place to relax while others scramble to the top. Say hello to Tariq and Howard.</p>
+          <p class="r-tip"><strong>Tip</strong> Try the moringa cake. Good before the climb or after.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Kofihowz%20Cura%C3%A7ao&query_place_id=ChIJa6DWXYC9hI4RshkATaAZzls" target="_blank" rel="noopener">Directions</a> <a href="tel:+59995263839">+599 9 526 3839</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="lagun" data-area="lagun">
+    <header class="area-head"><h2>Lagun</h2><p>A small village around one of the best snorkeling coves on the island.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="bahia" data-lat="12.31844" data-lng="-69.15074" data-n="11">
+        <!-- PHOTO: save as images/restaurants/bahia.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/bahia.jpg" alt="Bahia Restaurant" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Bahia Restaurant on the map">11</button><h3>Bahia Restaurant</h3></div>
+          <p class="r-hours">Daily 9 AM–9 PM</p>
+          <p class="r-desc">On the cliff above Playa Lagun, looking straight down into the cove. Seafood is the thing here: order the catch of the day. Breakfast, lunch and dinner.</p>
+          <p class="r-tip"><strong>Tip</strong> Good for lunch between snorkels, or at sunset. Service runs on island time.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Bahia%20Restaurant%20Cura%C3%A7ao&query_place_id=ChIJ948NdTaWhI4RUJnaV-fTQAQ" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998641000">+599 9 864 1000</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="dibario" data-lat="12.32055" data-lng="-69.15118" data-n="12">
+        <!-- PHOTO: save as images/restaurants/dibario.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/dibario.jpg" alt="Dibario" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Dibario on the map">12</button><h3>Dibario</h3></div>
+          <p class="r-hours">Closed Tuesday. Hours aren&#x27;t posted, so call ahead.</p>
+          <p class="r-desc">Home-style criollo cooking near Playa Lagun: stewed chicken, karni stoba, ribs, fish, with rice and plantains. Big portions, low prices.</p>
+          <p class="r-tip"><strong>Tip</strong> If nobody&#x27;s around, ring the bell. The cook will come out and tell you what&#x27;s on today.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Dibario%20%28Comida%20criolla%29%20Cura%C3%A7ao&query_place_id=ChIJGb_hWQCXhI4RTV1njtviN1Y" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998645555">+599 9 864 5555</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="santacruz" data-area="santacruz">
+    <header class="area-head"><h2>Santa Cruz</h2><p>Inland from Playa Santa Cruz, around the Hòfi Mango park.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="kultura" data-lat="12.30531" data-lng="-69.13545" data-n="13">
+        <!-- PHOTO: save as images/restaurants/kultura.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/kultura.jpg" alt="Kultura Kòrsou" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Kultura Kòrsou on the map">13</button><h3>Kultura Kòrsou</h3><span class="r-kind">At Hòfi Mango</span></div>
+          <p class="r-hours">Wed–Sun 10 AM–6 PM (kitchen closes 4 PM, bar bites until 5) · closed Mon–Tue</p>
+          <p class="r-desc">The restaurant inside the Hòfi Mango park. Chef Willy Balentina cooks Creole food with fresh local ingredients, with the stated aim of raising Curaçao cuisine “to star level.” Brunch until noon, including pumpkin pancakes with mango caramel.</p>
+          <p class="r-tip"><strong>Tip</strong> No reservations, so expect a short wait at busy times. Pair it with a walk through the mango forest.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Restaurant%20Kultura%20K%C3%B2rsou%20Cura%C3%A7ao&query_place_id=ChIJy8X1K82XhI4RXiXxFS89qhY" target="_blank" rel="noopener">Directions</a> <a href="tel:+59996610354">+599 9 661 0354</a> <a href="https://www.hofimango.com/the-park/restaurant/" target="_blank" rel="noopener">Website</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="shelterrock" data-lat="12.30489" data-lng="-69.11347" data-n="14">
+        <!-- PHOTO: save as images/restaurants/shelterrock.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/shelterrock.jpg" alt="Shelterrock Paradise" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Shelterrock Paradise on the map">14</button><h3>Shelterrock Paradise</h3></div>
+          <p class="r-hours">Mon 4–8 PM · Tue–Thu 1:30–8 PM · Fri 6:30–11 PM · Sat 12–8 PM · Sun 12–6 PM</p>
+          <p class="r-desc">Family-run, with a menu built on local dishes and island herbs, including vegetarian meals. Friday is Coconut Night: your main course is cooked for hours inside a fresh coconut over hot coals and served with a buffet of local sides, starting at 7 PM.</p>
+          <p class="r-tip"><strong>Tip</strong> Coconut Night needs a reservation. WhatsApp +599 9 682 0160.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Shelterrock%20Paradise%20Cura%C3%A7ao&query_place_id=ChIJMWmTVpCXhI4Ry4P9p3KqH10" target="_blank" rel="noopener">Directions</a> <a href="tel:+59996820160">+599 9 682 0160</a> <a href="https://www.shelterrock-paradise.com/" target="_blank" rel="noopener">Website</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="barber" data-area="barber">
+    <header class="area-head"><h2>Barber</h2><p>The main village on the northern road, about halfway to Westpunt.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="marshe" data-lat="12.29027" data-lng="-69.07503" data-n="15">
+        <!-- PHOTO: save as images/restaurants/marshe.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/marshe.jpg" alt="Marshe di Barber" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Marshe di Barber on the map">15</button><h3>Marshe di Barber</h3><span class="r-kind">Sunday market</span></div>
+          <p class="r-hours">Sundays only, 7:30 AM–7 PM</p>
+          <p class="r-desc">A small local market with produce, baked goods and a few food stalls. This is what people here eat on a Sunday: fish soup, johnny cakes, stews, and arepa di pampuna (pumpkin pancakes).</p>
+          <p class="r-tip"><strong>Tip</strong> Go in the morning, and get the pumpkin pancakes. A good stop after climbing Christoffel.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Marshe%20di%20Barber%20Cura%C3%A7ao&query_place_id=ChIJXa_JOTWYhI4RiPEJVurgcMQ" target="_blank" rel="noopener">Directions</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="komedor" data-lat="12.27669" data-lng="-69.07193" data-n="16">
+        <!-- PHOTO: save as images/restaurants/komedor.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/komedor.jpg" alt="Komedor Krioyo" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Komedor Krioyo on the map">16</button><h3>Komedor Krioyo</h3><span class="r-kind">Landhuis Dokterstuin</span></div>
+          <p class="r-hours">Tue–Sun 10 AM–5 PM, closed Monday. Call to confirm.</p>
+          <p class="r-desc">Traditional krioyo cooking in an old plantation house with historical objects on display. Oxtail, goat stew, conch, whole red snapper, papaya stew, with funchi, tutu and fried plantain.</p>
+          <p class="r-tip"><strong>Tip</strong> Go for lunch. Popular dishes run out later in the afternoon.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Landhuis%20Dokterstuin%20%22Restaurant%20Komedor%20Krioyo%22%20Cura%C3%A7ao&query_place_id=ChIJW_ExabiZhI4RIzgL4Jt3AQc" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998642701">+599 9 864 2701</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="soto" data-area="soto">
+    <header class="area-head"><h2>Soto &amp; Cas Abou</h2><p>The coast road between Santa Cruz and the turnoff for Cas Abou and Porto Mari.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="kleinsantamartha" data-lat="12.28073" data-lng="-69.11555" data-n="17">
+        <!-- PHOTO: save as images/restaurants/kleinsantamartha.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/kleinsantamartha.jpg" alt="Landhuis Klein Santa Martha" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Landhuis Klein Santa Martha on the map">17</button><h3>Landhuis Klein Santa Martha</h3></div>
+          <p class="r-hours">Daily, about 8 AM–10 PM. Call to confirm.</p>
+          <p class="r-desc">A restored plantation house on a hilltop above Soto, now a small hotel with a restaurant open to everyone. Caribbean dishes like karni stoba alongside pasta and cheese fondue, with a view down to the water.</p>
+          <p class="r-tip"><strong>Tip</strong> Come before sunset for the view, and call to reserve.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Landhuis%20Klein%20Santa%20Martha%20Cura%C3%A7ao&query_place_id=ChIJwezdXmmXhI4RiEdMmlFxRHg" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998640316">+599 9 864 0316</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="lanternu" data-lat="12.25182" data-lng="-69.07091" data-n="18">
+        <!-- PHOTO: save as images/restaurants/lanternu.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/lanternu.jpg" alt="Bistro e Lanternu" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Bistro e Lanternu on the map">18</button><h3>Bistro e Lanternu</h3><span class="r-kind">Dinner only</span></div>
+          <p class="r-hours">Thu–Mon 5–8:30 PM, closed Tue–Wed</p>
+          <p class="r-desc">A small Dutch-run bistro in a garden yard near the Cas Abou turnoff. Spare ribs, beef tenderloin, peanut soup, a monthly special, and homemade desserts from the pastry cabinet.</p>
+          <p class="r-tip"><strong>Tip</strong> Cash only, and reserve. Good for dinner on the way back from Cas Abou or Porto Mari.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Bistro%20e%20lanternu%20Cura%C3%A7ao&query_place_id=ChIJMdzoj4yZhI4RTUeQoqYDyyU" target="_blank" rel="noopener">Directions</a> <a href="tel:+59995207249">+599 9 520 7249</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="willibrordus" data-area="willibrordus">
+    <header class="area-head"><h2>Sint Willibrordus</h2><p>Flamingo country: the salt pans, the WILLIWOOD sign, and Coral Estate on the coast.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="marfa" data-lat="12.21514" data-lng="-69.05881" data-n="19">
+        <!-- PHOTO: save as images/restaurants/marfa.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/marfa.jpg" alt="Marfa&#x27;s Good Hangout" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Marfa&#x27;s Good Hangout on the map">19</button><h3>Marfa&#x27;s Good Hangout</h3></div>
+          <p class="r-hours">10 AM–10 PM (Sun from 11 AM), closed Tuesday</p>
+          <p class="r-desc">Restaurant, bar, souvenir shop and corner store in one, across from the WILLIWOOD sign. Home of the Williburger, a goat burger made entirely from island ingredients, plus goat stew and the daily catch.</p>
+          <p class="r-tip"><strong>Tip</strong> Live music some evenings. An easy lunch stop after Porto Mari or the flamingos.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Marfa%E2%80%99s%20Good%20Hangout%20Cura%C3%A7ao&query_place_id=ChIJoRTbBk-ahI4RAO2S9L1XTw0" target="_blank" rel="noopener">Directions</a> <a href="tel:+59995121124">+599 9 512 1124</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="karakter" data-lat="12.1981" data-lng="-69.07897" data-n="20">
+        <!-- PHOTO: save as images/restaurants/karakter.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/karakter.jpg" alt="Karakter" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Karakter on the map">20</button><h3>Karakter</h3><span class="r-kind">Beach club</span></div>
+          <p class="r-hours">Daily 8 AM–9 PM</p>
+          <p class="r-desc">Beach, lounge and restaurant right on the sand at Coral Estate. Breakfast through dinner with your feet near the water.</p>
+          <p class="r-tip"><strong>Tip</strong> Reserve online for dinner at sunset. Same-day bookings are by phone only.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Karakter%20Beach%20Club%20%26%20Lounge%20Restaurant%20Cura%C3%A7ao&query_place_id=ChIJ20ym5IuahI4R1hSfAyNcM14" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998642233">+599 9 864 2233</a> <a href="https://karaktercuracao.com/" target="_blank" rel="noopener">Website</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="koraal" data-lat="12.19828" data-lng="-69.07874" data-n="21">
+        <!-- PHOTO: save as images/restaurants/koraal.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/koraal.jpg" alt="Koraal Rooftop Terrace" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Koraal Rooftop Terrace on the map">21</button><h3>Koraal Rooftop Terrace</h3></div>
+          <p class="r-hours">Daily 10 AM–10 PM</p>
+          <p class="r-desc">Karakter&#x27;s sister spot up the hill at Coral Estate: a rooftop bar and restaurant with a 270-degree sea view from every seat. Drinks, bites and dinner, with occasional theme nights like sushi.</p>
+          <p class="r-tip"><strong>Tip</strong> Reserve a front table for sunset. Prices are on the higher side.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Koraal%20Rooftop%20Terrace%20Cura%C3%A7ao&query_place_id=ChIJgZyu5IuahI4RvcVNiXPsEmI" target="_blank" rel="noopener">Directions</a> <a href="tel:+59997352884">+599 9 735 2884</a> <a href="https://koraalcuracao.com/" target="_blank" rel="noopener">Website</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="terakora" data-area="terakora">
+    <header class="area-head"><h2>Tera Kora</h2><p>Where Banda Abou begins. Past the windmills, you&#x27;re in the west.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="daniel" data-lat="12.21081" data-lng="-69.01959" data-n="22">
+        <!-- PHOTO: save as images/restaurants/daniel.jpg (4:3, about 800px wide), then replace this comment with: <div class="r-photo"><img src="images/restaurants/daniel.jpg" alt="Landhuis Daniel" loading="lazy" width="400" height="300"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Landhuis Daniel on the map">22</button><h3>Landhuis Daniel</h3></div>
+          <p class="r-hours">Breakfast and lunch 8 AM–2 PM, dinner 5–10 PM (Mon from noon)</p>
+          <p class="r-desc">A plantation house from around 1700 with tables on a covered garden patio and the chef-owner&#x27;s paintings on the walls. Known for Dutch pancakes at breakfast and lunch; dinner ranges from French classics to an Indonesian rice table.</p>
+          <p class="r-tip"><strong>Tip</strong> Go for breakfast or lunch and order the pancakes.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=Landhuis%20Daniel%20restaurant%20Cura%C3%A7ao&query_place_id=ChIJkTv2NJebhI4RutnFbjEungU" target="_blank" rel="noopener">Directions</a> <a href="tel:+59998648400">+599 9 864 8400</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  </div>
+  <aside class="map-col" aria-label="Map of restaurants">
+    <div id="map"></div>
+    <p class="map-note">Tap a number to find it on the map. Tap a pin to jump to the listing.</p>
+  </aside>
+</main>
+
+<section class="stay">
+  <span class="eyebrow">Staying in the west?</span>
+  <h2>Blue Tide Westpunt</h2>
+  <p>We put this list together for our guests. Blue Tide is a top-floor two-bedroom in Punta Azul, a short walk from Playa Forti and its two clifftop restaurants.</p>
+  <a class="cta" href="index.html#contact">Check dates &amp; book direct</a>
+</section>
+
+<!-- BT-FOOT -->
+<div class="bt-foot">
+  <div class="bt-foot-links">
+    <a href="index.html">The Condo</a>
+    <a href="guest-guide.html">Guest Guide</a>
+    <a href="beaches.html">Beaches</a>
+    <a href="reef-guide.html">Our Reef</a>
+    <a href="curacao-snorkel-guide.html">Snorkel Curaçao</a>
+    <a href="restaurants.html" aria-current="page">Restaurants</a>
+    <a href="index.html#contact">Book Direct</a>
+  </div>
+  <p><a href="mailto:bluetidewestpunt@gmail.com">bluetidewestpunt@gmail.com</a> · <a href="https://www.facebook.com/BlueTideWestpunt/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/bluetidewestpunt/" target="_blank" rel="noopener">Instagram</a></p>
+  <p>© 2026 Blue Tide Westpunt · Punta Azul, Westpunt, Curaçao</p>
+</div>
+<!-- /BT-FOOT -->
+
+<script src="assets/vendor/leaflet/leaflet.js"></script>
+<script>
+(function () {
+  if (!window.L) return;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.r-card'));
+  var areas = Array.prototype.slice.call(document.querySelectorAll('.area'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var narrow = window.matchMedia('(max-width: 980px)');
+
+  var map = L.map('map', { scrollWheelZoom: false, zoomControl: true });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  map.on('focus', function () { map.scrollWheelZoom.enable(); });
+  map.on('blur', function () { map.scrollWheelZoom.disable(); });
+
+  var markers = {}, all = [];
+  cards.forEach(function (c) {
+    var ll = [parseFloat(c.dataset.lat), parseFloat(c.dataset.lng)];
+    all.push(ll);
+    var name = c.querySelector('h3').textContent;
+    var m = L.marker(ll, {
+      title: name,
+      icon: L.divIcon({ className: '', html: '<div class="pin">' + c.dataset.n + '</div>', iconSize: [30, 30], iconAnchor: [15, 15] })
+    }).addTo(map);
+    m.bindPopup('<strong>' + name + '</strong>' + c.querySelector('.r-hours').textContent);
+    m.on('click', function () { select(c, false); c.scrollIntoView({ behavior: 'smooth', block: narrow.matches ? 'start' : 'center' }); });
+    markers[c.id] = m;
+    c.querySelector('.r-pin').addEventListener('click', function () { select(c, true); });
+  });
+
+  // Blue Tide
+  L.marker([12.3627, -69.1564], {
+    title: 'Blue Tide Westpunt', zIndexOffset: -100,
+    icon: L.divIcon({ className: '', html: '<div class="pin-home">&#9733;</div>', iconSize: [34, 34], iconAnchor: [17, 17] })
+  }).addTo(map).bindPopup('<strong>Blue Tide Westpunt</strong><a href="index.html">Where we are</a>');
+
+  function boundsFor(area) {
+    var pts = Array.prototype.map.call(area.querySelectorAll('.r-card'), function (c) { return [parseFloat(c.dataset.lat), parseFloat(c.dataset.lng)]; });
+    return L.latLngBounds(pts);
+  }
+  function showArea(area, animate) {
+    map.stop();
+    map.flyToBounds(boundsFor(area), { padding: [50, 50], maxZoom: 15, duration: 0.7 });
+    chips.forEach(function (ch) { ch.classList.toggle('active', ch.dataset.area === area.id); });
+    var act = document.querySelector('.chip.active');
+    if (act && act.scrollIntoView) { var p = act.parentNode; p.scrollTo({ left: act.offsetLeft - 16, behavior: 'smooth' }); }
+  }
+  var current = null;
+  function select(card, moveMap) {
+    cards.forEach(function (c) { c.classList.toggle('is-active', c === card); });
+    Object.keys(markers).forEach(function (id) {
+      var el = markers[id].getElement(); if (el) el.firstChild.classList.toggle('is-active', id === card.id);
+      markers[id].setZIndexOffset(id === card.id ? 1000 : 0);
+    });
+    if (moveMap) {
+      var m = markers[card.id];
+      current = card.closest('.area');
+      chips.forEach(function (ch) { ch.classList.toggle('active', ch.dataset.area === current.id); });
+      map.stop();
+      map.flyTo(m.getLatLng(), Math.max(map.getZoom(), 15), { duration: 0.6 });
+      if (narrow.matches) document.querySelector('.map-col').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      m.openPopup();
+    }
+  }
+
+  map.fitBounds(L.latLngBounds(all), { padding: [30, 30] });
+
+  chips.forEach(function (ch) {
+    ch.addEventListener('click', function () {
+      var a = document.getElementById(ch.dataset.area);
+      a.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      showArea(a);
+    });
+  });
+
+  // Map follows the area you're reading
+  var lock = 0;
+  window.addEventListener('scroll', function () {
+    if (lock) return;
+    lock = setTimeout(function () {
+      lock = 0;
+      var line = narrow.matches ? window.innerHeight * 0.55 : window.innerHeight * 0.35, found = null;
+      areas.forEach(function (a) { var r = a.getBoundingClientRect(); if (r.top <= line && r.bottom > line) found = a; });
+      if (found && found !== current) { current = found; showArea(found); }
+      if (!found && current && areas[0].getBoundingClientRect().top > line) {
+        current = null; map.stop(); map.flyToBounds(L.latLngBounds(all), { padding: [30, 30], duration: 0.7 });
+        chips.forEach(function (ch) { ch.classList.remove('active'); });
+      }
+    }, 150);
+  }, { passive: true });
+  window.addEventListener('resize', function () { map.invalidateSize(); });
+})();
+</script>
+</body>
+</html>

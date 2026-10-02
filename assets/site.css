@@ -1,0 +1,53 @@
+/* Shared site chrome: nav + footer. Used on every page.
+   Prefixed .bt- so it never collides with page styles. */
+.bt-nav, .bt-nav *, .bt-foot, .bt-foot * { box-sizing: border-box; margin: 0; padding: 0; }
+
+.bt-nav {
+  background: #0f3440;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; padding: 14px 32px;
+  position: relative; z-index: 300;
+}
+.bt-brand {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #fff; text-decoration: none; font-size: 20px; font-weight: 600;
+  white-space: nowrap; letter-spacing: 0.01em;
+}
+.bt-brand em { font-style: italic; font-weight: 400; color: #8fd3dd; }
+.bt-links { display: flex; align-items: center; gap: 4px; }
+.bt-links a {
+  color: rgba(255,255,255,0.78); text-decoration: none;
+  font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
+  padding: 8px 12px; border-radius: 50px; white-space: nowrap;
+  transition: color .2s, background .2s;
+}
+.bt-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.bt-links a[aria-current="page"] { color: #fff; box-shadow: inset 0 -2px 0 #2a9aad; border-radius: 0; }
+.bt-links a.bt-cta {
+  background: #e07a5f; color: #fff; margin-left: 8px; padding: 9px 18px;
+}
+.bt-links a.bt-cta:hover { background: #cf6a50; }
+
+@media (max-width: 860px) {
+  .bt-nav { flex-direction: column; align-items: stretch; gap: 8px; padding: 12px 0 10px; }
+  .bt-brand { padding: 0 16px; font-size: 18px; }
+  .bt-links {
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    padding: 0 9px; gap: 0;
+  }
+  .bt-links::-webkit-scrollbar { display: none; }
+  .bt-links a { font-size: 13px; padding: 7px 7px; }
+  .bt-links a.bt-cta { position: absolute; top: 9px; right: 16px; margin: 0; padding: 7px 14px; }
+}
+
+.bt-foot {
+  background: #08222b; color: rgba(255,255,255,0.55);
+  font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; line-height: 1.6;
+  text-align: center; padding: 36px 20px 30px;
+}
+.bt-foot a { color: #8fd3dd; text-decoration: none; }
+.bt-foot a:hover { color: #fff; }
+.bt-foot-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; margin-bottom: 14px; font-size: 14px; }
+.bt-foot-links a { color: rgba(255,255,255,0.85); }
+.bt-foot p + p { margin-top: 4px; }
