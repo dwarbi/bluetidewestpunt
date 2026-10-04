@@ -29,6 +29,25 @@
 }
 .bt-links a.bt-cta:hover { background: #cf6a50; }
 
+/* Snorkeling dropdown: a menu on desktop, two plain links on phones */
+.bt-drop { position: relative; }
+.bt-drop-btn {
+  font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.78); background: none; border: 0; cursor: pointer;
+  padding: 8px 12px; border-radius: 50px; white-space: nowrap; transition: color .2s, background .2s;
+}
+.bt-drop-btn::after { content: ""; display: inline-block; margin-left: 6px; vertical-align: 2px; border: 4px solid transparent; border-top-color: currentColor; border-bottom: 0; }
+.bt-drop:hover .bt-drop-btn, .bt-drop:focus-within .bt-drop-btn { color: #fff; background: rgba(255,255,255,0.08); }
+.bt-drop:has(a[aria-current="page"]) .bt-drop-btn { color: #fff; box-shadow: inset 0 -2px 0 #2a9aad; border-radius: 0; }
+.bt-drop-menu {
+  display: none; position: absolute; top: 100%; left: 0; min-width: 190px;
+  background: #0f3440; border: 1px solid rgba(255,255,255,0.14); border-radius: 10px;
+  padding: 6px; box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+.bt-drop:hover .bt-drop-menu, .bt-drop:focus-within .bt-drop-menu { display: block; }
+.bt-drop-menu a { display: block; border-radius: 6px; }
+.bt-drop-menu a[aria-current="page"] { box-shadow: none; background: rgba(42,154,173,0.25); border-radius: 6px; }
+
 @media (max-width: 860px) {
   .bt-nav { flex-direction: column; align-items: stretch; gap: 8px; padding: 12px 0 10px; }
   .bt-brand { padding: 0 16px; font-size: 18px; }
@@ -39,6 +58,10 @@
   .bt-links::-webkit-scrollbar { display: none; }
   .bt-links a { font-size: 13px; padding: 7px 7px; }
   .bt-links a.bt-cta { position: absolute; top: 9px; right: 16px; margin: 0; padding: 7px 14px; }
+  .bt-drop, .bt-drop-menu { display: contents; }
+  .bt-drop-btn { display: none; }
+  .bt-drop-menu a, .bt-drop-menu a[aria-current="page"] { display: inline; background: none; border-radius: 50px; }
+  .bt-drop-menu a[aria-current="page"] { box-shadow: inset 0 -2px 0 #2a9aad; border-radius: 0; }
 }
 
 .bt-foot {

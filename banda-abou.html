@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banda Abou, Curaçao: A Guide to the West Side — Blue Tide Westpunt</title>
+<meta name="description" content="Banda Abou (Bandabou) is the quiet west side of Curaçao: the villages, the two roads, Christoffel and Shete Boka, flamingos, beaches, where to eat and shop, and a little history.">
+<link rel="icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bluetidewestpunt.com/banda-abou.html">
+<meta property="og:title" content="Banda Abou, Curaçao: A Guide to the West Side">
+<meta property="og:description" content="The villages, the parks, the wildlife and the history of Curaçao's quiet west side, from Tera Kora to Westpunt.">
+<meta property="og:image" content="https://bluetidewestpunt.com/images/BlueTideWestpunt-Sites-5-Mountains.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="8f36ab2d-48d2-4b05-82c5-1587666ec1a1" data-domains="bluetidewestpunt.com"></script>
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  :root {
+    --teal: #1a7a8a; --teal-light: #2a9aad; --sand: #f5efe6; --sand-dark: #e8ddd0;
+    --coral: #e07a5f; --navy: #0f3440; --white: #ffffff; --text: #1e2d35; --text-soft: #4a6570; --gold: #c9a84c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--text); background: var(--sand); font-size: 16.5px; line-height: 1.65; }
+  a { color: var(--teal); }
+
+  .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--gold); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  .narrow { max-width: 760px; }
+
+  /* ─── HERO ─── */
+  .hero { background: var(--navy); color: #fff; padding: 60px 0 44px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(38px, 6vw, 64px); line-height: 1.05; margin: 10px 0 6px; }
+  .hero .aka { font-family: 'Playfair Display', serif; font-style: italic; color: #8fd3dd; font-size: clamp(17px, 2.2vw, 21px); margin-bottom: 18px; }
+  .hero p.lead { max-width: 62ch; color: rgba(255,255,255,0.88); font-size: 18px; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+  .jump a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.88); text-decoration: none; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); padding: 7px 14px; border-radius: 50px; transition: background .2s; }
+  .jump a:hover { background: rgba(255,255,255,0.18); color: #fff; }
+
+  section { padding: 56px 0; scroll-margin-top: 10px; }
+  section.alt { background: #fff; }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.4vw, 36px); color: var(--navy); line-height: 1.2; margin: 6px 0 14px; text-wrap: balance; }
+  h3 { font-family: 'Playfair Display', serif; font-size: 21px; color: var(--navy); line-height: 1.25; }
+  p + p { margin-top: 12px; }
+  .intro p { font-size: 17.5px; }
+
+  /* ─── THREE PARTS ─── */
+  .parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+  .part { background: var(--sand); border-radius: 12px; padding: 22px 22px 20px; border-top: 4px solid var(--sand-dark); }
+  .part.here { background: var(--navy); color: #fff; border-top-color: var(--coral); }
+  .part.here h3 { color: #fff; }
+  .part .where { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--teal); }
+  .part.here .where { color: var(--gold); }
+  .part p { font-size: 15.5px; margin-top: 8px; }
+
+  /* ─── MAP ─── */
+  .bearings { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 36px; align-items: start; margin-top: 8px; }
+  #map { height: 560px; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 34px rgba(15,52,64,0.16); background: #cfe6ea; z-index: 1; position: sticky; top: 16px; }
+  .roads p { font-size: 16px; }
+  .villages { list-style: none; margin-top: 18px; display: grid; gap: 8px; }
+  .villages li { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; background: #fff; border-radius: 10px; padding: 11px 14px; border: 2px solid transparent; transition: border-color .2s; }
+  .villages li.is-active { border-color: var(--coral); }
+  .villages strong { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--navy); }
+  .villages span { display: block; font-size: 14.5px; color: var(--text-soft); line-height: 1.5; }
+  .pinbtn { font: inherit; font-size: 12px; font-weight: 600; width: 26px; height: 26px; border-radius: 50%; border: 0; background: var(--teal); color: #fff; cursor: pointer; flex: none; margin-top: 2px; transition: background .2s, transform .2s; }
+  .pinbtn.sight { background: var(--navy); color: var(--gold); }
+  .pinbtn:hover, .is-active > .pinbtn, .is-active .pinbtn { background: var(--coral); color: #fff; transform: scale(1.08); }
+  .pin { width: 26px; height: 26px; border-radius: 50%; background: var(--teal); color: #fff; font: 600 12px/22px 'DM Sans', sans-serif; text-align: center; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.35); transition: background .2s, transform .2s; }
+  .pin.sight { background: var(--navy); color: var(--gold); border-color: var(--gold); }
+  .pin.is-active { background: var(--coral); color: #fff; border-color: #fff; transform: scale(1.25); }
+  .pin-home { width: 30px; height: 30px; border-radius: 50%; background: var(--coral); color: #fff; font-size: 15px; line-height: 26px; text-align: center; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.35); }
+  .leaflet-popup-content { font-family: 'DM Sans', sans-serif; font-size: 14px; margin: 10px 14px; }
+  .leaflet-popup-content strong { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--navy); display: block; }
+  .map-key { font-size: 13px; color: var(--text-soft); margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .map-key i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+
+  /* ─── THINGS TO DO ─── */
+  .todo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 22px; }
+  .card { background: var(--sand); border-radius: 12px; padding: 22px 24px 20px; border: 2px solid transparent; transition: border-color .2s; scroll-margin-top: 20px; }
+  section:not(.alt) .card { background: #fff; }
+  .card.is-active { border-color: var(--coral); }
+  .card-head { display: flex; align-items: center; gap: 10px; }
+  .card p { font-size: 15.5px; margin-top: 10px; }
+  .when { font-size: 14.5px; margin-top: 12px; padding: 9px 12px; background: #fff; border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; }
+  section:not(.alt) .when { background: var(--sand); }
+  .when strong { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9a7b28; margin-right: 6px; }
+
+  /* ─── WILDLIFE ─── */
+  .wild { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 22px; }
+  .birds { list-style: none; margin-top: 10px; display: grid; gap: 6px; }
+  .birds li { font-size: 15px; padding-left: 14px; border-left: 2px solid var(--sand-dark); }
+  .birds b { color: var(--navy); }
+  .birds em { color: var(--text-soft); font-size: 13.5px; }
+
+  /* ─── LINK CARDS ─── */
+  .links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 22px; }
+  .linkcard { display: block; text-decoration: none; color: inherit; background: var(--navy); color: #fff; border-radius: 12px; padding: 24px 26px; transition: transform .2s, box-shadow .2s; }
+  .linkcard:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(15,52,64,0.25); }
+  .linkcard h3 { color: #fff; }
+  .linkcard p { color: rgba(255,255,255,0.82); font-size: 15px; margin-top: 6px; }
+  .linkcard .go { display: inline-block; margin-top: 12px; color: #8fd3dd; font-weight: 500; font-size: 14.5px; }
+  .shop { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 32px; margin-top: 26px; }
+  .shop h3 { font-size: 18px; }
+  .shop p { font-size: 15.5px; margin-top: 4px; }
+
+  /* ─── HISTORY ─── */
+  .history { background: var(--navy); color: rgba(255,255,255,0.88); }
+  .history h2 { color: #fff; }
+  .history p { font-size: 17px; }
+  .history a { color: #8fd3dd; }
+
+  /* ─── STAY BAND ─── */
+  .stay { background: var(--teal); color: #fff; padding: 64px 32px; text-align: center; }
+  .stay h2 { color: #fff; margin: 8px 0 12px; }
+  .stay p { max-width: 54ch; margin: 0 auto; color: rgba(255,255,255,0.88); }
+  .stay a.cta { display: inline-block; margin-top: 22px; background: var(--coral); color: #fff; text-decoration: none; padding: 13px 28px; border-radius: 50px; font-weight: 500; font-size: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.18); }
+
+  @media (max-width: 900px) {
+    .wrap { padding: 0 18px; }
+    section { padding: 42px 0; }
+    .parts, .todo, .wild, .links, .shop { grid-template-columns: 1fr; }
+    .bearings { grid-template-columns: 1fr; gap: 22px; }
+    #map { height: 360px; position: static; }
+    .bearings > div:last-child { order: -1; }
+    .hero { padding: 40px 0 32px; }
+  }
+</style>
+</head>
+<body>
+<!-- BT-NAV -->
+<nav class="bt-nav" aria-label="Site">
+  <a class="bt-brand" href="index.html">Blue Tide <em>Westpunt</em></a>
+  <div class="bt-links">
+    <a href="banda-abou.html" aria-current="page">Banda Abou</a>
+    <a href="beaches.html">Beaches</a>
+    <div class="bt-drop">
+      <button type="button" class="bt-drop-btn" aria-haspopup="true">Snorkeling</button>
+      <div class="bt-drop-menu">
+        <a href="reef-guide.html">Our Reef</a>
+        <a href="curacao-snorkel-guide.html">Snorkel Curaçao</a>
+      </div>
+    </div>
+    <a href="restaurants.html">Restaurants</a>
+    <a href="guest-guide.html">Guest Guide</a>
+    <a class="bt-cta" href="index.html#contact">Book Direct</a>
+  </div>
+</nav>
+<!-- /BT-NAV -->
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Curaçao · Tera Kora to Westpunt</span>
+    <h1>Banda Abou</h1>
+    <p class="aka">also written Bandabou: “the lower side”</p>
+    <p class="lead">The western half of Curaçao, from the windmills at Tera Kora out to Westpunt at the tip. No cruise ships, no big resorts, no traffic lights. Most of the island's best beaches, both national parks, the highest hill and the flamingos.</p>
+    <nav class="jump" aria-label="On this page">
+      <a href="#parts">The three parts of Curaçao</a>
+      <a href="#bearings">Map &amp; villages</a>
+      <a href="#todo">Things to do</a>
+      <a href="#wildlife">Wildlife</a>
+      <a href="#food">Beaches, food &amp; shops</a>
+      <a href="#history">History</a>
+    </nav>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap narrow">
+    <p>Banda Abou is the quiet part of the island. A string of small villages along two roads, dry hills covered in cactus, and a side road down to a beach every few minutes.</p>
+    <p>If you came to Curaçao for the water and the landscape more than the nightlife, this is the part you came for.</p>
+  </div>
+</section>
+
+<section class="alt" id="parts">
+  <div class="wrap">
+    <span class="eyebrow">Know the island</span>
+    <h2>The three parts of Curaçao</h2>
+    <p class="narrow">People on the island split it in three. It helps to know which is which when you read about places to stay.</p>
+    <div class="parts">
+      <div class="part">
+        <span class="where">The middle</span>
+        <h3>Willemstad</h3>
+        <p>The city: the colorful waterfront of Punda and Otrobanda, the floating bridge, the cruise terminal, the museums, most of the restaurants and shops. The old center is a UNESCO World Heritage site. Most hotels and the airport are in or near it.</p>
+      </div>
+      <div class="part">
+        <span class="where">The east · “the upper side”</span>
+        <h3>Banda Riba</h3>
+        <p>Jan Thiel, Caracasbaai, Spanish Water, Santa Barbara. Newer and more built up, with beach clubs, villas and marinas. Boat trips to Klein Curaçao leave from here.</p>
+      </div>
+      <div class="part here">
+        <span class="where">The west · “the lower side”</span>
+        <h3>Banda Abou</h3>
+        <p>The rest of this page. From Willemstad it's about 30 minutes to Tera Kora and about 50 to Westpunt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bearings">
+  <div class="wrap">
+    <span class="eyebrow">Getting your bearings</span>
+    <h2>Two roads and seven villages</h2>
+    <div class="bearings">
+      <div class="roads">
+        <p>Two roads run west from Tera Kora and meet again at Westpunt.</p>
+        <p><strong>The northern road</strong> (Weg naar Westpunt) goes through Barber, past the entrance to Christoffel Park and Shete Boka, and into Westpunt from above. It's the faster one.</p>
+        <p><strong>The coast road</strong> turns off toward Sint Willibrordus and runs through Soto, Santa Cruz and Lagun, with a side road down to almost every beach. It's the prettier one.</p>
+        <ul class="villages">
+          <li data-pin="v" data-lat="12.2244" data-lng="-69.0300" data-n="1"><button class="pinbtn" type="button" aria-label="Show Tera Kora on the map">1</button><div><strong>Tera Kora</strong><span>Where Banda Abou starts, just past the windmills. Last proper supermarket and gas station heading west.</span></div></li>
+          <li data-pin="v" data-lat="12.2163" data-lng="-69.0648" data-n="2"><button class="pinbtn" type="button" aria-label="Show Sint Willibrordus on the map">2</button><div><strong>Sint Willibrordus</strong><span>The salt pans with the flamingos, the big church on the hill, and the WILLIWOOD sign. Turnoffs for Daaibooi, Porto Mari and Cas Abou.</span></div></li>
+          <li data-pin="v" data-lat="12.2903" data-lng="-69.0750" data-n="3"><button class="pinbtn" type="button" aria-label="Show Barber on the map">3</button><div><strong>Barber</strong><span>The main village on the northern road, with the Sunday market.</span></div></li>
+          <li data-pin="v" data-lat="12.2726" data-lng="-69.1040" data-n="4"><button class="pinbtn" type="button" aria-label="Show Soto on the map">4</button><div><strong>Soto</strong><span>On the coast road, above the Santa Martha bay.</span></div></li>
+          <li data-pin="v" data-lat="12.3052" data-lng="-69.1400" data-n="5"><button class="pinbtn" type="button" aria-label="Show Santa Cruz on the map">5</button><div><strong>Santa Cruz</strong><span>Hòfi Mango and Playa Santa Cruz.</span></div></li>
+          <li data-pin="v" data-lat="12.3190" data-lng="-69.1500" data-n="6"><button class="pinbtn" type="button" aria-label="Show Lagun on the map">6</button><div><strong>Lagun</strong><span>A small village around one of the best snorkeling coves on the island. Jeremi and both Knip beaches are just past it.</span></div></li>
+          <li data-pin="v" data-lat="12.3700" data-lng="-69.1520" data-n="7"><button class="pinbtn" type="button" aria-label="Show Westpunt on the map">7</button><div><strong>Westpunt</strong><span>The fishing village at the tip: Playa Forti, Playa Piskadó, Playa Kalki.</span></div></li>
+        </ul>
+      </div>
+      <div>
+        <div id="map"></div>
+        <p class="map-key"><span><i style="background:#1a7a8a"></i>Villages</span><span><i style="background:#0f3440;outline:2px solid #c9a84c;outline-offset:-2px"></i>Things to do</span><span><i style="background:#e07a5f"></i>Blue Tide Westpunt</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="todo">
+  <div class="wrap">
+    <span class="eyebrow">Things to do</span>
+    <h2>Parks, museums and a mango forest</h2>
+    <div class="todo">
+
+      <article class="card" id="christoffel" data-pin="s" data-lat="12.3505" data-lng="-69.1067" data-n="A">
+        <!-- PHOTO: images/banda-abou/christoffel.jpg -->
+        <div class="card-head"><button class="pinbtn sight" type="button" aria-label="Show Christoffel National Park on the map">A</button><h3>Christoffel National Park</h3></div>
+        <p>The biggest park on the island, on three old plantations, with the island's highest point at 372 m. The climb takes two to three hours round trip and ends in a rocky scramble with a view over the whole west end. If you'd rather not climb, there are easier trails and two driving routes.</p>
+        <p class="when"><strong>When</strong> Open 6 AM to 2 PM. You can't start the mountain after 10 AM because of the heat, so be at the gate early. Bring two liters of water each. No dogs.</p>
+      </article>
+
+      <article class="card" id="sheteboka" data-pin="s" data-lat="12.3676" data-lng="-69.1168" data-n="B">
+        <!-- PHOTO: images/banda-abou/sheteboka.jpg -->
+        <div class="card-head"><button class="pinbtn sight" type="button" aria-label="Show Shete Boka National Park on the map">B</button><h3>Shete Boka National Park</h3></div>
+        <p>The rough north coast, right next to Christoffel. “Shete Boka” means seven inlets. At Boka Tabla you walk down into a cave while the waves crash in. Boka Pistol fires spray into the air like a shot. Boka Wandomi has a natural bridge. Sea turtles nest on the small beaches here from May to December.</p>
+        <p class="when"><strong>When</strong> Open daily, with last entry around 4 PM. It pairs well with Christoffel: climb first, then come here. No shade, so bring water and a hat.</p>
+      </article>
+
+      <article class="card" id="hofimango" data-pin="s" data-lat="12.3059" data-lng="-69.1356" data-n="C">
+        <!-- PHOTO: images/banda-abou/hofimango.jpg -->
+        <div class="card-head"><button class="pinbtn sight" type="button" aria-label="Show Hòfi Mango on the map">C</button><h3>Hòfi Mango</h3></div>
+        <p>An old plantation in Santa Cruz turned into a park: a shaded mango forest, walking paths, a viewpoint, a zipline, and the restaurant <a href="restaurants.html#kultura">Kultura Kòrsou</a>. A cool, green hour or two on a dry island.</p>
+        <p class="when"><strong>When</strong> Mornings, for the shade.</p>
+      </article>
+
+      <article class="card" id="tula" data-pin="s" data-lat="12.3446" data-lng="-69.1430" data-n="D">
+        <!-- PHOTO: images/banda-abou/tula.jpg -->
+        <div class="card-head"><button class="pinbtn sight" type="button" aria-label="Show Museo Tula on the map">D</button><h3>Museo Tula at Landhuis Knip</h3></div>
+        <p>The plantation house where the 1795 revolt began, now a museum about that fight for freedom (see <a href="#history">the history below</a>). It sits just above Grote Knip, so it's easy to combine with the beach. Take the guided tour.</p>
+        <p class="when"><strong>When</strong> Tuesday to Sunday, 10 AM to 2 PM.</p>
+      </article>
+
+      <article class="card" id="savonet" data-pin="s" data-lat="12.3512" data-lng="-69.1055" data-n="E">
+        <!-- PHOTO: images/banda-abou/savonet.jpg -->
+        <div class="card-head"><button class="pinbtn sight" type="button" aria-label="Show the Savonet Museum on the map">E</button><h3>Savonet Museum</h3></div>
+        <p>In the plantation house at the Christoffel entrance. The story of the plantation, the people who owned it and the people enslaved there, going back to the island's first inhabitants.</p>
+        <p class="when"><strong>When</strong> Pair it with the park. Good for the people in your group who skip the climb.</p>
+      </article>
+
+      <article class="card" id="flamingos" data-pin="s" data-lat="12.2130" data-lng="-69.0530" data-n="F">
+        <!-- PHOTO: images/banda-abou/flamingos.jpg -->
+        <div class="card-head"><button class="pinbtn sight" type="button" aria-label="Show the flamingos on the map">F</button><h3>The flamingos at Sint Willibrordus</h3></div>
+        <p>They feed in the salt pans at Jan Kok, right beside the road. Some days there are dozens and some days almost none. Stay by your car, don't walk out onto the flats, and leave the drone at home.</p>
+        <p class="when"><strong>When</strong> Early morning or late afternoon. An easy stop on the way to Porto Mari or Cas Abou.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="wildlife">
+  <div class="wrap">
+    <span class="eyebrow">Wildlife</span>
+    <h2>What you'll see without trying</h2>
+    <div class="wild">
+      <div class="card">
+        <h3>Birds</h3>
+        <p>More than 260 species have been recorded in Christoffel Park alone. These are the ones you'll notice first:</p>
+        <ul class="birds">
+          <li><b>Trupial</b> <em>Venezuelan troupial</em><br>Bright orange and black, with a loud whistle.</li>
+          <li><b>Prikichi</b> <em>Brown-throated parakeet</em><br>Small, green, yellow-faced, usually in noisy groups.</li>
+          <li><b>Warawara</b> <em>Crested caracara</em><br>The big bird of prey walking along the roadside.</li>
+          <li><b>Blenchi</b> <em>Blue-tailed emerald</em><br>The tiny green hummingbird at any flowering bush.</li>
+          <li><b>Chuchubi</b> <em>Tropical mockingbird</em><br>Grey, and singing from the top of every cactus.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>White-tailed deer</h3>
+        <p>Curaçao has its own small deer, and most of them live in Christoffel Park. They're shy. Your best chance is early, from the car, on the park's driving routes.</p>
+        <h3 style="margin-top:18px">Iguanas and lizards</h3>
+        <p>Green iguanas are everywhere, including in the road. The bright blue lizard darting across the path is the blòblò, a whiptail.</p>
+      </div>
+      <div class="card">
+        <h3>Sea turtles</h3>
+        <p>Green and hawksbill turtles feed along this coast all year. Our <a href="curacao-snorkel-guide.html">Curaçao snorkel guide</a> covers what else is down there, and the <a href="reef-guide.html">reef guide</a> covers what we've found off our own steps in Westpunt.</p>
+      </div>
+      <div class="card">
+        <h3>On the road</h3>
+        <p>Goats, donkeys and the occasional deer, especially at night. Drive slowly after dark.</p>
+        <p>The free <a href="https://www.inaturalist.org/" target="_blank" rel="noopener">iNaturalist</a> app will put a name to almost anything you photograph here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="food">
+  <div class="wrap">
+    <span class="eyebrow">Beaches, food and shops</span>
+    <h2>The practical side</h2>
+    <div class="links">
+      <a class="linkcard" href="beaches.html">
+        <h3>Beaches</h3>
+        <p>Most of Curaçao's best beaches are here, from Daaibooi in the south to Playa Kalki at the tip.</p>
+        <span class="go">See the beach guide →</span>
+      </a>
+      <a class="linkcard" href="restaurants.html">
+        <h3>Where to eat</h3>
+        <p>Clifftop terraces in Westpunt, plantation houses serving local stews, a mango forest. Our list, by area, with hours and what to order.</p>
+        <span class="go">See the restaurants →</span>
+      </a>
+    </div>
+    <div class="shop">
+      <div>
+        <h3>Marshe di Barber</h3>
+        <p>The Sunday morning market in Barber. Produce, baked goods and a few food stalls: fish soup, johnny cakes, pumpkin pancakes. Go early.</p>
+      </div>
+      <div>
+        <h3>Supermarkets</h3>
+        <p>There's no big supermarket in Banda Abou. Do your main shop on the way out: Centrum at Piscadera is the best and is on the route from the airport. New California in Tera Kora is the last decent-sized one heading west.</p>
+      </div>
+      <div>
+        <h3>The Chinese markets</h3>
+        <p>Almost every village has a small supermarket, usually run by a Chinese-Curaçaoan family. Cold drinks, snacks, bread, canned goods, basic produce, sunscreen, beer. Don't expect fresh meat or much choice, but for anything you forgot it's five minutes away instead of forty. In Westpunt that's Ji Lie Minimarket.</p>
+      </div>
+      <div>
+        <h3>Gas and cash</h3>
+        <p>There's no gas station in Westpunt, so fill up at Tera Kora. ATMs are scarce past there too. Carry some guilders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="history" id="history">
+  <div class="wrap narrow">
+    <span class="eyebrow">A little history</span>
+    <h2>Plantation country, and the man who walked out of it</h2>
+    <p>For most of its history the west of Curaçao was plantation country. The plantation houses, called landhuizen, still stand on the hilltops: Knip, Savonet, Dokterstuin, Klein Santa Martha, Jan Kok, Daniel. Several are now museums, restaurants or small hotels. The land was too dry for sugar on any scale, so the plantations raised livestock, grew sorghum and worked the salt pans, all with enslaved labor.</p>
+    <p>On August 17, 1795, a man named Tula, enslaved at the Knip plantation, went to his owner with 40 or 50 others and refused to work. He argued that they were entitled to freedom. Over the following days they walked from plantation to plantation through Lagun, Santa Cruz and Porto Mari, freeing people as they went, until about 2,000 had joined. The revolt held out for a month. Tula was betrayed, captured and executed on October 3. Slavery on Curaçao was not abolished until 1863.</p>
+    <p>Tula is a national hero today, and August 17 is marked every year. The house where it started is the <a href="#tula">museum above Grote Knip</a>. If you spend a day at that beach, the museum is five minutes up the hill, and it changes how you see the place.</p>
+  </div>
+</section>
+
+<section class="stay">
+  <span class="eyebrow">Staying in Westpunt?</span>
+  <h2>Blue Tide Westpunt</h2>
+  <p>We put this guide together for our guests. Blue Tide is a top-floor two-bedroom in Punta Azul, at the far end of Banda Abou, with steps down to the reef.</p>
+  <a class="cta" href="index.html#contact">Check dates &amp; book direct</a>
+</section>
+
+<!-- BT-FOOT -->
+<div class="bt-foot">
+  <div class="bt-foot-links">
+    <a href="index.html">The Condo</a>
+    <a href="banda-abou.html" aria-current="page">Banda Abou</a>
+    <a href="beaches.html">Beaches</a>
+    <a href="reef-guide.html">Our Reef</a>
+    <a href="curacao-snorkel-guide.html">Snorkel Curaçao</a>
+    <a href="restaurants.html">Restaurants</a>
+    <a href="guest-guide.html">Guest Guide</a>
+    <a href="index.html#contact">Book Direct</a>
+  </div>
+  <p><a href="mailto:bluetidewestpunt@gmail.com">bluetidewestpunt@gmail.com</a> · <a href="https://www.facebook.com/BlueTideWestpunt/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/bluetidewestpunt/" target="_blank" rel="noopener">Instagram</a></p>
+  <p>© 2026 Blue Tide Westpunt · Punta Azul, Westpunt, Curaçao</p>
+</div>
+<!-- /BT-FOOT -->
+
+<script src="assets/vendor/leaflet/leaflet.js"></script>
+<script>
+(function () {
+  if (!window.L) return;
+  var items = Array.prototype.slice.call(document.querySelectorAll('[data-pin]'));
+  var map = L.map('map', { scrollWheelZoom: false });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  map.on('focus', function () { map.scrollWheelZoom.enable(); });
+  map.on('blur', function () { map.scrollWheelZoom.disable(); });
+
+  var markers = [], all = [];
+  function nameOf(el) { return (el.querySelector('h3') || el.querySelector('strong')).textContent; }
+  function select(el, moveMap) {
+    items.forEach(function (x, i) {
+      x.classList.toggle('is-active', x === el);
+      var m = markers[i].getElement(); if (m) m.firstChild.classList.toggle('is-active', x === el);
+      markers[i].setZIndexOffset(x === el ? 1000 : (x.dataset.pin === 's' ? 100 : 0));
+    });
+    if (moveMap) {
+      var mk = markers[items.indexOf(el)];
+      map.stop();
+      map.flyTo(mk.getLatLng(), Math.max(map.getZoom(), 13), { duration: 0.6 });
+      mk.openPopup();
+      document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+  items.forEach(function (el) {
+    var ll = [parseFloat(el.dataset.lat), parseFloat(el.dataset.lng)]; all.push(ll);
+    var sight = el.dataset.pin === 's';
+    var m = L.marker(ll, {
+      title: nameOf(el), zIndexOffset: sight ? 100 : 0,
+      icon: L.divIcon({ className: '', html: '<div class="pin' + (sight ? ' sight' : '') + '">' + el.dataset.n + '</div>', iconSize: [30, 30], iconAnchor: [15, 15] })
+    }).addTo(map);
+    m.bindPopup('<strong>' + nameOf(el) + '</strong>' + (sight ? '<a href="#' + el.id + '">Read more</a>' : ''));
+    m.on('click', function () { select(el, false); if (!sight) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); });
+    markers.push(m);
+    el.querySelector('.pinbtn').addEventListener('click', function () { select(el, true); });
+  });
+
+  L.marker([12.2170, -69.0028], { title: 'The windmills',
+    icon: L.divIcon({ className: '', html: '<div class="pin" style="background:#fff;color:#0f3440;border-color:#0f3440;font-size:14px">&#10059;</div>', iconSize: [30, 30], iconAnchor: [15, 15] })
+  }).addTo(map).bindPopup('<strong>The windmills</strong>Past these, you\'re in Banda Abou.');
+  L.marker([12.3627, -69.1564], { title: 'Blue Tide Westpunt', zIndexOffset: -100,
+    icon: L.divIcon({ className: '', html: '<div class="pin-home">&#9733;</div>', iconSize: [34, 34], iconAnchor: [17, 17] })
+  }).addTo(map).bindPopup('<strong>Blue Tide Westpunt</strong><a href="index.html">Where we are</a>');
+
+  all.push([12.2170, -69.0028]);
+  map.fitBounds(L.latLngBounds(all), { padding: [28, 28] });
+  window.addEventListener('resize', function () { map.invalidateSize(); });
+})();
+</script>
+</body>
+</html>
