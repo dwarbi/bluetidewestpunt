@@ -18,7 +18,7 @@ PAGES = [
     "reef-guide.html",
     "curacao-snorkel-guide.html",
     "restaurants.html",
-    "banda-abou.html",
+    "bandabou.html",
 ]
 
 def render(partial, page):
