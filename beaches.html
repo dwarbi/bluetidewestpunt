@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Beaches of Bandabou, Curaçao — Blue Tide Westpunt</title>
-<meta name="description" content="Ten beaches on the west side of Curaçao, from Playa Kalki to Daaibooi: what each is like, entry fees, food and chairs, snorkeling, and today's conditions.">
+<meta name="description" content="The beaches of Bandabou, the west side of Curaçao, from Playa Kalki to Daaibooi: what each is best for, entry fees, food and chairs, and today's conditions.">
 <link rel="icon" href="images/favicon.ico">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bluetidewestpunt.com/beaches.html">
 <meta property="og:title" content="The Beaches of Bandabou, Curaçao">
-<meta property="og:description" content="Ten beaches from Playa Kalki to Daaibooi, with a map, what to expect at each, and today's conditions.">
+<meta property="og:description" content="From Playa Kalki to Daaibooi, with a map, what each beach is best for, and today's conditions.">
 <meta property="og:image" content="https://bluetidewestpunt.com/images/BlueTideWestpunt-BeachFinder.jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -126,8 +126,9 @@
   .facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px 18px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--sand-dark); }
   .facts dt { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--teal); }
   .facts dd { font-size: 14.5px; line-height: 1.4; }
-  .dots i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--sand-dark); margin-right: 3px; }
-  .dots i.on { background: var(--teal); }
+  .facts .wide { grid-column: 1 / -1; }
+  .bestfor { margin-top: 6px; font-size: 15px; font-weight: 500; color: var(--navy); }
+  .bestfor strong { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: #fff; background: var(--teal); padding: 3px 8px; border-radius: 50px; margin-right: 8px; vertical-align: 1px; }
   .r-card.is-hidden, .area.is-empty { display: none; }
   .none { display: none; padding: 30px 0; color: var(--text-soft); }
   .none.show { display: block; }
@@ -161,7 +162,7 @@
   <div class="hero-inner">
     <span class="eyebrow">Bandabou · Playa Kalki to Daaibooi</span>
     <h1>The Beaches <em>of Bandabou</em></h1>
-    <p>Most of Curaçao's best beaches are on this side of the island. These are the ten we send people to, with what each one is like and what you'll find when you get there.</p>
+    <p>Most of Curaçao's best beaches are on this side of the island. These are the ones we send people to, with what each is best for and what you'll find when you get there.</p>
     <p class="wa"><strong>Before you go.</strong> Bring water shoes: many entries are rock or coral rubble. Use reef-safe sunscreen. Don't leave anything in the car.</p>
   </div>
 </header>
@@ -178,7 +179,6 @@
       <button type="button" class="chip" data-tag="facilities">Food &amp; restrooms</button>
       <button type="button" class="chip" data-tag="family">Easy with kids</button>
       <button type="button" class="chip" data-tag="quiet">Quiet</button>
-      <button type="button" class="chip" data-tag="sunset">Sunset</button>
   </div>
 </nav>
 
@@ -188,46 +188,46 @@
   <section class="area" id="westpunt" data-area="westpunt">
     <header class="area-head"><h2>Westpunt</h2><p>Three beaches around the fishing village at the tip of the island.</p></header>
     <div class="r-grid">
-      <article class="r-card" id="kalki" data-lat="12.3754" data-lng="-69.1577" data-n="1" data-tags="snorkel facilities family">
+      <article class="r-card" id="kalki" data-lat="12.3754" data-lng="-69.1577" data-n="1" data-tags="snorkel facilities">
         <div class="r-photo"><img src="images/BlueTideWestpunt-Beaches-2-PlayaKalki.jpg" alt="Playa Kalki" loading="lazy" width="1200" height="900"></div>
         <div class="r-body">
           <div class="r-head"><button class="r-pin" type="button" aria-label="Show Playa Kalki on the map">1</button><h3>Playa Kalki</h3><span class="r-alt">“Alice in Wonderland”</span></div>
+          <p class="bestfor"><strong>Best for</strong> Snorkeling and shore diving</p>
           <p class="r-desc">A small cove below the cliffs, and one of the best shore dive and snorkel sites on the island. The reef starts a short swim from the beach, with big coral formations that gave it its nickname.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>Free</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>Restaurant and dive shop (Go West Diving)</dd></div>
-            <div><dt>Chairs</dt><dd>For rent</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span> Excellent</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>For rent</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Restaurant and dive shop (Go West Diving)</dd></div>
           </dl>
           <p class="r-tip"><strong>Tip</strong> Steep stairs down and a rocky entry, so bring water shoes.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.3754%2C-69.1577" target="_blank" rel="noopener">Directions</a></p>
         </div>
       </article>
-      <article class="r-card" id="forti" data-lat="12.3665" data-lng="-69.1548" data-n="2" data-tags="sunset facilities">
+      <article class="r-card" id="forti" data-lat="12.3665" data-lng="-69.1548" data-n="2" data-tags="facilities">
         <!-- PHOTO: save as images/beaches/forti.jpg (4:3), then replace this comment with: <div class="r-photo"><img src="images/beaches/forti.jpg" alt="Playa Forti" loading="lazy" width="1200" height="900"></div> -->
         <div class="r-body">
           <div class="r-head"><button class="r-pin" type="button" aria-label="Show Playa Forti on the map">2</button><h3>Playa Forti</h3></div>
+          <p class="bestfor"><strong>Best for</strong> The view, and dinner above it</p>
           <p class="r-desc">Dark, coarse sand under a cliff, with two restaurants on top. Known for the 40-foot jump from the cliff by the restaurant. People are seriously hurt doing it every year, so think hard before you join in.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>Free</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>Restaurants on the cliff above</dd></div>
-            <div><dt>Chairs</dt><dd>None</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i></i><i></i></span> Fair</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>None</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Restaurants on the cliff above</dd></div>
           </dl>
-          <p class="r-tip"><strong>Tip</strong> Best at sunset, from the beach or from a table upstairs. Rocky entry.</p>
+          <p class="r-tip"><strong>Tip</strong> Come late in the day and stay for sunset, on the sand or at a table upstairs. Rocky entry.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.3665%2C-69.1548" target="_blank" rel="noopener">Directions</a></p>
         </div>
       </article>
-      <article class="r-card" id="piskado" data-lat="12.3697" data-lng="-69.154" data-n="3" data-tags="turtles facilities family">
+      <article class="r-card" id="piskado" data-lat="12.3697" data-lng="-69.154" data-n="3" data-tags="turtles facilities">
         <!-- PHOTO: save as images/beaches/piskado.jpg (4:3), then replace this comment with: <div class="r-photo"><img src="images/beaches/piskado.jpg" alt="Playa Piskadó" loading="lazy" width="1200" height="900"></div> -->
         <div class="r-body">
           <div class="r-head"><button class="r-pin" type="button" aria-label="Show Playa Piskadó on the map">3</button><h3>Playa Piskadó</h3><span class="r-alt">Playa Grandi · “Turtle Beach”</span></div>
+          <p class="bestfor"><strong>Best for</strong> Seeing sea turtles, almost guaranteed</p>
           <p class="r-desc">A working fishermen&#x27;s beach where sea turtles gather to feed on the scraps. You will almost certainly see turtles, right off the pier. It&#x27;s busy and it isn&#x27;t a natural setting, but it&#x27;s the surest sighting on the island.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>Free</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>Snack stand, paid restrooms and showers</dd></div>
-            <div><dt>Chairs</dt><dd>A few for rent</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i></i></span> Good</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>A few for rent</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Snack stand, paid restrooms and showers</dd></div>
           </dl>
           <p class="r-tip"><strong>Tip</strong> Go between 7 and 9 AM, before the tour vans. Keep your distance and never touch the turtles.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.3697%2C-69.154" target="_blank" rel="noopener">Directions</a></p>
@@ -239,31 +239,31 @@
   <section class="area" id="knip" data-area="knip">
     <header class="area-head"><h2>Knip</h2><p>The two postcard beaches, a few minutes apart on the coast road.</p></header>
     <div class="r-grid">
-      <article class="r-card" id="groteknip" data-lat="12.3516" data-lng="-69.1512" data-n="4" data-tags="facilities family snorkel">
+      <article class="r-card" id="groteknip" data-lat="12.3516" data-lng="-69.1512" data-n="4" data-tags="facilities family">
         <!-- PHOTO: save as images/beaches/groteknip.jpg (4:3), then replace this comment with: <div class="r-photo"><img src="images/beaches/groteknip.jpg" alt="Grote Knip" loading="lazy" width="1200" height="900"></div> -->
         <div class="r-body">
           <div class="r-head"><button class="r-pin" type="button" aria-label="Show Grote Knip on the map">4</button><h3>Grote Knip</h3><span class="r-alt">Playa Kenepa Grandi</span></div>
-          <p class="r-desc">The most photographed beach on Curaçao: bright turquoise water between two cliffs, with a lookout above the parking lot. Good snorkeling along the rocks on the right side.</p>
+          <p class="bestfor"><strong>Best for</strong> The postcard view, and a full beach day</p>
+          <p class="r-desc">The most photographed beach on Curaçao: bright turquoise water between two cliffs, with a lookout above the parking lot. There&#x27;s snorkeling along the rocks on the right side.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>Free</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>Snack bar, restrooms, showers</dd></div>
-            <div><dt>Chairs</dt><dd>Chairs and umbrellas for rent</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i></i></span> Good</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>Chairs and umbrellas for rent</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Snack bar, restrooms, showers</dd></div>
           </dl>
           <p class="r-tip"><strong>Tip</strong> Arrive before 10 AM on weekends. Sundays it fills up with local families.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.3516%2C-69.1512" target="_blank" rel="noopener">Directions</a></p>
         </div>
       </article>
-      <article class="r-card" id="kleinknip" data-lat="12.3412" data-lng="-69.1524" data-n="5" data-tags="snorkel quiet family">
+      <article class="r-card" id="kleinknip" data-lat="12.3412" data-lng="-69.1524" data-n="5" data-tags="snorkel quiet">
         <!-- PHOTO: save as images/beaches/kleinknip.jpg (4:3), then replace this comment with: <div class="r-photo"><img src="images/beaches/kleinknip.jpg" alt="Klein Knip" loading="lazy" width="1200" height="900"></div> -->
         <div class="r-body">
           <div class="r-head"><button class="r-pin" type="button" aria-label="Show Klein Knip on the map">5</button><h3>Klein Knip</h3><span class="r-alt">Playa Kenepa Chiki</span></div>
+          <p class="bestfor"><strong>Best for</strong> Shallow, easy snorkeling without the crowd</p>
           <p class="r-desc">The smaller, quieter sister. Shallow and calm, with very healthy coral close in: purple sea fans and plenty of fish.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>Free</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>None. Bring food and water.</dd></div>
-            <div><dt>Chairs</dt><dd>None. A few palapas for shade.</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span> Excellent</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>For rent, plus a few palapas</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>A food truck some days. Bring your own to be safe.</dd></div>
           </dl>
           <p class="r-tip"><strong>Tip</strong> Our pick when Grote Knip is packed.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.3412%2C-69.1524" target="_blank" rel="noopener">Directions</a></p>
@@ -275,18 +275,18 @@
   <section class="area" id="lagun" data-area="lagun">
     <header class="area-head"><h2>Lagun</h2><p>Two narrow coves cut into the cliffs.</p></header>
     <div class="r-grid">
-      <article class="r-card" id="jeremi" data-lat="12.3288" data-lng="-69.1502" data-n="6" data-tags="quiet sunset">
+      <article class="r-card" id="jeremi" data-lat="12.3288" data-lng="-69.1502" data-n="6" data-tags="quiet">
         <div class="r-photo"><img src="images/BlueTideWestpunt-Beaches-4-PlayaJeremi.jpg" alt="Playa Jeremi" loading="lazy" width="1200" height="900"></div>
         <div class="r-body">
           <div class="r-head"><button class="r-pin" type="button" aria-label="Show Playa Jeremi on the map">6</button><h3>Playa Jeremi</h3></div>
-          <p class="r-desc">A secluded cove with clear water, popular with local divers. Undeveloped and usually uncrowded.</p>
+          <p class="bestfor"><strong>Best for</strong> Peace and quiet</p>
+          <p class="r-desc">A secluded cove with clear water, popular with local divers. Undeveloped and usually uncrowded, with snorkeling along the cliffs.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>Free</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>None</dd></div>
-            <div><dt>Chairs</dt><dd>Bring your own shade</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i></i></span> Good</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>Chairs and umbrellas for rent</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>None. Bring food and water.</dd></div>
           </dl>
-          <p class="r-tip"><strong>Tip</strong> A good spot for a quiet sunset.</p>
+          <p class="r-tip"><strong>Tip</strong> Rocky at the waterline, so bring water shoes.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.3288%2C-69.1502" target="_blank" rel="noopener">Directions</a></p>
         </div>
       </article>
@@ -294,15 +294,51 @@
         <div class="r-photo"><img src="images/BlueTideWestpunt-Beaches-1-PlayaLagun.jpg" alt="Playa Lagun" loading="lazy" width="1200" height="900"></div>
         <div class="r-body">
           <div class="r-head"><button class="r-pin" type="button" aria-label="Show Playa Lagun on the map">7</button><h3>Playa Lagun</h3></div>
+          <p class="bestfor"><strong>Best for</strong> A first snorkel, in calm water</p>
           <p class="r-desc">A narrow, sheltered cove between tall cliffs, with fishing boats pulled up on the sand. The calm water makes it the best place for a first snorkel: follow the cliff walls for turtles, squid and schools of small fish.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>Free</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>Restaurant on the cliff above</dd></div>
-            <div><dt>Chairs</dt><dd>For rent</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i></i></span> Good</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>For rent</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Restaurant on the cliff above, showers and toilets, a smoothie stand in the parking lot</dd></div>
           </dl>
-          <p class="r-tip"><strong>Tip</strong> Stays calm when it&#x27;s windy elsewhere. Go early for the turtles.</p>
+          <p class="r-tip"><strong>Tip</strong> It&#x27;s small and fills up, so get there before 10. Stays calm when it&#x27;s windy elsewhere.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.3184%2C-69.1507" target="_blank" rel="noopener">Directions</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="area" id="santacruz" data-area="santacruz">
+    <header class="area-head"><h2>Santa Cruz &amp; Soto</h2><p>A locals&#x27; beach, and a handful of wild ones down a dirt road.</p></header>
+    <div class="r-grid">
+      <article class="r-card" id="santacruz" data-lat="12.3059" data-lng="-69.1453" data-n="8" data-tags="facilities family quiet">
+        <!-- PHOTO: save as images/beaches/santacruz.jpg (4:3), then replace this comment with: <div class="r-photo"><img src="images/beaches/santacruz.jpg" alt="Playa Santa Cruz" loading="lazy" width="1200" height="900"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Playa Santa Cruz on the map">8</button><h3>Playa Santa Cruz</h3></div>
+          <p class="bestfor"><strong>Best for</strong> Sand, shade and a local crowd</p>
+          <p class="r-desc">A wide, sandy bay that the tour buses skip. Weekdays you share it with the pelicans; weekends it&#x27;s busier with families. You can rent a boat here, and it&#x27;s the start of the walk to the black sand of Santu Pretu and the Blue Room cave.</p>
+          <dl class="facts">
+            <div><dt>Entry</dt><dd>Free</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>Free palapas and tables, loungers for rent</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Food and drinks on the beach</dd></div>
+          </dl>
+          <p class="r-tip"><strong>Tip</strong> More sand and fewer rocks underfoot than most beaches out here.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.3059%2C-69.1453" target="_blank" rel="noopener">Directions</a></p>
+        </div>
+      </article>
+      <article class="r-card" id="sanjuan" data-lat="12.2454" data-lng="-69.1054" data-n="9" data-tags="quiet">
+        <!-- PHOTO: save as images/beaches/sanjuan.jpg (4:3), then replace this comment with: <div class="r-photo"><img src="images/beaches/sanjuan.jpg" alt="The San Juan beaches" loading="lazy" width="1200" height="900"></div> -->
+        <div class="r-body">
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show The San Juan beaches on the map">9</button><h3>The San Juan beaches</h3><span class="r-alt">Playa Manzaliña · Playa Largu · Playa Shon Mosa</span></div>
+          <p class="bestfor"><strong>Best for</strong> Having a beach to yourself</p>
+          <p class="r-desc">A string of small, undeveloped beaches on the grounds of Landhuis San Juan, between Soto and Cas Abou. You pay at the plantation house and follow rough dirt roads to the water. Coral pebbles more than sand, very little shade, and often nobody else there.</p>
+          <dl class="facts">
+            <div><dt>Entry</dt><dd>About 10 guilders, cash, at the landhuis</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>None</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>None. Bring everything.</dd></div>
+          </dl>
+          <p class="r-tip"><strong>Tip</strong> For the adventurous. Check that the estate is open before you drive out, take it slowly on the dirt road, and don&#x27;t count on phone signal.</p>
+          <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.2454%2C-69.1054" target="_blank" rel="noopener">Directions</a></p>
         </div>
       </article>
     </div>
@@ -311,48 +347,48 @@
   <section class="area" id="south" data-area="south">
     <header class="area-head"><h2>Sint Willibrordus</h2><p>The big three near the start of Bandabou, each down its own side road.</p></header>
     <div class="r-grid">
-      <article class="r-card" id="casabou" data-lat="12.2281" data-lng="-69.0922" data-n="8" data-tags="snorkel facilities family">
+      <article class="r-card" id="casabou" data-lat="12.2281" data-lng="-69.0922" data-n="10" data-tags="snorkel facilities family">
         <div class="r-photo"><img src="images/BlueTideWestpunt-Beaches-3-CasAbou.jpg" alt="Cas Abou" loading="lazy" width="1200" height="900"></div>
         <div class="r-body">
-          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Cas Abou on the map">8</button><h3>Cas Abou</h3></div>
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Cas Abou on the map">10</button><h3>Cas Abou</h3></div>
+          <p class="bestfor"><strong>Best for</strong> A full day with everything on hand</p>
           <p class="r-desc">Long, white and wide, with full facilities. It regularly shows up on lists of the best beaches in the Caribbean. The water is very clear and the entry is easy.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>About $6 per car</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>Restaurant, bar, showers, massages</dd></div>
-            <div><dt>Chairs</dt><dd>Plenty of chairs and palapas for rent</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span> Excellent</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>Plenty of chairs and palapas for rent</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Restaurant, bar, showers, massages</dd></div>
           </dl>
           <p class="r-tip"><strong>Tip</strong> Swim to the north (left) side for the best snorkeling.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.2281%2C-69.0922" target="_blank" rel="noopener">Directions</a></p>
         </div>
       </article>
-      <article class="r-card" id="portomari" data-lat="12.2185" data-lng="-69.0856" data-n="9" data-tags="snorkel facilities family">
+      <article class="r-card" id="portomari" data-lat="12.2185" data-lng="-69.0856" data-n="11" data-tags="snorkel facilities family">
         <!-- PHOTO: save as images/beaches/portomari.jpg (4:3), then replace this comment with: <div class="r-photo"><img src="images/beaches/portomari.jpg" alt="Playa Porto Mari" loading="lazy" width="1200" height="900"></div> -->
         <div class="r-body">
-          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Playa Porto Mari on the map">9</button><h3>Playa Porto Mari</h3></div>
-          <p class="r-desc">Known for its double reef, two parallel bands of coral with sand between them, and for the pigs that sometimes wander onto the beach. A long boardwalk and a big restaurant.</p>
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Playa Porto Mari on the map">11</button><h3>Playa Porto Mari</h3></div>
+          <p class="bestfor"><strong>Best for</strong> The double reef</p>
+          <p class="r-desc">Known for its double reef, two parallel bands of coral with sand between them, and for the pigs that live by the parking lot. A long boardwalk and a big restaurant.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>About $3 per person</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>Restaurant, bar, restrooms</dd></div>
-            <div><dt>Chairs</dt><dd>Plenty for rent</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span> Excellent</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>Plenty for rent</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Restaurant, bar, restrooms</dd></div>
           </dl>
           <p class="r-tip"><strong>Tip</strong> Snorkel out over the first reef to the second.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.2185%2C-69.0856" target="_blank" rel="noopener">Directions</a></p>
         </div>
       </article>
-      <article class="r-card" id="daaibooi" data-lat="12.2123" data-lng="-69.0844" data-n="10" data-tags="snorkel turtles quiet facilities family">
+      <article class="r-card" id="daaibooi" data-lat="12.2123" data-lng="-69.0844" data-n="12" data-tags="snorkel turtles facilities family">
         <div class="r-photo"><img src="images/BlueTideWestpunt-Beaches-5-Daaibooi.jpg" alt="Daaibooi" loading="lazy" width="1200" height="900"></div>
         <div class="r-body">
-          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Daaibooi on the map">10</button><h3>Daaibooi</h3></div>
-          <p class="r-desc">A traditional bay that&#x27;s still mostly a local favorite. Follow the rocky cliffs on either side for the best snorkeling, and for sea turtles in a natural setting.</p>
+          <div class="r-head"><button class="r-pin" type="button" aria-label="Show Daaibooi on the map">12</button><h3>Daaibooi</h3></div>
+          <p class="bestfor"><strong>Best for</strong> Turtles without the crowd</p>
+          <p class="r-desc">A traditional bay that&#x27;s still mostly a local favorite. Follow the rocky cliffs on either side for the best snorkeling, and for sea turtles in a natural setting. A short trail on the left leads up the cliff for the view.</p>
           <dl class="facts">
             <div><dt>Entry</dt><dd>Free</dd></div>
-            <div><dt>Food &amp; restrooms</dt><dd>Snack bar, restrooms</dd></div>
-            <div><dt>Chairs</dt><dd>Chairs for rent, pergolas for shade</dd></div>
-            <div><dt>Snorkeling</dt><dd><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span> Excellent</dd></div>
+            <div><dt>Chairs &amp; shade</dt><dd>Chairs for rent, free palapas</dd></div>
+            <div class="wide"><dt>Food &amp; restrooms</dt><dd>Snack bar, restrooms</dd></div>
           </dl>
-          <p class="r-tip"><strong>Tip</strong> Your best chance of turtles without the crowds of Piskadó.</p>
+          <p class="r-tip"><strong>Tip</strong> It&#x27;s small, so come early. Your best chance of turtles away from Piskadó.</p>
           <p class="r-links"><a href="https://www.google.com/maps/search/?api=1&query=12.2123%2C-69.0844" target="_blank" rel="noopener">Directions</a></p>
         </div>
       </article>
