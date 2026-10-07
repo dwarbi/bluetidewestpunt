@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blue Tide Westpunt | Caribbean Escape in Curaçao</title>
-<meta name="description" content="A private top-floor retreat in Westpunt, Curaçao — steps from the sea, surrounded by coral reefs and Caribbean sunshine.">
+<title>Blue Tide Westpunt | Two-bedroom condo by the sea in Westpunt, Curaçao</title>
+<meta name="description" content="A two-bedroom, top-floor condo for up to four in Westpunt, Curaçao, a short walk from the sea and some of the island's best snorkeling. Book direct.">
 <link rel="icon" href="images/favicon.ico">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bluetidewestpunt.com/">
-<meta property="og:title" content="Blue Tide Westpunt | Caribbean Escape in Curaçao">
-<meta property="og:description" content="A private top-floor 2BR/2BA in Westpunt, Curaçao, steps from the sea and some of the island's best snorkeling. Book direct.">
-<meta property="og:image" content="https://bluetidewestpunt.com/images/BlueTideWestpunt-Aerial.jpg">
+<meta property="og:title" content="Blue Tide Westpunt | Two-bedroom condo by the sea in Westpunt, Curaçao">
+<meta property="og:description" content="A two-bedroom, top-floor condo for up to four in Westpunt, Curaçao, a short walk from the sea. Book direct.">
+<meta property="og:image" content="https://bluetidewestpunt.com/images/home/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -619,6 +619,41 @@
   @media (max-width: 350px) {
     .bm-calendar { height: 346px; } /* legend wraps to two lines on tiny screens */
   }
+
+  /* ─── HOME: new sections ─── */
+  .room-thumbs { grid-template-columns: repeat(6, 1fr); }
+  .home-split { background: var(--sand); padding: 80px 0; }
+  .home-split-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .home-split-img img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 16px; display: block; }
+  .home-split h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 40px); color: var(--navy); line-height: 1.15; margin-bottom: 18px; }
+  .home-split p { color: var(--text-soft); font-size: 16px; line-height: 1.7; margin-bottom: 14px; }
+  .home-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; }
+  .home-links a { color: var(--teal); font-weight: 500; text-decoration: none; }
+  .home-links a:hover { text-decoration: underline; }
+  .home-direct { background: #fff; padding-bottom: 80px; }
+  .home-steps { list-style: none; counter-reset: st; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .home-steps li { counter-increment: st; background: var(--sand); border-radius: 16px; padding: 28px 26px; }
+  .home-steps li::before { content: counter(st); display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 600; margin-bottom: 14px; }
+  .home-steps b { display: block; font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 6px; font-weight: 600; }
+  .home-steps span { color: var(--text-soft); font-size: 15px; line-height: 1.6; }
+  .home-direct-cta { text-align: center; margin-top: 40px; }
+  .home-direct-cta .hero-cta { background: var(--teal); color: #fff; }
+  .guide-cta p { max-width: 560px; }
+  .home-guides { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 1100px; margin: 0 auto; text-align: left; }
+  .home-guides a { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); border-radius: 16px; padding: 24px 22px; color: #fff; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+  .home-guides a:hover { background: rgba(255,255,255,0.18); transform: translateY(-3px); }
+  .home-guides b { display: block; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .home-guides span { font-size: 14px; line-height: 1.55; opacity: 0.85; }
+  .home-review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; padding-bottom: 72px; }
+  .home-review-grid blockquote { background: #fff; border-radius: 16px; padding: 28px; font-size: 15px; line-height: 1.7; }
+  .home-review-grid cite { display: block; margin-top: 12px; font-style: normal; color: var(--text-soft); font-size: 13px; }
+  @media (max-width: 860px) {
+    .room-thumbs { grid-template-columns: repeat(4, 1fr); }
+    .home-split-inner { grid-template-columns: 1fr; gap: 28px; }
+    .home-steps { grid-template-columns: 1fr; }
+    .home-guides { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) { .home-guides { grid-template-columns: 1fr; } }
 </style>
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -646,47 +681,51 @@
 
 <!-- HERO -->
 <section class="hero">
-  <img class="hero-img" src="images/BlueTideWestpunt-Aerial.jpg" alt="Blue Tide Westpunt aerial view — Punta Azul, Westpunt, Curaçao">
+  <img class="hero-img" src="images/home/hero.jpg" alt="Punta Azul on the cliffs of Westpunt, Curaçao, seen from the air">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-tag">Westpunt · Curaçao · Punta Azul</span>
+    <span class="hero-tag">Westpunt · Curaçao</span>
     <h1>Blue Tide<br>Westpunt</h1>
-    <p class="hero-sub">A private top-floor retreat steps from the Caribbean Sea — the seclusion of a villa with the ease of a managed resort.</p>
-    <a href="#contact" class="hero-cta">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      Inquire About Dates
-    </a>
+    <p class="hero-sub">A two-bedroom condo for up to four, on the top floor, a short walk from the sea. Book it directly with us.</p>
+    <a href="#contact" class="hero-cta">Check dates &amp; book direct</a>
   </div>
 </section>
 
 <!-- PHOTO STRIP -->
 <div class="photo-strip">
-  <div><img src="images/BlueTideWestpunt-Header-1-Sunset.jpg" alt="Sunset at Blue Tide Westpunt" loading="lazy"></div>
-  <div><img src="images/BlueTideWestpunt-Header-2-Pool.jpg" alt="Pool at Blue Tide Westpunt" loading="lazy"></div>
-  <div><img src="images/BlueTideWestpunt-Header-3-Coast.jpg" alt="Coastline at Blue Tide Westpunt" loading="lazy"></div>
-  <div><img src="images/BlueTideWestpunt-Header-4-View.jpg" alt="View from Blue Tide Westpunt" loading="lazy"></div>
-  <div><img src="images/BlueTideWestpunt-Header-5-Sea.jpg" alt="Sea at Blue Tide Westpunt" loading="lazy"></div>
+  <div><img src="images/home/pool.jpg" alt="The pool at Punta Azul" loading="lazy"></div>
+  <div><img src="images/home/water-2.jpg" alt="Steps down to the sea" loading="lazy"></div>
+  <div><img src="images/home/balcony.jpg" alt="The balcony" loading="lazy"></div>
+  <div><img src="images/home/living-1.jpg" alt="The living room" loading="lazy"></div>
+  <div><img src="images/home/exterior.jpg" alt="The building" loading="lazy"></div>
 </div>
 
 <!-- ROOM GALLERY -->
 <section class="room-gallery-section">
   <div class="room-gallery-wrap">
     <div class="section-header" style="margin-bottom:36px;">
-      <span class="section-label">Inside the Unit</span>
-      <h2>A thoughtfully appointed Caribbean home</h2>
-      <p>Two bedrooms, two full bathrooms, full kitchen, in-unit laundry, and AC throughout — everything you need, with light, air, and water access steps away.</p>
+      <span class="section-label">The Condo</span>
+      <h2>Two bedrooms, two bathrooms, top floor</h2>
+      <p>The whole upper floor of a freestanding building, with its own entrance. Full kitchen, washer and dryer, air conditioning throughout, and a balcony for breakfast.</p>
     </div>
     <div class="room-gallery-main">
-      <img id="rgMain" src="images/BlueTideWestpunt-Property-1-Bedroom.jpg" alt="Blue Tide Westpunt bedroom">
-      <button class="rg-btn prev" id="rgPrev">&#8592;</button>
-      <button class="rg-btn next" id="rgNext">&#8594;</button>
+      <img id="rgMain" src="images/home/living-1.jpg" alt="Blue Tide Westpunt">
+      <button class="rg-btn prev" id="rgPrev" aria-label="Previous photo">&#8592;</button>
+      <button class="rg-btn next" id="rgNext" aria-label="Next photo">&#8594;</button>
     </div>
     <div class="room-thumbs" id="rgThumbs">
-      <div class="room-thumb active"><img src="images/BlueTideWestpunt-Property-1-Bedroom.jpg" alt="Bedroom" loading="lazy"></div>
-      <div class="room-thumb"><img src="images/BlueTideWestpunt-Property-2-LivingRoom.jpg" alt="Living room" loading="lazy"></div>
-      <div class="room-thumb"><img src="images/BlueTideWestpunt-Property-3-Kitchen.jpg" alt="Full kitchen" loading="lazy"></div>
-      <div class="room-thumb"><img src="images/BlueTideWestpunt-Property-4-Bathroom.jpg" alt="Bathroom" loading="lazy"></div>
-      <div class="room-thumb"><img src="images/BlueTideWestpunt-Property-5-Washer-Dryer.jpg" alt="Washer/dryer" loading="lazy"></div>
+      <div class="room-thumb active"><img src="images/home/living-1.jpg" alt="Living room" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/living-2.jpg" alt="Living and dining area" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/dining.jpg" alt="Dining table and kitchen" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/kitchen.jpg" alt="Kitchen" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/bedroom-1.jpg" alt="Primary bedroom" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/bedroom-2.jpg" alt="Second bedroom" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/bathroom.jpg" alt="Bathroom" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/balcony.jpg" alt="Balcony" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/laundry.jpg" alt="Washer and dryer" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/exterior.jpg" alt="The building" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/pool-2.jpg" alt="Community pool" loading="lazy"></div>
+      <div class="room-thumb"><img src="images/home/water-1.jpg" alt="Sea access" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -695,30 +734,45 @@
 <section style="background:#fff;">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">Your Tropical Haven</span>
-      <h2>Everything you need for a perfect Caribbean escape</h2>
-      <p>Beautifully appointed 2BR/2BA on the top floor of a freestanding building — light, air, and direct water access.</p>
+      <span class="section-label">What You Get</span>
+      <h2>The short version</h2>
     </div>
     <div class="features-grid">
       <div class="feature-card">
         <span class="feature-icon">🏠</span>
-        <h3>Spacious Comfort</h3>
-        <p>Two bedrooms, two full bathrooms, generous living space with views of lush wilderness, mountains, and partial ocean vistas. Separate private entrance.</p>
+        <h3>The space</h3>
+        <p>Two bedrooms and two full bathrooms, for up to four guests. Full kitchen, washer and dryer, and air conditioning in every room.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">🌊</span>
-        <h3>Direct Water Access</h3>
-        <p>Walk moments to pristine Caribbean waters teeming with coral and colorful fish — no streets to cross, all within the gated Punta Azul community.</p>
+        <h3>The sea</h3>
+        <p>Steps cut into the cliff take you down to the water, inside the gated Punta Azul community. No road to cross and no beach bag to pack.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">🏖️</span>
-        <h3>Resort Amenities</h3>
-        <p>Community pool, outdoor shower, and the security of a gated development. Twelve brightly colored buildings creating a vibrant Caribbean atmosphere.</p>
+        <span class="feature-icon">🏊</span>
+        <h3>The pool</h3>
+        <p>A shared pool with loungers, shade and an outdoor shower, a minute from the door.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">🤿</span>
-        <h3>World-Class Snorkeling</h3>
-        <p>Some of the Caribbean's finest reefs begin right outside the gate. Sea turtles, eagle rays, and vibrant coral are part of daily life here.</p>
+        <span class="feature-icon">🚗</span>
+        <h3>Good to know</h3>
+        <p>Westpunt is about 45 minutes from the airport, and you'll want a rental car. Once you're here, the closest beaches are five to ten minutes away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REEF -->
+<section class="home-split">
+  <div class="container">
+    <div class="home-split-inner">
+      <div class="home-split-img"><img src="images/home/cliffs.jpg" alt="The cliffs and reef in front of Punta Azul" loading="lazy"></div>
+      <div>
+        <span class="section-label">🤿 The Reef Out Front</span>
+        <h2>Snorkel before breakfast</h2>
+        <p>The reef starts right below the cliff. Sea turtles and eagle rays pass through, and we've been keeping track of what lives there.</p>
+        <p>We wrote up what we've found in a guide to our own reef, plus a second one covering the best snorkeling spots around the island.</p>
+        <p class="home-links"><a href="reef-guide.html">Our reef guide →</a> <a href="curacao-snorkel-guide.html">Snorkeling around Curaçao →</a></p>
       </div>
     </div>
   </div>
@@ -729,10 +783,11 @@
   <div class="container">
     <div class="westpunt-inner">
       <div class="westpunt-text">
-        <span class="section-label">The Setting</span>
-        <h2>Remote, unspoiled, impossibly beautiful.</h2>
-        <p>Nestled at the far western tip of Curaçao, Westpunt is a tranquil fishing village that embodies the unspoiled beauty of the Caribbean. This serene paradise offers a peaceful escape from busy tourist areas, with dramatic coastal landscapes, pristine beaches, and a laid-back island atmosphere that invites you to slow down and breathe deeply.</p>
-        <p style="margin-top:16px;">Located just outside the hurricane belt, Curaçao enjoys year-round sunshine with average temperatures of 80°F — and trade winds that keep everything comfortable.</p>
+        <span class="section-label">Where We Are</span>
+        <h2>Westpunt, at the far end of the island</h2>
+        <p>Westpunt is a small fishing village at the tip of Bandabou, the quiet, green half of Curaçao. It's a long way from the cruise port and the resort strip, and close to the beaches most visitors drive an hour to reach.</p>
+        <p style="margin-top:16px;">Curaçao sits outside the hurricane belt, so it's warm and breezy all year.</p>
+        <p style="margin-top:16px;"><a href="bandabou.html" style="color:#fff;">More about Bandabou →</a></p>
       </div>
       <div class="westpunt-map">
         <iframe
@@ -744,202 +799,44 @@
   </div>
 </section>
 
-<!-- BEACHES -->
-<section class="beaches-section">
+<!-- BOOK DIRECT -->
+<section class="home-direct">
   <div class="container">
     <div class="section-header">
-      <span class="section-label">🏖️ Nearby Beaches</span>
-      <h2>World-class beaches, minutes from your door</h2>
-      <p>Westpunt is surrounded by some of Curaçao's most celebrated beaches — each with its own character.</p>
+      <span class="section-label">Booking</span>
+      <h2>Why book with us directly</h2>
+      <p>It's the same condo you'll find on the big booking sites, for less, because there are no platform fees on top. And you deal with us, Denis and Joanna, from the first question to checkout.</p>
     </div>
+    <ol class="home-steps">
+      <li><b>Check the calendar</b><span>Open dates are shown below.</span></li>
+      <li><b>Send us your dates</b><span>Use the form, or email us if you prefer.</span></li>
+      <li><b>We'll write back</b><span>With the price for your stay and how to confirm it.</span></li>
+    </ol>
+    <p class="home-direct-cta"><a href="#contact" class="hero-cta">Check dates</a></p>
+  </div>
+</section>
 
-    <!-- Beach Carousel -->
-    <div class="beach-carousel">
-      <div class="beach-slides" id="beachSlides">
-        <div class="beach-slide">
-          <img src="images/BlueTideWestpunt-Beaches-1-PlayaLagun.jpg" alt="Playa Lagun cove" loading="lazy">
-          <div class="beach-slide-caption">
-            <h4>Playa Lagun</h4>
-            <p>A charming cove where sea turtles feed every morning — no boat required. 9 minutes from the property.</p>
-          </div>
-        </div>
-        <div class="beach-slide">
-          <img src="images/BlueTideWestpunt-Beaches-2-PlayaKalki.jpg" alt="Playa Kalki shore dive" loading="lazy">
-          <div class="beach-slide-caption">
-            <h4>Playa Kalki</h4>
-            <p>World-class shore diving and snorkeling — vibrant reefs, incredible visibility. Five minutes from your door.</p>
-          </div>
-        </div>
-        <div class="beach-slide">
-          <img src="images/BlueTideWestpunt-Beaches-3-CasAbou.jpg" alt="Cas Abou beach" loading="lazy">
-          <div class="beach-slide-caption">
-            <h4>Cas Abou</h4>
-            <p>One of Curaçao's finest — brilliant white sand, crystal-clear water, and full facilities. About 30 minutes away.</p>
-          </div>
-        </div>
-        <div class="beach-slide">
-          <img src="images/BlueTideWestpunt-Beaches-4-PlayaJeremi.jpg" alt="Playa Jeremi secluded beach" loading="lazy">
-          <div class="beach-slide-caption">
-            <h4>Playa Jeremi</h4>
-            <p>A secluded, undeveloped gem favored by locals — calm water, shade trees, and almost no crowds. 8 minutes away.</p>
-          </div>
-        </div>
-        <div class="beach-slide">
-          <img src="images/BlueTideWestpunt-Beaches-5-Daaibooi.jpg" alt="Daaibooi Bay" loading="lazy">
-          <div class="beach-slide-caption">
-            <h4>Daaibooi</h4>
-            <p>A quiet, sheltered bay with calm, clear water — ideal for swimming and easy snorkeling. About 30 minutes from the property.</p>
-          </div>
-        </div>
-      </div>
-      <button class="bc-btn prev" id="bcPrev">&#8592;</button>
-      <button class="bc-btn next" id="bcNext">&#8594;</button>
-      <div class="beach-dots" id="beachDots"></div>
-    </div>
-
-    <!-- Beach Cards -->
-    <div class="beach-list">
-      <div class="beach-card">
-        <span class="beach-dist">3 min drive</span>
-        <h3>Playa Piskadó</h3>
-        <p>Turtle Beach. Near-guaranteed sea turtle encounters. Authentic fishing village atmosphere.</p>
-        <div class="beach-tags"><span class="beach-tag">Sea Turtles</span><span class="beach-tag">Local Culture</span></div>
-      </div>
-      <div class="beach-card">
-        <span class="beach-dist">5 min drive</span>
-        <h3>Playa Kalki</h3>
-        <p>World-class shore diving and snorkeling. Vibrant coral, exceptional visibility.</p>
-        <div class="beach-tags"><span class="beach-tag">Scuba</span><span class="beach-tag">Snorkeling</span></div>
-      </div>
-      <div class="beach-card">
-        <span class="beach-dist">9 min drive</span>
-        <h3>Playa Lagun</h3>
-        <p>Intimate cove with sea turtles feeding most mornings. Best at sunrise.</p>
-        <div class="beach-tags"><span class="beach-tag">Sea Turtles</span><span class="beach-tag">Dolphins</span></div>
-      </div>
-      <div class="beach-card">
-        <span class="beach-dist">8 min drive</span>
-        <h3>Kenepa Grandi</h3>
-        <p>Curaçao's iconic postcard beach. Cliff jumping, sea turtles, facilities on-site.</p>
-        <div class="beach-tags"><span class="beach-tag">Cliff Jumping</span><span class="beach-tag">Facilities</span></div>
-      </div>
-      <div class="beach-card">
-        <span class="beach-dist">6 min drive</span>
-        <h3>Kenepa Chiki</h3>
-        <p>The quieter sister beach. Healthy coral, palapas, fewer crowds. A true local gem.</p>
-        <div class="beach-tags"><span class="beach-tag">Palapas</span><span class="beach-tag">Quiet</span></div>
-      </div>
+<!-- REVIEWS -->
+<section class="home-reviews" style="background:var(--sand);">
+  <div class="container">
+    <div class="section-header"><span class="section-label">Guests</span><h2>What guests say</h2></div>
+    <div class="home-review-grid">
+      <blockquote><p>“We absolutely loved the easy stair access to really nice snorkeling steps from the unit. And several other fantastic snorkel beaches are located within a 10 minute drive. The night skies were bright with stars.”</p><cite>Brett, New York · September 2026</cite></blockquote>
+      <blockquote><p>“Spacious apartment, well-ventilated, clean, with lots of amenities. We loved the location, close to the main beaches, and snorkeling in the area accessible from the condominium was fantastic.”</p><cite>Sandra · May 2026</cite></blockquote>
+      <blockquote><p>“Great location, quiet, feels right at home. Tucked away from the resorts so we had such a peaceful stay.”</p><cite>Jacqui, New York · July 2026, and back again in September</cite></blockquote>
     </div>
   </div>
 </section>
 
-<!-- GUIDE CTA -->
+<!-- GUIDES -->
 <section class="guide-cta">
-  <h2>Plan Your Perfect Stay</h2>
-  <p>Everything you need to know about beaches, dining, snorkeling, and exploring western Curaçao.</p>
-  <div class="guide-buttons">
-    <a href="https://bluetidewestpunt.com/guest-guide.html" class="btn-primary" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-      Open Guest Guide
-    </a>
-    <a href="https://bluetidewestpunt.com/beaches.html" class="btn-outline" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2H6l-4 8h20l-4-8z"/><path d="M2 10c0 6 4 12 10 12s10-6 10-12"/></svg>
-      Beach Finder Tool
-    </a>
-    <a href="https://bluetidewestpunt.com/curacao-snorkel-guide.html" class="btn-outline" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15"/><path d="M15 6v15"/></svg>
-      Curaçao Snorkel Guide
-    </a>
-  </div>
-</section>
-
-<!-- SITES PHOTO STRIP -->
-<section style="background:var(--sand); padding: 60px 0 0;">
-  <div class="container">
-    <div class="section-header" style="margin-bottom:24px;">
-      <span class="section-label">🌴 Beyond the Beach</span>
-      <h2>The island is your backyard</h2>
-      <p>From volcanic peaks to colonial streetscapes — Curaçao rewards every kind of explorer.</p>
-    </div>
-  </div>
-  <div class="sites-strip">
-    <div><img src="images/BlueTideWestpunt-Sites-1-Christoffel.jpg" alt="Mount Christoffel" loading="lazy"></div>
-    <div><img src="images/BlueTideWestpunt-Sites-2-Curacao.jpg" alt="Curaçao coastline" loading="lazy"></div>
-    <div><img src="images/BlueTideWestpunt-Sites-3-SheteBoka.jpg" alt="Shete Boka National Park" loading="lazy"></div>
-    <div><img src="images/BlueTideWestpunt-Sites-4-Willemstad.jpg" alt="Willemstad, Curaçao" loading="lazy"></div>
-    <div><img src="images/BlueTideWestpunt-Sites-5-Mountains.jpg" alt="Curaçao mountains" loading="lazy"></div>
-  </div>
-</section>
-
-<!-- ATTRACTIONS -->
-<section class="attractions-section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-label">🗺️ Things to Do</span>
-      <h2>Explore the west end of Curaçao</h2>
-    </div>
-    <div class="attractions-grid">
-      <div class="attraction-card">
-        <h4>⛰️ Mount Christoffel</h4>
-        <p>Curaçao's highest peak at 372m, within Christoffel National Park. Hike through diverse flora to panoramic views. Climbing 6–10 AM; also accessible by jeep safari.</p>
-      </div>
-      <div class="attraction-card">
-        <h4>🌿 Hòfi Mango</h4>
-        <p>Stunning 1707 nature park with 1,100+ ancient mango trees, a historic sugar mill, the "Stairway to Heaven" viewpoint, and Curaçao's first zipline.</p>
-      </div>
-      <div class="attraction-card">
-        <h4>🌊 Shete Boka National Park</h4>
-        <p>Ten dramatic inlets where powerful waves crash against limestone cliffs. Natural blowholes, turtle nesting sites, and spectacular coastal hiking.</p>
-      </div>
-      <div class="attraction-card">
-        <h4>🏛️ Tula Museum (Landhuis Kenepa)</h4>
-        <p>Historic plantation where Tula led the famous 1795 slave revolt. The preserved landhuis now serves as a museum with guided tours.</p>
-      </div>
-      <div class="attraction-card">
-        <h4>🍽️ Playa Forti</h4>
-        <p>Dramatic clifftop restaurant with sweeping panoramic views of Westpunt Bay. A beloved local gathering spot at sunset.</p>
-      </div>
-      <div class="attraction-card">
-        <h4>🌆 Willemstad (45 min)</h4>
-        <p>UNESCO World Heritage city with colorful Dutch colonial architecture, the floating Queen Emma Bridge, and vibrant Punda and Otrobanda districts.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CURACAO INFO -->
-<section class="info-section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-label">Know Before You Go</span>
-      <h2>About Curaçao</h2>
-    </div>
-    <div class="info-grid">
-      <div class="info-card">
-        <h4>☀️ Climate</h4>
-        <p>Year-round sunshine, avg. 80°F (27°C). Outside the hurricane belt. Trade winds provide natural cooling — comfortable even in summer.</p>
-      </div>
-      <div class="info-card">
-        <h4>🗣️ Language</h4>
-        <p>Dutch and Papiamentu are official. English and Spanish are widely spoken. The island has rich African, European, and Latin American cultural roots.</p>
-      </div>
-      <div class="info-card">
-        <h4>💱 Currency</h4>
-        <p>Caribbean Guilder (XCG). US dollars widely accepted. Credit cards accepted at most establishments. Car rental recommended for Westpunt.</p>
-      </div>
-      <div class="info-card">
-        <h4>✈️ Getting Here</h4>
-        <p>Hato International Airport (CUR) with connections across the Americas and Europe. Westpunt is about 45 minutes from the airport.</p>
-      </div>
-      <div class="info-card">
-        <h4>🐠 Marine Life</h4>
-        <p>65+ pristine dive sites. Healthy coral reefs, sea turtles, tropical fish, and exceptional underwater visibility. Shore diving from most beaches.</p>
-      </div>
-      <div class="info-card">
-        <h4>🚗 Transportation</h4>
-        <p>A rental car is essential for exploring Westpunt and the island's remote beaches. Roads are well-maintained but can be narrow in rural areas.</p>
-      </div>
-    </div>
+  <h2>Our guides to Bandabou</h2>
+  <p>We wrote these for our guests. Anyone visiting this side of the island is welcome to use them.</p>
+  <div class="home-guides">
+    <a href="bandabou.html"><b>Bandabou</b><span>The villages, the parks, the wildlife and a bit of history.</span></a>
+    <a href="beaches.html"><b>Beaches</b><span>Twelve beaches from Westpunt to Daaibooi, and what each one is best for.</span></a>
+    <a href="restaurants.html"><b>Restaurants</b><span>Where to eat, area by area, on a map.</span></a>
+    <a href="curacao-snorkel-guide.html"><b>Snorkeling</b><span>The best spots around the island, and our own reef.</span></a>
   </div>
 </section>
 
@@ -948,13 +845,13 @@
   <div class="container">
     <div class="contact-inner">
       <div class="contact-info">
-        <span class="section-label">Plan Your Escape</span>
-        <h2>Ready to experience Westpunt?</h2>
-        <p>Send us a message and we'll help plan your perfect Caribbean getaway. We prioritize direct bookings — no platform fees, direct communication with Denis &amp; Joanna.</p>
+        <span class="section-label">Book Direct</span>
+        <h2>Check dates and get in touch</h2>
+        <p>Tell us your dates and how many of you are coming, and we'll write back with the price. Questions are welcome too.</p>
         <div class="contact-methods">
           <div class="contact-method">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            bluetidewestpunt@gmail.com
+            <a href="mailto:bluetidewestpunt@gmail.com" class="map-link">bluetidewestpunt@gmail.com</a>
           </div>
           <div class="contact-method">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -999,7 +896,7 @@
           <option>3 guests</option>
           <option>4 guests</option>
         </select>
-        <textarea name="message" placeholder="Tell us about your trip — any questions, special occasions, or dates you're considering…"></textarea>
+        <textarea name="message" placeholder="Anything you'd like to ask or tell us about your trip"></textarea>
         <input type="hidden" name="_subject" value="New inquiry from Blue Tide Westpunt site">
         <button type="submit" class="submit-btn">Send Inquiry →</button>
       </form>
@@ -1039,30 +936,6 @@
   document.getElementById('rgPrev').onclick = ()=>goTo(cur-1);
   document.getElementById('rgNext').onclick = ()=>goTo(cur+1);
   thumbs.forEach((t,i)=>t.onclick=()=>goTo(i));
-})();
-
-// ── Beach Carousel ──
-(function(){
-  const slides = document.getElementById('beachSlides');
-  const dotsWrap = document.getElementById('beachDots');
-  const count = slides.children.length;
-  let cur = 0;
-  // build dots
-  for(let i=0;i<count;i++){
-    const d=document.createElement('button');
-    d.className='beach-dot'+(i===0?' active':'');
-    d.onclick=()=>goTo(i);
-    dotsWrap.appendChild(d);
-  }
-  function goTo(n){
-    cur=(n+count)%count;
-    slides.style.transform=`translateX(-${cur*100}%)`;
-    dotsWrap.querySelectorAll('.beach-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
-  }
-  document.getElementById('bcPrev').onclick=()=>goTo(cur-1);
-  document.getElementById('bcNext').onclick=()=>goTo(cur+1);
-  // auto-advance
-  setInterval(()=>goTo(cur+1), 5000);
 })();
 
 // Smooth scroll for anchor links
