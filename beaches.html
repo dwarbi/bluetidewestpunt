@@ -522,9 +522,27 @@
       });
       areas.forEach(function (a) { a.classList.toggle('is-empty', !a.querySelector('.r-card:not(.is-hidden)')); });
       document.getElementById('none').classList.toggle('show', !visible().length);
-      fit();
+      current = null; fit();
     });
   });
+
+  // Map follows the area you're reading
+  var current = null, lock = 0;
+  function fitArea(a) {
+    var pts = Array.prototype.map.call(a.querySelectorAll('.r-card:not(.is-hidden)'), function (c) { return [parseFloat(c.dataset.lat), parseFloat(c.dataset.lng)]; });
+    if (!pts.length) return;
+    map.stop(); map.flyToBounds(L.latLngBounds(pts), { padding: [60, 60], maxZoom: 14, duration: 0.7 });
+  }
+  window.addEventListener('scroll', function () {
+    if (!map || lock) return;
+    lock = setTimeout(function () {
+      lock = 0;
+      var line = narrow.matches ? window.innerHeight * 0.55 : window.innerHeight * 0.35, found = null;
+      areas.forEach(function (a) { if (a.classList.contains('is-empty')) return; var r = a.getBoundingClientRect(); if (r.top <= line && r.bottom > line) found = a; });
+      if (found && found !== current) { current = found; fitArea(found); }
+      if (!found && current && areas[0].getBoundingClientRect().top > line) { current = null; fit(); }
+    }, 150);
+  }, { passive: true });
 
   // Cruise ships: next 10 days, from assets/cruise-schedule.js
   var shipsToday = null;
